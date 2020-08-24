@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyLife", "EasyLife\EasyLife.csproj", "{C9506869-ABCA-4C68-A2AA-E69220097C99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9506869-ABCA-4C68-A2AA-E69220097C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9506869-ABCA-4C68-A2AA-E69220097C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9506869-ABCA-4C68-A2AA-E69220097C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9506869-ABCA-4C68-A2AA-E69220097C99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAA8E259-C5DD-4C95-9DB2-A9B594B31E6F}
+	EndGlobalSection
+EndGlobal

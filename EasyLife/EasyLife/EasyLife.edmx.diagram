@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0e83d69bc0f4349825fa1ee4a2ec5e9" Name="Diagram1">
+        <EntityTypeShape EntityType="EasyLifeModel.BOLETA" Width="1.5" PointX="8.25" PointY="21.75" />
+        <EntityTypeShape EntityType="EasyLifeModel.BOLETA_GASTO" Width="1.5" PointX="10.5" PointY="22.25" />
+        <EntityTypeShape EntityType="EasyLifeModel.CENTRO" Width="1.5" PointX="12.75" PointY="17.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.CIUDAD" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="EasyLifeModel.COMUNA" Width="1.5" PointX="5.25" PointY="14.25" />
+        <EntityTypeShape EntityType="EasyLifeModel.CONDOMINIO" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="EasyLifeModel.CONSERJE" Width="1.5" PointX="7.5" PointY="26.125" />
+        <EntityTypeShape EntityType="EasyLifeModel.CONTROL_ILUMINACION_DEPARTAMENTO" Width="1.5" PointX="20.25" PointY="22.125" />
+        <EntityTypeShape EntityType="EasyLifeModel.CONTROL_ILUMINACION_EDIFICIO" Width="1.5" PointX="15" PointY="30.625" />
+        <EntityTypeShape EntityType="EasyLifeModel.DEPARTAMENTO" Width="1.5" PointX="15.75" PointY="20" />
+        <EntityTypeShape EntityType="EasyLifeModel.DIRECCION" Width="1.5" PointX="7.5" PointY="18" />
+        <EntityTypeShape EntityType="EasyLifeModel.EDIFICIO" Width="1.5" PointX="10.5" PointY="17.5" />
+        <EntityTypeShape EntityType="EasyLifeModel.ESTACIONAMIENTO_VISITA" Width="1.5" PointX="10.5" PointY="28" />
+        <EntityTypeShape EntityType="EasyLifeModel.GASTOS_COMUNES" Width="1.5" PointX="12.75" PointY="25.75" />
+        <EntityTypeShape EntityType="EasyLifeModel.HORARIO_CENTRO" Width="1.5" PointX="15" PointY="15.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.LOGIN" Width="1.5" PointX="5.25" PointY="33.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.LUZ_DEPARTAMENTO" Width="1.5" PointX="18" PointY="22.125" />
+        <EntityTypeShape EntityType="EasyLifeModel.LUZ_EDIFICIO" Width="1.5" PointX="12.75" PointY="30.75" />
+        <EntityTypeShape EntityType="EasyLifeModel.MENSAJE" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.MULTA" Width="1.5" PointX="18" PointY="18.75" />
+        <EntityTypeShape EntityType="EasyLifeModel.PERSONA" Width="1.5" PointX="3" PointY="20.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.REGION" Width="1.5" PointX="0.75" PointY="14.5" />
+        <EntityTypeShape EntityType="EasyLifeModel.RESERVA_CENTRO" Width="1.5" PointX="13.5" PointY="21.875" />
+        <EntityTypeShape EntityType="EasyLifeModel.ROL" Width="1.5" PointX="0.75" PointY="22.5" />
+        <EntityTypeShape EntityType="EasyLifeModel.TIPO_CENTRO" Width="1.5" PointX="10.5" PointY="14.375" />
+        <EntityTypeShape EntityType="EasyLifeModel.TIPO_MENSAJE" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="EasyLifeModel.TURNO" Width="1.5" PointX="9.75" PointY="32.25" />
+        <AssociationConnector Association="EasyLifeModel.FK_BOLETA_G_RELATIONS_BOLETA" />
+        <AssociationConnector Association="EasyLifeModel.FK_BOLETA_RELATIONS_ESTACION" />
+        <AssociationConnector Association="EasyLifeModel.FK_BOLETA_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_ESTACION_RELATIONS_BOLETA" />
+        <AssociationConnector Association="EasyLifeModel.FK_RESERVA__RELATIONS_BOLETA" />
+        <AssociationConnector Association="EasyLifeModel.FK_BOLETA_G_RELATIONS_GASTOS_C" />
+        <AssociationConnector Association="EasyLifeModel.FK_CENTRO_RELATIONS_EDIFICIO" />
+        <AssociationConnector Association="EasyLifeModel.FK_CENTRO_RELATIONS_TIPO_CEN" />
+        <AssociationConnector Association="EasyLifeModel.FK_HORARIO__RELATIONS_CENTRO" />
+        <AssociationConnector Association="EasyLifeModel.FK_RESERVA__RELATIONS_CENTRO" />
+        <AssociationConnector Association="EasyLifeModel.FK_CIUDAD_RELATIONS_REGION" />
+        <AssociationConnector Association="EasyLifeModel.FK_COMUNA_RELATIONS_CIUDAD" />
+        <AssociationConnector Association="EasyLifeModel.FK_DIRECCIO_RELATIONS_COMUNA" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONDOMIN_RELATIONS_DIRECCIO" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONDOMIN_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONSERJE_RELATIONS_CONDOMIN" />
+        <AssociationConnector Association="EasyLifeModel.FK_DIRECCIO_RELATIONS_CONDOMIN" />
+        <AssociationConnector Association="EasyLifeModel.FK_EDIFICIO_RELATIONS_CONDOMIN" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONSERJE_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONTROL__RELATIONS_LUZ_DEPA" />
+        <AssociationConnector Association="EasyLifeModel.FK_CONTROL__RELATIONS_LUZ_EDIF" />
+        <AssociationConnector Association="EasyLifeModel.FK_DEPARTAM_RELATIONS_EDIFICIO" />
+        <AssociationConnector Association="EasyLifeModel.FK_DEPARTAM_RELATIONS_LUZ_DEPA" />
+        <AssociationConnector Association="EasyLifeModel.FK_DEPARTAM_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_LUZ_DEPA_RELATIONS_DEPARTAM" />
+        <AssociationConnector Association="EasyLifeModel.FK_MULTA_RELATIONS_DEPARTAM" />
+        <AssociationConnector Association="EasyLifeModel.FK_RESERVA__RELATIONS_DEPARTAM" />
+        <AssociationConnector Association="EasyLifeModel.FK_EDIFICIO_RELATIONS_GASTOS_C" />
+        <AssociationConnector Association="EasyLifeModel.FK_GASTOS_C_RELATIONS_EDIFICIO" />
+        <AssociationConnector Association="EasyLifeModel.FK_LUZ_EDIF_RELATIONS_EDIFICIO" />
+        <AssociationConnector Association="EasyLifeModel.FK_LOGIN_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_PERSONA_RELATIONS_LOGIN" />
+        <AssociationConnector Association="EasyLifeModel.FK_MENSAJE_RELATIONS_PERSONA" />
+        <AssociationConnector Association="EasyLifeModel.FK_MENSAJE_RELATIONS_TIPO_MEN" />
+        <AssociationConnector Association="EasyLifeModel.FK_PERSONA_RELATIONS_ROL" />
+        <AssociationConnector Association="EasyLifeModel.CONSERJE_TURNO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

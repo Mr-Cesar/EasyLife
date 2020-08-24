@@ -1,0 +1,318 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="EasyLife.MasterPage.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../Style/Ajax.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Logo Pestaña -->
+    <link rel="shortcut icon" href="https://i.postimg.cc/d1c4sZc6/Logo.jpg" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!--Main Navigation-->
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar" style="background-color: rebeccapurple;">
+                <asp:LinkButton ID="lnkLogo" runat="server" class="navbar-brand" CausesValidation="false" OnClick="lnkLogo_Click">
+                    <img src="https://i.postimg.cc/d1c4sZc6/Logo.jpg" height="30" width="30" class="d-inline-block align-top"
+                        alt="mdb logo">
+                    EasyLife
+                </asp:LinkButton>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" style="">
+                            <a class="nav-link" href="Index.aspx">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="lnkQuienes" runat="server" CssClass="nav-link" OnClick="lnkQuienes_Click">Quienes Somos</asp:LinkButton>
+                        </li>
+                        <li class="nav-item breadcrumb-item">
+                            <asp:LinkButton ID="lnkServicios" runat="server" CssClass="nav-link" OnClick="lnkServicios_Click">Servicios</asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="lnkContacto" runat="server" CssClass="nav-link" OnClick="lnkContacto_Click">Contactenos</asp:LinkButton>
+                        </li>
+                    </ul>
+
+                    <asp:Panel ID="panelBotones" runat="server" Visible="true">
+                        <nav id="menuSinLogin">
+                            <asp:LinkButton ID="lnkLogin" runat="server" class="btn btn-outline-light" CausesValidation="false" OnClick="lnkLogin_Click">Login</asp:LinkButton>
+                        </nav>
+                    </asp:Panel>
+                    <!-- Panel de Propietario-->
+                    <asp:Panel ID="panelPropietario" runat="server" Visible="false">
+                        <ul id="iconoLogin" style="list-style: none; height: 40px">
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="imgProp" runat="server" CssClass="rounded-circle z-depth-0" alt="avatar image" Style="width: 40px; height: 40px" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                                    <asp:LinkButton ID="lnkPerfil" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPerfil_Click">Perfil</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkLuces" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkLuces_Click">Programar Luces</asp:LinkButton>
+                                    <asp:LinkButton ID="btnPagarGasto" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="btnPagarGasto_Click">PagarGasto</asp:LinkButton>
+                                    <asp:LinkButton ID="btnReserva" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="btnReserva_Click">Reserva Centro</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMensaje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkCerrar" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
+                                </div>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+
+                    <!-- Panel de Administrador-->
+                    <asp:Panel ID="panelAdm" runat="server" Visible="false">
+                        <ul id="iconoLogin" style="list-style: none; height: 40px">
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="imgAdm" runat="server" CssClass="rounded-circle z-depth-0" alt="avatar image" Style="width: 40px; height: 40px" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                                    <asp:LinkButton ID="lnkPerfilAdm" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPerfilAdm_Click">Perfil</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroProp" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroProp_Click">Registro Propietario</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroPersonal" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroPersonal_Click">Registro Personal</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroCondominio" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroCondominio_Click">Registro Condominio</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroLuz" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroLuz_Click">Registrar Luz</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkCentro" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkCentro_Click">Registrar Centro</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMulta" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMulta_Click">Asignar Multa</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkAsignarTurno" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarTurno_Click">Asignar Turno Conserje</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkAsignarLuzEdificio" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarLuzEdificio_Click">Asignar Luz Edificio</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkAsignarLuzDep" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarLuzDep_Click">Asignar Luz Departamento</asp:LinkButton>
+                                    <asp:LinkButton ID="btnAsignarPersonal" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="btnAsignarPersonal_Click">Asignar Personal</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkEnviarMensaje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkEnviarMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton3" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
+                                </div>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+
+                    <!-- Panel de Vendedor-->
+                    <asp:Panel ID="panelVendedor" runat="server" Visible="false">
+                        <ul id="iconoLogin" style="list-style: none; height: 40px">
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="imgVendedor" runat="server" CssClass="rounded-circle z-depth-0" alt="avatar image" Style="width: 40px; height: 40px" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                                    <asp:LinkButton ID="lnkPerfilVendedor" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPerfilVendedor_Click">Perfil</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroPropV" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroPropV_Click">Registro Propietario</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMensajeVendedor" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton6" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
+                                </div>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+
+                    <!-- Panel de Conserje-->
+                    <asp:Panel ID="panelConserje" runat="server" Visible="false">
+                        <ul id="iconoLogin" style="list-style: none; height: 40px">
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="imgConserje" runat="server" CssClass="rounded-circle z-depth-0" alt="avatar image" Style="width: 40px; height: 40px" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                                    <asp:LinkButton ID="lnkPerfilConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPerfilConserje_Click">Perfil</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroEstacionamiento" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroEstacionamiento_Click">Registro Estacionamiento</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkPagoGastos" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPagoGastos_Click">Pago Gastos</asp:LinkButton>
+                                    <asp:LinkButton ID="LnkControlLuces" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="LnkControlLuces_Click">Control de Luces</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkReservaConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkReservaConserje_Click">Reservar Centro</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton16" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton9" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
+                                </div>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+
+                    <!-- Panel de AdmCondominio-->
+                    <asp:Panel ID="panelAdmCondominio" runat="server" Visible="false">
+                        <ul id="iconoLogin" style="list-style: none; height: 40px">
+                            <li class="nav-item avatar dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="imgAdmCon" runat="server" CssClass="rounded-circle z-depth-0" alt="avatar image" Style="width: 40px; height: 40px" />
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                                    <asp:LinkButton ID="lnkPerfilAdmCondominio" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkPerfilAdmCondominio_Click">Perfil</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRegistroConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkRegistroConserje_Click">Registro Conserje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="LinkButton2_Click">Registrar Luz</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton4" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMulta_Click">Asignar Multa</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarTurno_Click">Asignar Turno Conserje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton5" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarLuzEdificio_Click">Asignar Luz Edificio</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton7" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkAsignarLuzDep_Click">Asignar Luz Departamento</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton8" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="btnAsignarPersonal_Click">Asignar Personal</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton13" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton12" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
+                                </div>
+                            </li>
+                        </ul>
+                    </asp:Panel>
+                </div>
+            </nav>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!-- Footer -->
+        <footer class="page-footer font-small unique-color-dark" style="width: 102%; bottom: 0">
+            <div style="background-color: #6351ce;">
+                <div class="container">
+                    <!-- Grid row-->
+                    <div class="row py-4 d-flex align-items-center">
+                        <!-- Grid column -->
+                        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                            <h6 class="mb-0">Contáctenos en Nuestras Redes Sociales</h6>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-6 col-lg-7 text-center text-md-right">
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/EasyLife-Apartments-100720935026845/" class="btn-floating btn-lg btn-fb" role="button"
+                                target="_blank"><i class="fa fa-facebook"></i></a>
+                            <!-- Twitter -->
+                            <a href="https://twitter.com/EasyLifeApts" class="btn-floating btn-lg btn-tw" role="button" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <!--Instagram-->
+                            <a href="https://www.instagram.com/easylifeapartments/" class="btn-floating btn-lg btn-ins" role="button"
+                                target="_blank"><i class="fa fa-instagram"></i></a>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row-->
+                </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="container text-center text-md-left mt-5" style="margin-bottom: 1%">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase font-weight-bold">EasyLife Apartments</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p style="text-align: justify">
+                            EasyLife Apartments es una plataforma web dedicada y orientada a la administración de los condominios para hacer la
+                            vida de los usuarios más fácil.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Información</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p>
+                            <asp:LinkButton ID="LinkButton10" runat="server" OnClick="lnkQuienes_Click">Quienes Somos</asp:LinkButton>
+                        </p>
+                        <p>
+                            <asp:LinkButton ID="LinkButton11" runat="server" OnClick="lnkServicios_Click">Servicios</asp:LinkButton>
+                        </p>
+                        <p>
+                            <asp:LinkButton ID="LinkButton14" runat="server" OnClick="lnkContacto_Click">Contactenos</asp:LinkButton>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Links Útiles</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p>
+                            <asp:LinkButton ID="lnkPreguntas" runat="server" OnClick="lnkPreguntas_Click">Preguntas Frecuentes</asp:LinkButton>
+                        </p>
+                        <p>
+                            <asp:LinkButton ID="lnkTerminos" runat="server" OnClick="lnkTerminos_Click">Terminos y Condiciones</asp:LinkButton>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Contacto</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p>
+                            <i class="fa fa-home mr-3"></i>Almirante Barroso 76, Santiago, Chile
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope mr-3"></i>easylifeapartaments@gmail.com
+                        </p>
+                        <p>
+                            <i class="fa fa-phone mr-3"></i>+ 569 234 567 88
+                        </p>
+                        <p>
+                            <i class="fa fa-print mr-3"></i>+ 562 234 567 89
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+            <!-- Footer Links -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3" style="background-color: black">
+                <nav style="color: white; display: inline-block">© 2020 Copyright:</nav>
+                <a href="https://mdbootstrap.com/" style="display: inline-block">EasyLife</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </form>
+</body>
+</html>

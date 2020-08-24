@@ -1,0 +1,655 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9506869-ABCA-4C68-A2AA-E69220097C99}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyLife</RootNamespace>
+    <AssemblyName>EasyLife</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EasyLife.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EasyLife.Context.cs</LastGenOutput>
+      <DependentUpon>EasyLife.edmx</DependentUpon>
+    </Content>
+    <Content Include="EasyLife.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EasyLife.edmx</DependentUpon>
+      <LastGenOutput>EasyLife.cs</LastGenOutput>
+    </Content>
+    <Content Include="Image\l1.gif" />
+    <Content Include="Style\Ajax.css" />
+    <Content Include="Vista\AsignarLuzDepartamento.aspx" />
+    <Content Include="Vista\AsignarLuzEdificio.aspx" />
+    <Content Include="Vista\AsignarMulta.aspx" />
+    <Content Include="Vista\AsignarPersonal.aspx" />
+    <Content Include="Vista\AsignarTurnoConserje.aspx" />
+    <Content Include="Vista\CambiarPassword.aspx" />
+    <Content Include="Vista\Contacto.aspx" />
+    <Content Include="Vista\Index.aspx" />
+    <Content Include="Vista\Login.aspx" />
+    <Content Include="Vista\Mensaje.aspx" />
+    <Content Include="Vista\ModificarDatos.aspx" />
+    <Content Include="Vista\PagoGasto.aspx" />
+    <Content Include="Vista\PagoGastoPropietario.aspx" />
+    <Content Include="Vista\PagoMulta.aspx" />
+    <Content Include="Vista\PagoMultaPropietario.aspx" />
+    <Content Include="Vista\PerfilAdmCondominio.aspx" />
+    <Content Include="Vista\PerfilAdministrador.aspx" />
+    <Content Include="Vista\PerfilConserje.aspx" />
+    <Content Include="Vista\PerfilPropietario.aspx" />
+    <Content Include="Vista\PerfilVendedor.aspx" />
+    <Content Include="Vista\Preguntas.aspx" />
+    <Content Include="Vista\ProgramarLuzDepartamento.aspx" />
+    <Content Include="Vista\ProgramarLuzEdificio.aspx" />
+    <Content Include="Vista\QuienesSomos.aspx" />
+    <Content Include="Vista\RecuperarPassword.aspx" />
+    <Content Include="Vista\RegistroCentro.aspx" />
+    <Content Include="Vista\RegistroCondominio.aspx" />
+    <Content Include="Vista\RegistroConserje.aspx" />
+    <Content Include="Vista\RegistroEstacionamiento.aspx" />
+    <Content Include="Vista\RegistroGasto.aspx" />
+    <Content Include="Vista\RegistroHorario.aspx" />
+    <Content Include="Vista\RegistroLuz.aspx" />
+    <Content Include="Vista\RegistroPersonal.aspx" />
+    <Content Include="Vista\RegistroPropietario.aspx" />
+    <Content Include="Vista\RegistroReservaConserje.aspx" />
+    <Content Include="Vista\RegistroReservaPropietario.aspx" />
+    <Content Include="Vista\Servicios.aspx" />
+    <Content Include="Vista\Terminos.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter\AdapterBoletaGasto.cs" />
+    <Compile Include="Adapter\AdapterCentro.cs" />
+    <Compile Include="Adapter\AdapterCondominio.cs" />
+    <Compile Include="Adapter\AdapterConserje.cs" />
+    <Compile Include="Adapter\AdapterControlLuzDepartamento.cs" />
+    <Compile Include="Adapter\AdapterControlLuzEdificio.cs" />
+    <Compile Include="Adapter\AdapterDepartamento.cs" />
+    <Compile Include="Adapter\AdapterEdificio.cs" />
+    <Compile Include="Adapter\AdapterEstacionamiento.cs" />
+    <Compile Include="Adapter\AdapterGastoComun.cs" />
+    <Compile Include="Adapter\AdapterLuzDepartamento.cs" />
+    <Compile Include="Adapter\AdapterLuzEdificio.cs" />
+    <Compile Include="Adapter\AdapterMulta.cs" />
+    <Compile Include="Adapter\AdapterPersonal.cs" />
+    <Compile Include="Adapter\AdapterPropietario.cs" />
+    <Compile Include="Adapter\AdapterReserva.cs" />
+    <Compile Include="BOLETA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="boletaGasto_Result.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BOLETA_GASTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CENTRO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CIUDAD.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COMUNA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONDOMINIO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONSERJE.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ControllerBoleta.cs" />
+    <Compile Include="Controller\ControllerCentro.cs" />
+    <Compile Include="Controller\ControllerCiudad.cs" />
+    <Compile Include="Controller\ControllerComuna.cs" />
+    <Compile Include="Controller\ControllerCondominio.cs" />
+    <Compile Include="Controller\ControllerConserje.cs" />
+    <Compile Include="Controller\ControllerControlIlimunacionDep.cs" />
+    <Compile Include="Controller\ControllerControlIluminacionEdificio.cs" />
+    <Compile Include="Controller\ControllerDepartamento.cs" />
+    <Compile Include="Controller\ControllerDireccion.cs" />
+    <Compile Include="Controller\ControllerEdificio.cs" />
+    <Compile Include="Controller\ControllerEncryption.cs" />
+    <Compile Include="Controller\ControllerEstacionamientoVisita.cs" />
+    <Compile Include="Controller\ControllerGastoComun.cs" />
+    <Compile Include="Controller\ControllerHorarioCentro.cs" />
+    <Compile Include="Controller\ControllerLogin.cs" />
+    <Compile Include="Controller\ControllerLuzDepartamento.cs" />
+    <Compile Include="Controller\ControllerLuzEdificio.cs" />
+    <Compile Include="Controller\ControllerMensaje.cs" />
+    <Compile Include="Controller\ControllerMulta.cs" />
+    <Compile Include="Controller\ControllerPersona.cs" />
+    <Compile Include="Controller\ControllerRegion.cs" />
+    <Compile Include="Controller\ControllerReservaCentro.cs" />
+    <Compile Include="Controller\ControllerRol.cs" />
+    <Compile Include="Controller\ControllerTipoCentro.cs" />
+    <Compile Include="Controller\ControllerTipoMensaje.cs" />
+    <Compile Include="Controller\ControllerTurno.cs" />
+    <Compile Include="CONTROL_ILUMINACION_DEPARTAMENTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROL_ILUMINACION_EDIFICIO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEPARTAMENTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="depOcupados_Result.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DIRECCION.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EasyLife.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyLife.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EasyLife.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EasyLife.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyLife.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EDIFICIO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ESTACIONAMIENTO_VISITA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GASTOS_COMUNES.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HORARIO_CENTRO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listaTurno_Result.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOGIN.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LUZ_DEPARTAMENTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LUZ_EDIFICIO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MENSAJE.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Boleta.cs" />
+    <Compile Include="Modelo\Centro.cs" />
+    <Compile Include="Modelo\Ciudad.cs" />
+    <Compile Include="Modelo\Comuna.cs" />
+    <Compile Include="Modelo\Condominio.cs" />
+    <Compile Include="Modelo\Conserje.cs" />
+    <Compile Include="Modelo\ControlIluminacionDep.cs" />
+    <Compile Include="Modelo\ControlIluminacionEdificio.cs" />
+    <Compile Include="Modelo\Departamento.cs" />
+    <Compile Include="Modelo\Direccion.cs" />
+    <Compile Include="Modelo\Edificio.cs" />
+    <Compile Include="Modelo\EstacionamientoVisita.cs" />
+    <Compile Include="Modelo\GastoComun.cs" />
+    <Compile Include="Modelo\HorarioCentro.cs" />
+    <Compile Include="Modelo\Login.cs" />
+    <Compile Include="Modelo\LuzDepartamento.cs" />
+    <Compile Include="Modelo\LuzEdificio.cs" />
+    <Compile Include="Modelo\Mensaje.cs" />
+    <Compile Include="Modelo\Multa.cs" />
+    <Compile Include="Modelo\Persona.cs" />
+    <Compile Include="Modelo\Region.cs" />
+    <Compile Include="Modelo\ReservaCentro.cs" />
+    <Compile Include="Modelo\Rol.cs" />
+    <Compile Include="Modelo\TipoCentro.cs" />
+    <Compile Include="Modelo\TipoMensaje.cs" />
+    <Compile Include="Modelo\Turno.cs" />
+    <Compile Include="MULTA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PERSONA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REGION.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RESERVA_CENTRO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ROL.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPO_CENTRO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPO_MENSAJE.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TURNO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="turnosConserje_Result.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AsignarLuzDepartamento.aspx.cs">
+      <DependentUpon>AsignarLuzDepartamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AsignarLuzDepartamento.aspx.designer.cs">
+      <DependentUpon>AsignarLuzDepartamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AsignarLuzEdificio.aspx.cs">
+      <DependentUpon>AsignarLuzEdificio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AsignarLuzEdificio.aspx.designer.cs">
+      <DependentUpon>AsignarLuzEdificio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AsignarMulta.aspx.cs">
+      <DependentUpon>AsignarMulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AsignarMulta.aspx.designer.cs">
+      <DependentUpon>AsignarMulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AsignarPersonal.aspx.cs">
+      <DependentUpon>AsignarPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AsignarPersonal.aspx.designer.cs">
+      <DependentUpon>AsignarPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AsignarTurnoConserje.aspx.cs">
+      <DependentUpon>AsignarTurnoConserje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AsignarTurnoConserje.aspx.designer.cs">
+      <DependentUpon>AsignarTurnoConserje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\CambiarPassword.aspx.cs">
+      <DependentUpon>CambiarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\CambiarPassword.aspx.designer.cs">
+      <DependentUpon>CambiarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Contacto.aspx.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Contacto.aspx.designer.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Mensaje.aspx.cs">
+      <DependentUpon>Mensaje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Mensaje.aspx.designer.cs">
+      <DependentUpon>Mensaje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ModificarDatos.aspx.cs">
+      <DependentUpon>ModificarDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ModificarDatos.aspx.designer.cs">
+      <DependentUpon>ModificarDatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PagoGasto.aspx.cs">
+      <DependentUpon>PagoGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PagoGasto.aspx.designer.cs">
+      <DependentUpon>PagoGasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PagoGastoPropietario.aspx.cs">
+      <DependentUpon>PagoGastoPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PagoGastoPropietario.aspx.designer.cs">
+      <DependentUpon>PagoGastoPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PagoMulta.aspx.cs">
+      <DependentUpon>PagoMulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PagoMulta.aspx.designer.cs">
+      <DependentUpon>PagoMulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PagoMultaPropietario.aspx.cs">
+      <DependentUpon>PagoMultaPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PagoMultaPropietario.aspx.designer.cs">
+      <DependentUpon>PagoMultaPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PerfilAdmCondominio.aspx.cs">
+      <DependentUpon>PerfilAdmCondominio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PerfilAdmCondominio.aspx.designer.cs">
+      <DependentUpon>PerfilAdmCondominio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PerfilAdministrador.aspx.cs">
+      <DependentUpon>PerfilAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PerfilAdministrador.aspx.designer.cs">
+      <DependentUpon>PerfilAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PerfilConserje.aspx.cs">
+      <DependentUpon>PerfilConserje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PerfilConserje.aspx.designer.cs">
+      <DependentUpon>PerfilConserje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PerfilPropietario.aspx.cs">
+      <DependentUpon>PerfilPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PerfilPropietario.aspx.designer.cs">
+      <DependentUpon>PerfilPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\PerfilVendedor.aspx.cs">
+      <DependentUpon>PerfilVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\PerfilVendedor.aspx.designer.cs">
+      <DependentUpon>PerfilVendedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Preguntas.aspx.cs">
+      <DependentUpon>Preguntas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Preguntas.aspx.designer.cs">
+      <DependentUpon>Preguntas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ProgramarLuzDepartamento.aspx.cs">
+      <DependentUpon>ProgramarLuzDepartamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ProgramarLuzDepartamento.aspx.designer.cs">
+      <DependentUpon>ProgramarLuzDepartamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ProgramarLuzEdificio.aspx.cs">
+      <DependentUpon>ProgramarLuzEdificio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ProgramarLuzEdificio.aspx.designer.cs">
+      <DependentUpon>ProgramarLuzEdificio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\QuienesSomos.aspx.cs">
+      <DependentUpon>QuienesSomos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\QuienesSomos.aspx.designer.cs">
+      <DependentUpon>QuienesSomos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RecuperarPassword.aspx.cs">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RecuperarPassword.aspx.designer.cs">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroCentro.aspx.cs">
+      <DependentUpon>RegistroCentro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroCentro.aspx.designer.cs">
+      <DependentUpon>RegistroCentro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroCondominio.aspx.cs">
+      <DependentUpon>RegistroCondominio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroCondominio.aspx.designer.cs">
+      <DependentUpon>RegistroCondominio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroConserje.aspx.cs">
+      <DependentUpon>RegistroConserje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroConserje.aspx.designer.cs">
+      <DependentUpon>RegistroConserje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroEstacionamiento.aspx.cs">
+      <DependentUpon>RegistroEstacionamiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroEstacionamiento.aspx.designer.cs">
+      <DependentUpon>RegistroEstacionamiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroGasto.aspx.cs">
+      <DependentUpon>RegistroGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroGasto.aspx.designer.cs">
+      <DependentUpon>RegistroGasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroHorario.aspx.cs">
+      <DependentUpon>RegistroHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroHorario.aspx.designer.cs">
+      <DependentUpon>RegistroHorario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroLuz.aspx.cs">
+      <DependentUpon>RegistroLuz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroLuz.aspx.designer.cs">
+      <DependentUpon>RegistroLuz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroPersonal.aspx.cs">
+      <DependentUpon>RegistroPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroPersonal.aspx.designer.cs">
+      <DependentUpon>RegistroPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroPropietario.aspx.cs">
+      <DependentUpon>RegistroPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroPropietario.aspx.designer.cs">
+      <DependentUpon>RegistroPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroReservaConserje.aspx.cs">
+      <DependentUpon>RegistroReservaConserje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroReservaConserje.aspx.designer.cs">
+      <DependentUpon>RegistroReservaConserje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroReservaPropietario.aspx.cs">
+      <DependentUpon>RegistroReservaPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroReservaPropietario.aspx.designer.cs">
+      <DependentUpon>RegistroReservaPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Servicios.aspx.cs">
+      <DependentUpon>Servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Servicios.aspx.designer.cs">
+      <DependentUpon>Servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Terminos.aspx.cs">
+      <DependentUpon>Terminos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Terminos.aspx.designer.cs">
+      <DependentUpon>Terminos.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EasyLife.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EasyLife.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EasyLife.edmx.diagram">
+      <DependentUpon>EasyLife.edmx</DependentUpon>
+    </Content>
+    <Content Include="MasterPage\MasterPage.Master" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51570</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51570/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
