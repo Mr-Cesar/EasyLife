@@ -64,6 +64,22 @@
             <br />
             <br />
 
+            <asp:Panel ID="panelUpdateHorario" runat="server" Visible="false">
+                <!-- Lista de Horarios -->
+                <asp:Label ID="Label1" runat="server" Text="Lista Horarios" Visible="false" ForeColor="Black"></asp:Label>
+                <asp:GridView ID="grHorarioActual" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="ID_HORARIO_CENTRO"
+                    Font-Size="10pt" OnSelectedIndexChanged="grHorarioActual_SelectedIndexChanged" AllowPaging="true" PageSize="6"
+                    OnPageIndexChanging="grHorarioActual_PageIndexChanging">
+                    <Columns>
+                        <asp:BoundField DataField="DIA_HORARIO" HeaderText="Dia" SortExpression="DIA_HORARIO" />
+                        <asp:BoundField DataField="HORA_INICIO_D" HeaderText="Hora Inicio" SortExpression="HORA_INICIO_D" />
+                        <asp:BoundField DataField="HORA_TERMINO_D" HeaderText="Hora Termino" SortExpression="HORA_TERMINO_D" />
+                        <asp:CommandField ShowSelectButton="true" HeaderText="Modificar" />
+                    </Columns>
+                </asp:GridView>
+                <br />
+            </asp:Panel>
+
             <!-- Ingreso Dia Horario -->
             <asp:Label ID="Label2" runat="server" Text="Dia Horario" Style="color: black"></asp:Label><br />
             <div style="display: inline-block; width: 90%">
@@ -105,6 +121,8 @@
             <asp:Label ID="lbError" runat="server" Text="Horario ya Existete" ForeColor="Red" Visible="false"></asp:Label>
             <asp:Button runat="server" ID="btnAgregarHorario" class="btn btn-light btn-block my-4" Text="Agregar Horario" OnClick="btnAgregarHorario_Click"
                 ValidationGroup="horario" />
+            <asp:Button runat="server" ID="btnModificar" class="btn btn-light btn-block my-4" Text="Modificar" OnClick="btnModificar_Click"
+                ValidationGroup="horario" Visible="false" />
 
             <!-- Lista de Horarios -->
             <asp:Label ID="lbHorario" runat="server" Text="Lista Horarios" Visible="false" ForeColor="Black"></asp:Label>

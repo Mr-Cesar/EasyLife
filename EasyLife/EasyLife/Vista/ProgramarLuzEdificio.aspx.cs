@@ -11,13 +11,23 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Recuperar Session de Modificar Control
+            string modificar = (string)Session["ModificarControlIluminacionEdifciio"];
+            modificar = "1";
             if (!IsPostBack)
             {
                 long persona = 2;
                 cargarEdificioConserje(persona);
                 cargarCondominio();
+
+                if (modificar != null)
+                {
+                    cargarControl(modificar);
+                }
             }
         }
+
+        private static CONTROL_ILUMINACION_EDIFICIO controlEdificio = new CONTROL_ILUMINACION_EDIFICIO();
 
         public void cargarCondominio()
         {
@@ -51,6 +61,36 @@ namespace EasyLife.Vista
             dplEdificio.DataBind();
             dplEdificio.Items.Insert(0, "Seleccione un Edificio");
             dplEdificio.SelectedIndex = 0;
+        }
+
+        public void cargarControl(string control)
+        {
+            lbOpcion.Text = "Modifiar Control de Luces";
+            panelCondominio.Visible = false;
+            panelModificar.Visible = false;
+            controlEdificio = new CONTROL_ILUMINACION_EDIFICIO();
+            controlEdificio = Controller.ControllerControlIluminacionEdificio.buscarIdControl(Convert.ToInt64(control));
+            string año = controlEdificio.HORA_INICIO_E.Substring(6, 4);
+            string mes = controlEdificio.HORA_INICIO_E.Substring(3, 2);
+            string dia = controlEdificio.HORA_INICIO_E.Substring(0, 2);
+            txtDia.Text = año + "-" + mes + "-" + dia;
+
+            string horaI = controlEdificio.HORA_INICIO_E.Substring(11, 5);
+            txtHoraInicio.Text = horaI;
+
+            string horaT = controlEdificio.HORA_TERMINO_E.Substring(11, 5);
+            txtHoraTermino.Text = horaT;
+
+            if (controlEdificio.ESTADO_LUZ_CE == true)
+            {
+                rbOpcion.SelectedIndex = 0;
+            }
+            else
+            {
+                rbOpcion.SelectedIndex = 1;
+            }
+            btnProgramarLuz.Visible = false;
+            btnModificarPrograma.Visible = true;
         }
 
         protected void dplCondominio_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,6 +184,35 @@ namespace EasyLife.Vista
 
         protected void btnModificarPrograma_Click(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(5000);
+            DateTime dia = Convert.ToDateTime(txtDia.Text);
+            string horaI = txtHoraInicio.Text;
+            string horaT = txtHoraTermino.Text;
+            int operacion = rbOpcion.SelectedIndex;
+            Boolean opcion = new Boolean();
+            if (operacion == 0)
+            {
+                opcion = true;
+            }
+            else
+            {
+                opcion = false;
+            }
+            string horaInicio = dia.ToString("dd/MM/yyy") + " " + horaI;
+            string horaTermino = dia.ToString("dd/MM/yyy") + " " + horaT;
+            string result = Controller.ControllerControlIluminacionEdificio.modificarControlEdificio(controlEdificio.ID_CILUMINACION_E, controlEdificio.ID_LUZ_E,
+                horaInicio, horaTermino, opcion);
+            if (result.Equals("Control Modificado"))
+            {
+                Session["ModificarControlIluminacionEdifciio"] = null;
+                panelCondominio.Visible = true;
+                panelModificar.Visible = true;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Control Modificado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Modificado Control');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
     }
 }

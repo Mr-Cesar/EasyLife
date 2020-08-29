@@ -16,7 +16,9 @@ namespace EasyLife.Vista
                 cargarCondominio();
                 cargarTipo();
 
+                //Recuperar Session de Modificar Centro
                 string modificarCentro = (string)Session["ModificarCentro"];
+                modificarCentro = "1";
                 if (modificarCentro != null)
                 {
                     cargarParametros(modificarCentro);
@@ -26,6 +28,7 @@ namespace EasyLife.Vista
         }
 
         private static List<HORARIO_CENTRO> listaHorario = new List<HORARIO_CENTRO>();
+        private static List<HORARIO_CENTRO> horarioActual = new List<HORARIO_CENTRO>();
         private static List<Adapter.AdapterCentro> listaCentro = new List<Adapter.AdapterCentro>();
         private static CENTRO updateCentro = new CENTRO();
 
@@ -94,6 +97,12 @@ namespace EasyLife.Vista
             txtCosto.Text = aux.COSTO.ToString();
             btnRegistroCentro.Visible = false;
             btnModificarCentro.Visible = true;
+
+            horarioActual = new List<HORARIO_CENTRO>();
+            horarioActual = Controller.ControllerHorarioCentro.listadoHorario(Convert.ToInt64(centro));
+            lbHorarioActual.Visible = true;
+            grHorarioActual.DataSource = horarioActual;
+            grHorarioActual.DataBind();
             updateCentro = aux;
         }
 
@@ -189,6 +198,13 @@ namespace EasyLife.Vista
             }
         }
 
+        protected void grHorarioActual_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grHorarioActual.PageIndex = e.NewPageIndex;
+            grHorarioActual.DataSource = horarioActual;
+            grHorarioActual.DataBind();
+        }
+
         protected void btnAgregarHorario_Click(object sender, EventArgs e)
         {
             lbError.Visible = false;
@@ -197,18 +213,35 @@ namespace EasyLife.Vista
             dia = Convert.ToDateTime(txtDia.Text);
             HORARIO_CENTRO horario = new HORARIO_CENTRO();
             horario.DIA_HORARIO = dia.ToString("dd/MM/yyy");
-            horario.HORA_INICIO_D = txtHoraI.Text;
-            horario.HORA_TERMINO_D = txtHoraT.Text;
+            horario.HORA_INICIO_D = txtHoraI.Text + ":00";
+            horario.HORA_TERMINO_D = txtHoraT.Text + ":00";
             horario.HORARIO_COMPLETO = txtHoraI.Text + " - " + txtHoraT.Text;
 
-            if (listaHorario.Count > 0)
+            if (horarioActual.Count > 0)
             {
-                foreach (HORARIO_CENTRO item in listaHorario)
+                foreach (HORARIO_CENTRO item in horarioActual)
                 {
-                    if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO) && item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                    if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO))
                     {
-                        lbError.Visible = true;
-                        operation = false;
+                        if (item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                        {
+                            operation = false;
+                        }
+                    }
+                }
+            }
+
+            if (operation == true)
+            {
+                if (listaHorario.Count > 0)
+                {
+                    foreach (HORARIO_CENTRO item in listaHorario)
+                    {
+                        if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO) && item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                        {
+                            lbError.Visible = true;
+                            operation = false;
+                        }
                     }
                 }
             }
@@ -223,6 +256,10 @@ namespace EasyLife.Vista
                 txtDia.Text = "";
                 txtHoraI.Text = "";
                 txtHoraT.Text = "";
+            }
+            else
+            {
+                lbError.Visible = true;
             }
         }
 
@@ -241,7 +278,7 @@ namespace EasyLife.Vista
             grHorario.DataBind();
         }
 
-        protected void btnRegistroCentro_Click1(object sender, EventArgs e)
+        protected void btnRegistroCentro_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
             string resultCentro = "";
@@ -274,7 +311,7 @@ namespace EasyLife.Vista
             }
         }
 
-        protected void btnModificarCentro_Click1(object sender, EventArgs e)
+        protected void btnModificarCentro_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
             long idCentro = updateCentro.ID_CENTRO;

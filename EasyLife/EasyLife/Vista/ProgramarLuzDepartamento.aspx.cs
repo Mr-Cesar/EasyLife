@@ -11,6 +11,7 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Recuperar Session de Modificar Control
             string modificar = (string)Session["ModificarControlIluminacionDep"];
 
             if (!IsPostBack)
@@ -39,6 +40,9 @@ namespace EasyLife.Vista
 
         public void cargarControl(string control)
         {
+            lbOpcion.Text = "Modifiar Control de Luces";
+            panelPropDep.Visible = false;
+            panelEstado.Visible = false;
             controlDep = new CONTROL_ILUMINACION_DEPARTAMENTO();
             controlDep = Controller.ControllerControlIlimunacionDep.buscarIdControl(Convert.ToInt64(control));
             string año = controlDep.HORA_INICIO_D.Substring(6, 4);
@@ -48,7 +52,6 @@ namespace EasyLife.Vista
 
             string horaI = controlDep.HORA_INICIO_D.Substring(11, 5);
             txtHoraInicio.Text = horaI;
-
             string horaT = controlDep.HORA_TERMINO_D.Substring(11, 5);
             txtHoraTermino.Text = horaT;
 
@@ -146,6 +149,8 @@ namespace EasyLife.Vista
             if (result.Equals("Control Modificado"))
             {
                 Session["ModificarControlIluminacionDep"] = null;
+                panelPropDep.Visible = true;
+                panelEstado.Visible = true;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Control Modificado');window.location.href='" + Request.RawUrl + "';", true);
             }
             else

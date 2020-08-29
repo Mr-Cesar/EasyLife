@@ -33,65 +33,67 @@
                         <br />
                     </asp:Panel>
 
-                    <%-- Campo de ingreso de Edificio --%>
-                    <asp:Label ID="Label12" runat="server" Text="Edificio" Style="color: black"></asp:Label><br />
-                    <asp:Label ID="lbEdificio" runat="server" Text="" ForeColor="Black" Visible="false"></asp:Label>
-                    <div style="display: inline-block; width: 90%">
-                        <asp:DropDownList ID="dplEdificio" runat="server" CssClass="form-control" AutoPostBack="true"
-                            OnSelectedIndexChanged="dplEdificio_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <%-- Validacion de Edificio --%>
-                    <div style="display: inline-block;">
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
-                            Display="Dynamic" InitialValue="Seleccione un Edificio"></asp:RequiredFieldValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
-                            Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                    <br />
-                    <br />
+                    <asp:Panel ID="panelModificar" runat="server" Visible="true">
+                        <%-- Campo de ingreso de Edificio --%>
+                        <asp:Label ID="Label12" runat="server" Text="Edificio" Style="color: black"></asp:Label><br />
+                        <asp:Label ID="lbEdificio" runat="server" Text="" ForeColor="Black" Visible="false"></asp:Label>
+                        <div style="display: inline-block; width: 90%">
+                            <asp:DropDownList ID="dplEdificio" runat="server" CssClass="form-control" AutoPostBack="true"
+                                OnSelectedIndexChanged="dplEdificio_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
+                        <%-- Validacion de Edificio --%>
+                        <div style="display: inline-block;">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
+                                Display="Dynamic" InitialValue="Seleccione un Edificio"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
+                                Display="Dynamic"></asp:RequiredFieldValidator>
+                        </div>
+                        <br />
+                        <br />
 
-                    <%-- Campo de ingreso de Luz --%>
-                    <asp:Label ID="Label5" runat="server" Text="Luz" Style="color: black"></asp:Label><br />
-                    <asp:Label ID="lbLuz" runat="server" Text="asd" ForeColor="Black" Visible="false"></asp:Label>
-                    <div style="display: inline-block; width: 90%">
-                        <asp:DropDownList ID="dplLuz" runat="server" CssClass="form-control" AutoPostBack="true"
-                            OnSelectedIndexChanged="dplLuz_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <%-- Validacion de Luz --%>
-                    <div style="display: inline-block;">
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplLuz"
-                            Display="Dynamic" InitialValue="Seleccione una Luz"></asp:RequiredFieldValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplLuz" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                    <br />
-                    <br />
+                        <%-- Campo de ingreso de Luz --%>
+                        <asp:Label ID="Label5" runat="server" Text="Luz" Style="color: black"></asp:Label><br />
+                        <asp:Label ID="lbLuz" runat="server" Text="asd" ForeColor="Black" Visible="false"></asp:Label>
+                        <div style="display: inline-block; width: 90%">
+                            <asp:DropDownList ID="dplLuz" runat="server" CssClass="form-control" AutoPostBack="true"
+                                OnSelectedIndexChanged="dplLuz_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
+                        <%-- Validacion de Luz --%>
+                        <div style="display: inline-block;">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplLuz"
+                                Display="Dynamic" InitialValue="Seleccione una Luz"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplLuz" Display="Dynamic"></asp:RequiredFieldValidator>
+                        </div>
+                        <br />
+                        <br />
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label" style="color: black;">Estado Actual: </label>
-                        <asp:Label ID="lbEstado" CssClass="form-control" runat="server" Text="Label" Style="width: 30%"></asp:Label>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form">
-                            <asp:Button ID="btnEncenderLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender"
-                                OnClick="btnEncenderLuz_Click" />
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="color: black;">Estado Actual: </label>
+                            <asp:Label ID="lbEstado" CssClass="form-control" runat="server" Text="Label" Style="width: 30%"></asp:Label>
                         </div>
-                        <div class="col-sm-3 col-form">
-                            <asp:Button ID="btnApagarLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar"
-                                OnClick="btnApagarLuz_Click" />
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-form">
+                                <asp:Button ID="btnEncenderLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender"
+                                    OnClick="btnEncenderLuz_Click" />
+                            </div>
+                            <div class="col-sm-3 col-form">
+                                <asp:Button ID="btnApagarLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar"
+                                    OnClick="btnApagarLuz_Click" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-4 col-form">
-                            <asp:Button ID="btnEncenderTodo" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender Todo"
-                                OnClick="btnEncenderTodo_Click" />
+                        <div class="form-group row">
+                            <div class="col-sm-4 col-form">
+                                <asp:Button ID="btnEncenderTodo" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender Todo"
+                                    OnClick="btnEncenderTodo_Click" />
+                            </div>
+                            <div class="col-sm-4 col-form">
+                                <asp:Button ID="btnApagarTodo" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar Todo"
+                                    OnClick="btnApagarTodo_Click" />
+                            </div>
                         </div>
-                        <div class="col-sm-4 col-form">
-                            <asp:Button ID="btnApagarTodo" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar Todo"
-                                OnClick="btnApagarTodo_Click" />
-                        </div>
-                    </div>
+                    </asp:Panel>
                 </nav>
 
                 <nav>

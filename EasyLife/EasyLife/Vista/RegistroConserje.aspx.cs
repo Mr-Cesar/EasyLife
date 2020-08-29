@@ -16,17 +16,18 @@ namespace EasyLife.Vista
                 cargarCondominio();
 
                 string updateConserje = (string)Session["ModificarConserje"];
+                updateConserje = "2";
                 if (updateConserje != null)
                 {
-                    operation = true;
+                    cargarConserje(updateConserje);
                 }
             }
         }
 
         private static List<PERSONA> listaConserje = new List<PERSONA>();
         private static List<TURNO> listaTurno = new List<TURNO>();
-        private static Boolean operation = false;
         private static List<TURNO> listaTurnoUpdate = new List<TURNO>();
+        private static PERSONA conserjeUpdate = new PERSONA();
 
         public void cargarCondominio()
         {
@@ -48,6 +49,32 @@ namespace EasyLife.Vista
             dplCondominio.DataBind();
             dplCondominio.Items.Insert(0, "Seleccione un Condominio");
             dplCondominio.SelectedIndex = 0;
+        }
+
+        public void cargarConserje(string conserje)
+        {
+            conserjeUpdate = new PERSONA();
+            conserjeUpdate = Controller.ControllerPersona.buscarIdPersona(Convert.ToInt64(conserje));
+            panelTurno.Visible = false;
+            CONSERJE aux = Controller.ControllerConserje.buscarIdConserje(Convert.ToInt64(conserje));
+            cargarCondominio();
+            dplCondominio.SelectedValue = aux.ID_CONDOMINIO.ToString();
+            dplCondominio.Enabled = false;
+            txtRut.Text = conserjeUpdate.FK_RUT;
+            txtNombre.Text = conserjeUpdate.NOMBRE_PERSONA;
+            txtApellido.Text = conserjeUpdate.APELLIDO_PERSONA;
+            txtTelefono.Text = conserjeUpdate.TELEFONO_PERSONA;
+            txtEmail.Text = conserjeUpdate.CORREO_PERSONA;
+            if (conserjeUpdate.SEXO.Equals('M'))
+            {
+                radioSexo.SelectedIndex = 0;
+            }
+            else
+            {
+                radioSexo.SelectedIndex = 1;
+            }
+            btnRegistroConserje.Visible = false;
+            btnModificarConserje.Visible = true;
         }
 
         protected void dplCondominio_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,76 +111,38 @@ namespace EasyLife.Vista
             string tipoTurno = dplTurno.SelectedValue;
             fechaI = Convert.ToDateTime(txtFechaI.Text);
             fechaT = Convert.ToDateTime(txtFechaT.Text);
-            Boolean option = true;
-            if (operation == true)
+            Boolean operation = true;
+            if (listaTurno.Count > 0)
             {
-                if (listaTurnoUpdate.Count > 0)
+                foreach (TURNO item in listaTurno)
                 {
-                    foreach (TURNO item in listaTurnoUpdate)
+                    if (item.FECHA_INICIO.Equals(fechaI.ToShortDateString()))
                     {
-                        if (item.FECHA_INICIO.Equals(fechaI.ToShortDateString()))
+                        if (item.DESCRIPCION_TURNO.Equals(tipoTurno))
                         {
-                            if (item.DESCRIPCION_TURNO.Equals(tipoTurno))
-                            {
-                                lbError.Visible = true;
-                                dplTurno.SelectedIndex = 0;
-                                txtFechaI.Text = "";
-                                txtFechaT.Text = "";
-                                option = false;
-                            }
+                            lbError.Visible = true;
+                            dplTurno.SelectedIndex = 0;
+                            txtFechaI.Text = "";
+                            txtFechaT.Text = "";
+                            operation = false;
                         }
                     }
-                }
-
-                if (option == true)
-                {
-                    lbError.Visible = false;
-                    turno.DESCRIPCION_TURNO = tipoTurno;
-                    turno.FECHA_INICIO = fechaI.ToShortDateString();
-                    turno.FECHA_TERMINO = fechaT.ToShortDateString();
-                    listaTurnoUpdate.Add(turno);
-                    grHorario.DataSource = listaTurnoUpdate;
-                    grHorario.DataBind();
-                    dplTurno.SelectedIndex = 0;
-                    txtFechaI.Text = "";
-                    txtFechaT.Text = "";
-                    btnRegistroConserje.Visible = true;
                 }
             }
-            else
-            {
-                if (listaTurno.Count > 0)
-                {
-                    foreach (TURNO item in listaTurno)
-                    {
-                        if (item.FECHA_INICIO.Equals(fechaI.ToShortDateString()))
-                        {
-                            if (item.DESCRIPCION_TURNO.Equals(tipoTurno))
-                            {
-                                lbError.Visible = true;
-                                dplTurno.SelectedIndex = 0;
-                                txtFechaI.Text = "";
-                                txtFechaT.Text = "";
-                                option = false;
-                            }
-                        }
-                    }
-                }
 
-                if (option == true)
-                {
-                    lbError.Visible = false;
-                    turno.DESCRIPCION_TURNO = tipoTurno;
-                    turno.FECHA_INICIO = fechaI.ToShortDateString();
-                    turno.FECHA_TERMINO = fechaT.ToShortDateString();
-                    listaTurno.Add(turno);
-                    grHorario.DataSource = listaTurno;
-                    grHorario.DataBind();
-                    dplTurno.SelectedIndex = 0;
-                    txtFechaI.Text = "";
-                    txtFechaT.Text = "";
-                    btnRegistroConserje.Visible = true;
-                }
+            if (operation == true)
+            {
+                lbError.Visible = false;
+                turno.DESCRIPCION_TURNO = tipoTurno;
+                turno.FECHA_INICIO = fechaI.ToShortDateString();
+                turno.FECHA_TERMINO = fechaT.ToShortDateString();
+                listaTurno.Add(turno);
+                grHorario.DataSource = listaTurno;
+                grHorario.DataBind();
+                dplTurno.SelectedIndex = 0;
+                txtFechaI.Text = "";
+                txtFechaT.Text = "";
+                btnRegistroConserje.Visible = true;
             }
         }
 
@@ -167,18 +156,9 @@ namespace EasyLife.Vista
 
         protected void grHorario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            if (operation == true)
-            {
-                grHorario.PageIndex = e.NewPageIndex;
-                grHorario.DataSource = listaTurnoUpdate;
-                grHorario.DataBind();
-            }
-            else
-            {
-                grHorario.PageIndex = e.NewPageIndex;
-                grHorario.DataSource = listaTurno;
-                grHorario.DataBind();
-            }
+            grHorario.PageIndex = e.NewPageIndex;
+            grHorario.DataSource = listaTurno;
+            grHorario.DataBind();
         }
 
         protected void btnRegistroConserje_Click(object sender, EventArgs e)
@@ -222,6 +202,17 @@ namespace EasyLife.Vista
         protected void btnModificarConserje_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
+            string resultUpdate = Controller.ControllerPersona.modificarPersonal(conserjeUpdate.ID_PERSONA, conserjeUpdate.ID_ROL, txtNombre.Text, txtApellido.Text,
+                txtRut.Text, txtTelefono.Text, txtEmail.Text, radioSexo.SelectedValue);
+
+            if (resultUpdate.Equals("Persona Modificada"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Conserje Modificado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Modificar Conserje');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
     }
 }

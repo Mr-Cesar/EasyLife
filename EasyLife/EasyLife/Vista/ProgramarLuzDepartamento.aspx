@@ -12,7 +12,7 @@
                 <asp:Label ID="lbOpcion" runat="server" Text="Control de Luces"></asp:Label>
             </p>
             <section>
-                <asp:Panel ID="panelPropDep" runat="server">
+                <asp:Panel ID="panelPropDep" runat="server" Visible="true">
                     <%-- Campo de ingreso de Departamento --%>
                     <asp:Label ID="Label6" runat="server" Text="Departamento" Style="color: black"></asp:Label><br />
                     <div style="display: inline-block; width: 90%">
@@ -30,24 +30,25 @@
                     <br />
                     <br />
                 </asp:Panel>
-
                 <nav>
-                    <nav class="col">
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" style="color: black;">Estado Actual: </label>
-                            <asp:Label ID="lbEstado" CssClass="form-control" runat="server" Text="" Style="width: 30%"></asp:Label>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-3 col-form">
-                                <asp:Button ID="btnEncenderLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender"
-                                    OnClick="btnEncenderLuz_Click" />
+                    <asp:Panel ID="panelEstado" runat="server" Visible="true">
+                        <nav class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label" style="color: black;">Estado Actual: </label>
+                                <asp:Label ID="lbEstado" CssClass="form-control" runat="server" Text="" Style="width: 30%"></asp:Label>
                             </div>
-                            <div class="col-sm-3 col-form">
-                                <asp:Button ID="btnApagarLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar"
-                                    OnClick="btnApagarLuz_Click" />
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form">
+                                    <asp:Button ID="btnEncenderLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Encender"
+                                        OnClick="btnEncenderLuz_Click" />
+                                </div>
+                                <div class="col-sm-3 col-form">
+                                    <asp:Button ID="btnApagarLuz" runat="server" CssClass="btn btn-light btn-block waves-effect" CausesValidation="false" Text="Apagar"
+                                        OnClick="btnApagarLuz_Click" />
+                                </div>
                             </div>
-                        </div>
-                    </nav>
+                        </nav>
+                    </asp:Panel>
                     <br />
 
                     <!-- Ingreso de Dia de Ejecucion -->

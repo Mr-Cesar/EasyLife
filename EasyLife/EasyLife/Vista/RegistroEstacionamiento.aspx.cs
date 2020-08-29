@@ -47,6 +47,8 @@ namespace EasyLife.Vista
             dplEdificio.SelectedValue = aux.EDIFICIO.ToString();
             txtPatente.Text = aux.PATENTE;
             txtHoraEntrada.Text = aux.HORA_ENTRADA;
+            btnRegistroEst.Visible = false;
+            btnRegistroSalida.Visible = true;
         }
 
         protected void dplEdificio_SelectedIndexChanged(object sender, EventArgs e)

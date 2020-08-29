@@ -16,6 +16,7 @@ namespace EasyLife.Vista
                 cargarCondominio();
 
                 string updateCentro = (string)Session["ModificarHorario"];
+                updateCentro = "1";
                 if (updateCentro != null)
                 {
                     cargarParametros(updateCentro);
@@ -27,6 +28,8 @@ namespace EasyLife.Vista
         private static List<HORARIO_CENTRO> listaHorario = new List<HORARIO_CENTRO>();
         private static List<Adapter.AdapterCentro> listaCentro = new List<Adapter.AdapterCentro>();
         private static CENTRO centroUpdate = new CENTRO();
+        private static List<HORARIO_CENTRO> listaHorarioActual = new List<HORARIO_CENTRO>();
+        private static long idHorario;
 
         public void cargarCondominio()
         {
@@ -52,6 +55,7 @@ namespace EasyLife.Vista
 
         public void cargarParametros(string centro)
         {
+            panelUpdateHorario.Visible = true;
             CENTRO aux = Controller.ControllerCentro.buscarIdCentro(Convert.ToInt64(centro));
             EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(aux.ID_EDIFICIO);
             cargarCondominio();
@@ -68,6 +72,13 @@ namespace EasyLife.Vista
             lbNombreCentro.Text = aux.NOMBRE_CENTRO;
             btnRegistroHorario.Visible = false;
             btnModificarHorario.Visible = true;
+            btnAgregarHorario.Visible = false;
+            btnModificar.Visible = true;
+
+            listaHorarioActual = new List<HORARIO_CENTRO>();
+            listaHorarioActual = Controller.ControllerHorarioCentro.listadoHorario(Convert.ToInt64(centro));
+            grHorarioActual.DataSource = listaHorarioActual;
+            grHorarioActual.DataBind();
             centroUpdate = aux;
         }
 
@@ -142,6 +153,28 @@ namespace EasyLife.Vista
             grCentros.DataBind();
         }
 
+        protected void grHorarioActual_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = grHorarioActual.SelectedIndex;
+            idHorario = 0;
+            HORARIO_CENTRO horario = listaHorarioActual[index];
+
+            string año = horario.DIA_HORARIO.Substring(6, 4);
+            string mes = horario.DIA_HORARIO.Substring(3, 2);
+            string dia = horario.DIA_HORARIO.Substring(0, 2);
+            txtDia.Text = año + "-" + mes + "-" + dia;
+            txtHoraI.Text = horario.HORA_INICIO_D;
+            txtHoraT.Text = horario.HORA_TERMINO_D;
+            idHorario = horario.ID_HORARIO_CENTRO;
+        }
+
+        protected void grHorarioActual_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grHorarioActual.PageIndex = e.NewPageIndex;
+            grHorarioActual.DataSource = listaHorarioActual;
+            grHorarioActual.DataBind();
+        }
+
         protected void btnAgregarHorario_Click(object sender, EventArgs e)
         {
             lbError.Visible = false;
@@ -151,19 +184,21 @@ namespace EasyLife.Vista
             dia = Convert.ToDateTime(txtDia.Text);
             HORARIO_CENTRO horario = new HORARIO_CENTRO();
             horario.DIA_HORARIO = dia.ToString("dd/MM/yyy");
-            horario.HORA_INICIO_D = txtHoraI.Text;
-            horario.HORA_TERMINO_D = txtHoraT.Text;
+            horario.HORA_INICIO_D = txtHoraI.Text + ":00";
+            horario.HORA_TERMINO_D = txtHoraT.Text + ":00";
             horario.HORARIO_COMPLETO = txtHoraI.Text + " - " + txtHoraT.Text;
-            List<HORARIO_CENTRO> listaHorarioActual = new List<HORARIO_CENTRO>();
-            listaHorarioActual = Controller.ControllerHorarioCentro.listadoHorario(centroUpdate.ID_CENTRO);
-            foreach (HORARIO_CENTRO item in listaHorarioActual)
+
+            if (listaHorarioActual.Count > 0)
             {
-                if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO))
+                foreach (HORARIO_CENTRO item in listaHorarioActual)
                 {
-                    if (item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                    if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO))
                     {
-                        operation = false;
-                        insert = false;
+                        if (item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                        {
+                            operation = false;
+                            insert = false;
+                        }
                     }
                 }
             }
@@ -196,6 +231,47 @@ namespace EasyLife.Vista
             }
         }
 
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            lbError.Visible = false;
+            Boolean operation = true;
+            DateTime dia = new DateTime();
+            dia = Convert.ToDateTime(txtDia.Text);
+            HORARIO_CENTRO horario = new HORARIO_CENTRO();
+            horario.ID_HORARIO_CENTRO = idHorario;
+            horario.DIA_HORARIO = dia.ToString("dd/MM/yyy");
+            horario.HORA_INICIO_D = txtHoraI.Text + ":00";
+            horario.HORA_TERMINO_D = txtHoraT.Text + ":00";
+            horario.HORARIO_COMPLETO = txtHoraI.Text + " - " + txtHoraT.Text;
+
+            foreach (HORARIO_CENTRO item in listaHorarioActual)
+            {
+                if (item.DIA_HORARIO.Equals(horario.DIA_HORARIO))
+                {
+                    if (item.HORA_INICIO_D.Equals(horario.HORA_INICIO_D))
+                    {
+                        operation = false;
+                    }
+                }
+            }
+
+            if (operation == true)
+            {
+                lbError.Visible = false;
+                lbHorario.Visible = true;
+                listaHorario.Add(horario);
+                grHorario.DataSource = listaHorario;
+                grHorario.DataBind();
+                txtDia.Text = "";
+                txtHoraI.Text = "";
+                txtHoraT.Text = "";
+            }
+            else
+            {
+                lbError.Visible = true;
+            }
+        }
+
         protected void grHorario_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = grHorario.SelectedIndex;
@@ -225,11 +301,11 @@ namespace EasyLife.Vista
 
             if (resultHorario.Equals("Horario Creado"))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Centro Creado');window.location.href='" + Request.RawUrl + "';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Centro Modificado');window.location.href='" + Request.RawUrl + "';", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Crear Centro');window.location.href='" + Request.RawUrl + "';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Crear Modificado');window.location.href='" + Request.RawUrl + "';", true);
             }
         }
 
@@ -237,6 +313,20 @@ namespace EasyLife.Vista
         {
             System.Threading.Thread.Sleep(5000);
             string resultHorario = "";
+            foreach (HORARIO_CENTRO item in listaHorario)
+            {
+                resultHorario = Controller.ControllerHorarioCentro.modificarHorario(item.ID_HORARIO_CENTRO, item.ID_CENTRO, item.DIA_HORARIO, item.HORA_INICIO_D,
+                    item.HORA_TERMINO_D, item.HORARIO_COMPLETO);
+            }
+
+            if (resultHorario.Equals("Horario Modificado"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Horario Modificado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Modificar Horario');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
     }
 }

@@ -7,6 +7,25 @@ namespace EasyLife.Controller
 {
     public class ControllerControlIluminacionEdificio
     {
+        public static CONTROL_ILUMINACION_EDIFICIO buscarIdControl(long control)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                CONTROL_ILUMINACION_EDIFICIO aux = (from u in dbc.CONTROL_ILUMINACION_EDIFICIO
+                                                    where u.ID_CILUMINACION_E == control
+                                                    select u).FirstOrDefault();
+
+                if (aux != null)
+                {
+                    return aux;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public static string crearControlEdificio(long luz, string horaI, string horaT, Boolean estado)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
