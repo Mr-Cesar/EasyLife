@@ -68,4 +68,3 @@ D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj\Debug\EasyLife.csproj.CopyComplete
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj\Debug\EasyLife.dll
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj\Debug\EasyLife.pdb
-D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj\Debug\EasyLife.csprojAssemblyReference.cache

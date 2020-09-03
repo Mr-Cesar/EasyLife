@@ -11,9 +11,31 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (conserje != null || propietario != null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+            else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                cargarCondominio();
+                if (admCondominio != null)
+                {
+                    cargarCondominioAdm(admCondominio.ID_PERSONA);
+                }
+                else
+                {
+                    cargarCondominio();
+                }
 
                 string updatePropietario = (string)Session["ModificarPropietario"];
                 if (updatePropietario != null)
@@ -29,6 +51,22 @@ namespace EasyLife.Vista
         public void cargarCondominio()
         {
             List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominio();
+            dplCondominio.DataSource = lista;
+            dplCondominio.DataValueField = "ID_CONDOMINIO";
+            dplCondominio.DataTextField = "NOMBRE_CONDOMINIO";
+            dplCondominio.DataBind();
+            dplCondominio.Items.Insert(0, "Seleccione un Condominio");
+            dplCondominio.SelectedIndex = 0;
+            dplEdificio.Items.Insert(0, "Seleccione un Edificio");
+            dplEdificio.SelectedIndex = 0;
+            dplDepartamento.Items.Insert(0, "Seleccione un Departamento");
+            dplDepartamento.SelectedIndex = 0;
+            listaDepartamento = new List<Adapter.AdapterDepartamento>();
+        }
+
+        public void cargarCondominioAdm(long persona)
+        {
+            List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominioAdministrador(persona);
             dplCondominio.DataSource = lista;
             dplCondominio.DataValueField = "ID_CONDOMINIO";
             dplCondominio.DataTextField = "NOMBRE_CONDOMINIO";

@@ -11,12 +11,33 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (conserje != null || vendedor != null || propietario != null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+            else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                cargarCondominio();
+                if (adm != null)
+                {
+                    cargarCondominio();
+                }
+                else
+                {
+                    cargarCondominioAdministrador(admCondominio.ID_PERSONA);
+                }
 
                 string updateConserje = (string)Session["ModificarConserje"];
-                updateConserje = "2";
                 if (updateConserje != null)
                 {
                     cargarConserje(updateConserje);
@@ -207,6 +228,7 @@ namespace EasyLife.Vista
 
             if (resultUpdate.Equals("Persona Modificada"))
             {
+                Session["ModificarConserje"] = null;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Conserje Modificado');window.location.href='" + Request.RawUrl + "';", true);
             }
             else

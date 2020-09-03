@@ -11,12 +11,33 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (conserje != null || vendedor != null || propietario != null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+            else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                cargarCondominio();
+                if (adm != null)
+                {
+                    cargarCondominio();
+                }
+                else
+                {
+                    cargarCondominioAdministrador(admCondominio.ID_PERSONA);
+                }
 
                 string updateCentro = (string)Session["ModificarHorario"];
-                updateCentro = "1";
                 if (updateCentro != null)
                 {
                     cargarParametros(updateCentro);
@@ -321,6 +342,7 @@ namespace EasyLife.Vista
 
             if (resultHorario.Equals("Horario Modificado"))
             {
+                Session["ModificarHorario"] = null;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Horario Modificado');window.location.href='" + Request.RawUrl + "';", true);
             }
             else

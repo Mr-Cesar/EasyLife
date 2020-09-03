@@ -11,17 +11,44 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (vendedor != null || propietario != null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+            else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                long persona = 2;
-                conserje = persona;
-                cargarEdificioConserje(persona);
+                if (adm != null)
+                {
+                    cargarCondominio();
+                    personal = adm.ID_PERSONA;
+                }
+                else if (conserje != null)
+                {
+                    cargarEdificioConserje(conserje.ID_PERSONA);
+                    personal = conserje.ID_PERSONA;
+                }
+                else
+                {
+                    cargarCondominioAdministrador(admCondominio.ID_PERSONA);
+                    personal = admCondominio.ID_PERSONA;
+                }
             }
         }
 
         private static List<Adapter.AdapterReserva> listaReserva = new List<Adapter.AdapterReserva>();
         private static Adapter.AdapterReserva reservaUpdate = new Adapter.AdapterReserva();
-        private static long conserje;
+        private static long personal;
 
         public void cargarCondominio()
         {
@@ -88,6 +115,7 @@ namespace EasyLife.Vista
             try
             {
                 long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
+                System.Diagnostics.Debug.WriteLine("edificio: " + edificio);
                 List<DEPARTAMENTO> listaDep = Controller.ControllerDepartamento.listaDepartamentoOcupado(edificio);
                 dplDepartamento.DataSource = listaDep;
                 dplDepartamento.DataValueField = "ID_DEPARTAMENTO";
@@ -95,6 +123,7 @@ namespace EasyLife.Vista
                 dplDepartamento.DataBind();
                 dplDepartamento.Items.Insert(0, "Seleccione un Departamento");
                 dplDepartamento.SelectedIndex = 0;
+                System.Diagnostics.Debug.WriteLine("dep: " + listaDep.Count);
 
                 List<CENTRO> listaCI = Controller.ControllerCentro.listaCentroEdificio(edificio);
                 dplCentro.DataSource = listaCI;
@@ -123,7 +152,7 @@ namespace EasyLife.Vista
             {
                 listaReserva = new List<Adapter.AdapterReserva>();
                 long departamento = Convert.ToInt64(dplDepartamento.SelectedValue);
-                listaReserva = Controller.ControllerReservaCentro.listaReservaDepartamento(departamento);
+                listaReserva = Controller.ControllerReservaCentro.listadoReservaDepartamento(departamento);
                 lbReserva.Visible = true;
                 grReserva.DataSource = listaReserva;
                 grReserva.DataBind();
@@ -162,6 +191,7 @@ namespace EasyLife.Vista
             dplCentro.SelectedValue = reservaUpdate._ID_CENTRO.ToString();
             dplDia.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
             dplHorario.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
+            lbTotal.Text = reservaUpdate._COSTO_BOLETA.ToString();
         }
 
         public void cargarParametros(long edificio, long centro, long horario)
@@ -258,10 +288,10 @@ namespace EasyLife.Vista
         protected void btnRegistroReserva_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
-            string resultBoleta = Controller.ControllerBoleta.crearBoletaReserva(conserje, Convert.ToInt32(lbTotal.Text), Convert.ToInt64(dplDepartamento.SelectedValue));
+            string resultBoleta = Controller.ControllerBoleta.crearBoletaReserva(personal, Convert.ToInt32(lbTotal.Text), Convert.ToInt64(dplDepartamento.SelectedValue));
             if (resultBoleta.Equals("Boleta Creada"))
             {
-                BOLETA boleta = Controller.ControllerBoleta.buscarBoletaReserva(conserje, Convert.ToInt64(dplDepartamento.SelectedValue), Convert.ToInt32(lbTotal.Text));
+                BOLETA boleta = Controller.ControllerBoleta.buscarBoletaReserva(personal, Convert.ToInt64(dplDepartamento.SelectedValue), Convert.ToInt32(lbTotal.Text));
                 string resultReserva = Controller.ControllerReservaCentro.crearReserva(Convert.ToInt64(dplDepartamento.SelectedValue),
                     Convert.ToInt64(dplCentro.SelectedValue), Convert.ToInt64(dplHorario.SelectedValue), boleta.ID_BOLETA);
                 if (resultReserva.Equals("Reserva Creada"))

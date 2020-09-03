@@ -12,14 +12,28 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (adm != null || vendedor != null || conserje != null || admCondominio != null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+            else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                long persona = 4;
-                cargarDatos(persona);
-                cargarGastos(persona);
-                cargarControl(persona);
-                cargarMulta(persona);
-                cargarCentro(persona);
+                cargarDatos(propietario.ID_PERSONA);
+                cargarGastos(propietario.ID_PERSONA);
+                cargarControl(propietario.ID_PERSONA);
+                cargarMulta(propietario.ID_PERSONA);
+                cargarCentro(propietario.ID_PERSONA);
             }
         }
 

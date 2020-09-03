@@ -11,10 +11,39 @@ namespace EasyLife.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validación de Session Iniciada
+            LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN conserje = (LOGIN)Session["conserje"];
+            LOGIN vendedor = (LOGIN)Session["vendedor"];
+            LOGIN propietario = (LOGIN)Session["login"];
+            LOGIN admCondominio = (LOGIN)Session["admCondominio"];
+            if (adm == null || conserje == null || vendedor == null || propietario == null || admCondominio == null)
+            {
+                Response.Redirect("Index.aspx");
+            }
+
             if (!IsPostBack)
             {
-                string rut = "19.484.165-5";
-                buscarDatos(rut);
+                if (adm != null)
+                {
+                    buscarDatos(adm.FK_RUT);
+                }
+                else if (conserje != null)
+                {
+                    buscarDatos(conserje.FK_RUT);
+                }
+                else if (vendedor != null)
+                {
+                    buscarDatos(vendedor.FK_RUT);
+                }
+                else if (propietario != null)
+                {
+                    buscarDatos(propietario.FK_RUT);
+                }
+                else
+                {
+                    buscarDatos(admCondominio.FK_RUT);
+                }
             }
         }
 
