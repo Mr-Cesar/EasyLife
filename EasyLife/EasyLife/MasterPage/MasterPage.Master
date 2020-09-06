@@ -180,7 +180,7 @@
                                     <asp:LinkButton ID="lnkRegistroConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkRegistroConserje_Click">Registro Conserje</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="LinkButton2_Click">Registrar Luz</asp:LinkButton>
+                                        OnClick="lnkRegistroLuz_Click">Registrar Luz</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton4" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkMulta_Click">Asignar Multa</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton1" runat="server" CssClass="dropdown-item" CausesValidation="false"
