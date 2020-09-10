@@ -107,7 +107,6 @@
                     <asp:CommandField ShowSelectButton="True" HeaderText="Eliminar" />
                 </Columns>
             </asp:GridView>
-            <br />
 
             <!-- Sign in button -->
             <asp:UpdatePanel ID="barraProgreso" runat="server">

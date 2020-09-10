@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-namespace EasyLife.Vista
+﻿namespace EasyLife.Vista
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.UI;
+    using System.Web.UI.WebControls;
+
     public partial class AsignarTurnoConserje : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -240,13 +238,9 @@ namespace EasyLife.Vista
             foreach (TURNO item in listaTurnoAsignar)
             {
                 resultTurno = Controller.ControllerTurno.crearTurno(item.DESCRIPCION_TURNO, item.FECHA_INICIO, item.FECHA_TERMINO, conserje.ID_CONSERJE);
-                if (resultTurno.Equals("Turno Creado"))
-                {
-                    asignarTurno = Controller.ControllerTurno.asignarTurno(conserje.ID_CONSERJE);
-                }
             }
 
-            if (asignarTurno.Equals("Turno Asignado"))
+            if (resultTurno.Equals("Turno Creado"))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Turnos Asignados Correctamente');window.location.href='" + Request.RawUrl + "';", true);
             }

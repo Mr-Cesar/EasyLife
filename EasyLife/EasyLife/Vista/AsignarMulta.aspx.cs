@@ -207,27 +207,37 @@ namespace EasyLife.Vista
         protected void btnAgregarMulta_Click(object sender, EventArgs e)
         {
             lbMultasNuevas.Visible = true;
-            long condominio = Convert.ToInt64(dplCondominio.SelectedValue);
-            CONDOMINIO con = Controller.ControllerCondominio.buscarIdCondominio(condominio);
-            long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
-            EDIFICIO edi = Controller.ControllerEdificio.buscarIdEdificio(edificio);
-            long departamento = Convert.ToInt64(dplDepartamento.SelectedValue);
-            DEPARTAMENTO dep = Controller.ControllerDepartamento.buscarIdDepartamento(departamento);
+            lbError.Visible = false;
+            if (txtMulta.Text.Length > 8)
+            {
+                lbError.Visible = true;
+                lbError.Text = "Monto Incorrecto";
+            }
+            else
+            {
+                lbError.Visible = false;
+                long condominio = Convert.ToInt64(dplCondominio.SelectedValue);
+                CONDOMINIO con = Controller.ControllerCondominio.buscarIdCondominio(condominio);
+                long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
+                EDIFICIO edi = Controller.ControllerEdificio.buscarIdEdificio(edificio);
+                long departamento = Convert.ToInt64(dplDepartamento.SelectedValue);
+                DEPARTAMENTO dep = Controller.ControllerDepartamento.buscarIdDepartamento(departamento);
 
-            Adapter.AdapterDepartamento adapter = new Adapter.AdapterDepartamento();
-            adapter._NOMBRE_CONDOMINIO = con.NOMBRE_CONDOMINIO;
-            adapter._ID_DEPARTAMENTO = dep.ID_DEPARTAMENTO;
-            adapter._NOMBRE_EDIFICIO = edi.NOMBRE_EDIFICIO;
-            adapter._NUMERO_DEP = dep.NUMERO_DEP;
-            adapter._MULTA = Convert.ToInt32(txtMulta.Text);
-            adapter._MOTIVO = txtMotivo.Text;
+                Adapter.AdapterDepartamento adapter = new Adapter.AdapterDepartamento();
+                adapter._NOMBRE_CONDOMINIO = con.NOMBRE_CONDOMINIO;
+                adapter._ID_DEPARTAMENTO = dep.ID_DEPARTAMENTO;
+                adapter._NOMBRE_EDIFICIO = edi.NOMBRE_EDIFICIO;
+                adapter._NUMERO_DEP = dep.NUMERO_DEP;
+                adapter._MULTA = Convert.ToInt32(txtMulta.Text);
+                adapter._MOTIVO = txtMotivo.Text;
 
-            listaDepartamento.Add(adapter);
-            grMulta.DataSource = listaDepartamento;
-            grMulta.DataBind();
+                listaDepartamento.Add(adapter);
+                grMulta.DataSource = listaDepartamento;
+                grMulta.DataBind();
 
-            txtMotivo.Text = "";
-            txtMulta.Text = "";
+                txtMotivo.Text = "";
+                txtMulta.Text = "";
+            }
         }
 
         protected void grMulta_SelectedIndexChanged(object sender, EventArgs e)

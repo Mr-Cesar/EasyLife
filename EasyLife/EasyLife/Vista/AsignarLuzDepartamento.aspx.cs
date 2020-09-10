@@ -139,7 +139,6 @@ namespace EasyLife.Vista
         {
             try
             {
-                dplLuz.SelectedIndex = 0;
                 btnAgregarLuz.Enabled = true;
                 btnModificarLuz.Enabled = true;
                 lbError.Visible = false;
@@ -275,7 +274,7 @@ namespace EasyLife.Vista
             CONDOMINIO condominio = Controller.ControllerCondominio.buscarIdCondominio(Convert.ToInt64(dplCondominio.SelectedValue));
             EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(Convert.ToInt64(dplEdificio.SelectedValue));
             DEPARTAMENTO departamento = Controller.ControllerDepartamento.buscarIdDepartamento(Convert.ToInt64(dplDepartamento.SelectedValue));
-            LUZ_DEPARTAMENTO luz = Controller.ControllerLuzDepartamento.buscarLuzDepartamento(Convert.ToInt64(dplLuz.SelectedValue));
+            LUZ_DEPARTAMENTO luz = Controller.ControllerLuzDepartamento.buscarIdLuzDepartamento(Convert.ToInt64(dplLuz.SelectedValue));
             lbError.Visible = false;
             List<Adapter.AdapterLuzDepartamento> listaAux = listaLuzDepartamentoUpdate;
             if (listaLuzDepartamentoUpdate.Count > 0)

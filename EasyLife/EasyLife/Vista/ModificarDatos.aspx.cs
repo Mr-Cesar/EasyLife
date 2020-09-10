@@ -17,7 +17,7 @@ namespace EasyLife.Vista
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
-            if (adm == null || conserje == null || vendedor == null || propietario == null || admCondominio == null)
+            if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
                 Response.Redirect("Index.aspx");
             }

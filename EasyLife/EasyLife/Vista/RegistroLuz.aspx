@@ -39,15 +39,15 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtCod"
                     Display="Dynamic" ValidationGroup="Luz"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Debe ingresar solo letras." ForeColor="Red"
-                    ControlToValidate="txtCod" ValidationExpression="^[a-zA-Z]*$" Display="Dynamic" ValidationGroup="Luz"></asp:RegularExpressionValidator>
+                    ControlToValidate="txtCod" ValidationExpression="^[a-zA-Z0-9]+$" Display="Dynamic" ValidationGroup="Luz"></asp:RegularExpressionValidator>
             </div>
             <br />
             <br />
 
             <asp:Label ID="lbError" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>
-            <asp:Button runat="server" ID="btnAgregarLuzEdificio" class="btn btn-light btn-block my-4" Text="Asignar" OnClick="btnAgregarLuzEdificio_Click"
+            <asp:Button runat="server" ID="btnAgregarLuzEdificio" class="btn btn-light btn-block my-4" Text="Agregar" OnClick="btnAgregarLuzEdificio_Click"
                 ValidationGroup="Luz" Visible="false" />
-            <asp:Button runat="server" ID="btnAgregarLuzDep" class="btn btn-light btn-block my-4" Text="Asignar" OnClick="btnAgregarLuzDep_Click"
+            <asp:Button runat="server" ID="btnAgregarLuzDep" class="btn btn-light btn-block my-4" Text="Agregar" OnClick="btnAgregarLuzDep_Click"
                 ValidationGroup="Luz" Visible="false" />
 
             <!-- Lista de Codigos Luz Edificio -->

@@ -78,7 +78,7 @@
             <%-- Campo de ingreso de Multa --%>
             <asp:Label ID="Label1" runat="server" Text="Multa" ForeColor="Black"></asp:Label><br />
             <div style="display: inline-block; width: 90%">
-                <asp:TextBox runat="server" ID="txtMulta" class="form-control" TextMode="Number" placeholder="Multa"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtMulta" class="form-control" TextMode="Number" placeholder="Multa" MaxLength="8"></asp:TextBox>
             </div>
             <%-- Validacion de Multa --%>
             <div style="display: inline-block;">

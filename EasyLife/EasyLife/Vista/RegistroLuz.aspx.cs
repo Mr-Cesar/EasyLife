@@ -162,6 +162,7 @@ namespace EasyLife.Vista
             if (operation == true)
             {
                 lbError.Visible = false;
+                grCodLuzDep.Visible = true;
                 luz.CODIGO_LUZ_D = txtCod.Text;
                 listaLuzDep.Add(luz);
                 grCodLuzDep.DataSource = listaLuzDep;
