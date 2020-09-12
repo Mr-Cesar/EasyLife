@@ -41,6 +41,11 @@ namespace EasyLife.Vista
                     cargarEdificioConserje(conserje.ID_PERSONA);
                 }
             }
+
+            /*if (!IsPostBack)
+            {
+                cargarCondominio();
+            }*/
         }
 
         private static List<Adapter.AdapterBoletaGasto> listaGastos = new List<Adapter.AdapterBoletaGasto>();
@@ -48,6 +53,7 @@ namespace EasyLife.Vista
 
         public void cargarCondominio()
         {
+            panelCondominio.Visible = true;
             List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominio();
             dplCondominio.DataSource = lista;
             dplCondominio.DataValueField = "ID_CONDOMINIO";
@@ -59,6 +65,7 @@ namespace EasyLife.Vista
 
         public void cargarCondominioAdministrador(long administrador)
         {
+            panelCondominio.Visible = true;
             List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominioAdministrador(administrador);
             dplCondominio.DataSource = lista;
             dplCondominio.DataValueField = "ID_CONDOMINIO";
@@ -70,6 +77,7 @@ namespace EasyLife.Vista
 
         public void cargarEdificioConserje(long persona)
         {
+            panelCondominio.Visible = false;
             CONSERJE conserje = Controller.ControllerConserje.buscarIdConserje(persona);
             List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(Convert.ToInt64(conserje.ID_CONDOMINIO));
             dplEdificio.DataSource = listaEdificio;

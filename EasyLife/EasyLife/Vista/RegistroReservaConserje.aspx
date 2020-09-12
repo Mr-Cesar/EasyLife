@@ -65,6 +65,7 @@
             <br />
 
             <asp:Label ID="lbReserva" runat="server" Text="Reservas " Style="color: black" Visible="false"></asp:Label><br />
+            <asp:Label ID="lbErrorUpdate" runat="server" Text="Reserva no se Puede Modificar " Style="color: red" Visible="false"></asp:Label><br />
             <asp:GridView ID="grReserva" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="_ID_RESERVA_CENTRO"
                 Font-Size="10pt" OnSelectedIndexChanged="grReserva_SelectedIndexChanged" AllowPaging="true" PageSize="6"
                 OnPageIndexChanging="grReserva_PageIndexChanging">

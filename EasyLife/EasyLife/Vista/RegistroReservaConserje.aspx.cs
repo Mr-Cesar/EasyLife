@@ -44,6 +44,12 @@ namespace EasyLife.Vista
                     personal = admCondominio.ID_PERSONA;
                 }
             }
+
+            /*if (!IsPostBack)
+            {
+                cargarCondominio();
+                personal = 1;
+            }*/
         }
 
         private static List<Adapter.AdapterReserva> listaReserva = new List<Adapter.AdapterReserva>();
@@ -52,6 +58,7 @@ namespace EasyLife.Vista
 
         public void cargarCondominio()
         {
+            panelAdm.Visible = true;
             List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominio();
             dplCondominio.DataSource = lista;
             dplCondominio.DataValueField = "ID_CONDOMINIO";
@@ -63,6 +70,7 @@ namespace EasyLife.Vista
 
         public void cargarCondominioAdministrador(long administrador)
         {
+            panelAdm.Visible = true;
             List<CONDOMINIO> lista = Controller.ControllerCondominio.listaCondominioAdministrador(administrador);
             dplCondominio.DataSource = lista;
             dplCondominio.DataValueField = "ID_CONDOMINIO";
@@ -74,6 +82,7 @@ namespace EasyLife.Vista
 
         public void cargarEdificioConserje(long persona)
         {
+            panelAdm.Visible = false;
             CONSERJE conserje = Controller.ControllerConserje.buscarIdConserje(persona);
             List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(Convert.ToInt64(conserje.ID_CONDOMINIO));
             dplEdificio.DataSource = listaEdificio;
@@ -186,17 +195,8 @@ namespace EasyLife.Vista
             btnModificarReserva.Visible = true;
 
             DEPARTAMENTO departamento = Controller.ControllerDepartamento.buscarIdDepartamento(reservaUpdate._ID_DEPARTAMENTO);
-            cargarParametros(departamento.ID_EDIFICIO, reservaUpdate._ID_RESERVA_CENTRO, reservaUpdate._ID_HORARIO_CENTRO);
 
-            dplCentro.SelectedValue = reservaUpdate._ID_CENTRO.ToString();
-            dplDia.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
-            dplHorario.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
-            lbTotal.Text = reservaUpdate._COSTO_BOLETA.ToString();
-        }
-
-        public void cargarParametros(long edificio, long centro, long horario)
-        {
-            List<CENTRO> listaCI = Controller.ControllerCentro.listaCentroEdificio(edificio);
+            List<CENTRO> listaCI = Controller.ControllerCentro.listaCentroEdificio(departamento.ID_EDIFICIO);
             dplCentro.DataSource = listaCI;
             dplCentro.DataValueField = "ID_CENTRO";
             dplCentro.DataTextField = "NOMBRE_CENTRO";
@@ -204,7 +204,7 @@ namespace EasyLife.Vista
             dplCentro.Items.Insert(0, "Seleccione un Centro");
             dplCentro.SelectedIndex = 0;
 
-            List<HORARIO_CENTRO> listaC = Controller.ControllerHorarioCentro.listadoHorario(centro);
+            List<HORARIO_CENTRO> listaC = Controller.ControllerHorarioCentro.listadoHorario(reservaUpdate._ID_CENTRO);
             foreach (HORARIO_CENTRO item in listaC)
             {
                 DateTime dia = Convert.ToDateTime(item.DIA_HORARIO);
@@ -217,14 +217,19 @@ namespace EasyLife.Vista
             dplDia.Items.Insert(0, "Seleccione un Dia");
             dplDia.SelectedIndex = 0;
 
-            HORARIO_CENTRO aux = Controller.ControllerHorarioCentro.buscarIdHorarioCentro(horario);
-            List<HORARIO_CENTRO> listaHorario = Controller.ControllerHorarioCentro.listadoHorarioDia(centro, aux.DIA_HORARIO);
+            HORARIO_CENTRO aux = Controller.ControllerHorarioCentro.buscarIdHorarioCentro(reservaUpdate._ID_HORARIO_CENTRO);
+            List<HORARIO_CENTRO> listaHorario = Controller.ControllerHorarioCentro.listadoHorarioDia(reservaUpdate._ID_CENTRO, aux.DIA_HORARIO);
             dplHorario.DataSource = listaHorario;
             dplHorario.DataValueField = "ID_HORARIO_CENTRO";
             dplHorario.DataTextField = "HORARIO_COMPLETO";
             dplHorario.DataBind();
             dplHorario.Items.Insert(0, "Seleccione un Horario");
             dplHorario.SelectedIndex = 0;
+
+            dplCentro.SelectedValue = reservaUpdate._ID_CENTRO.ToString();
+            dplDia.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
+            dplHorario.SelectedValue = reservaUpdate._ID_HORARIO_CENTRO.ToString();
+            lbTotal.Text = reservaUpdate._COSTO_BOLETA.ToString();
         }
 
         protected void grReserva_PageIndexChanging(object sender, GridViewPageEventArgs e)

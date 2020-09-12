@@ -35,6 +35,16 @@ namespace EasyLife.Vista
                 cargarEstacionamiento();
                 cargarReserva();
             }
+
+            /*if (!IsPostBack)
+            {
+                long conserje = 2;
+                cargarDatos(conserje);
+                cargarGastoComun();
+                cargarControl();
+                cargarEstacionamiento();
+                cargarReserva();
+            }*/
         }
 
         private static PERSONA conserje = new PERSONA();

@@ -13,7 +13,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            /*LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -30,18 +30,6 @@ namespace EasyLife.Vista
             if (!IsPostBack)
             {
                 cargarDatos(adm.ID_PERSONA);
-                cargarCondominio();
-                cargarRol();
-                cargarPersonal();
-                cargarPropietarios();
-                cargarGastoComun();
-                cargarCentro();
-            }*/
-
-            long adm = 1;
-            if (!IsPostBack)
-            {
-                cargarDatos(adm);
                 cargarCondominio();
                 cargarRol();
                 cargarPersonal();
@@ -653,6 +641,17 @@ namespace EasyLife.Vista
 
         protected void btnEliminarPersonal_Click(object sender, EventArgs e)
         {
+            GridViewRow gvr = grPersonal.SelectedRow;
+            long personal = (long)grPersonal.DataKeys[gvr.RowIndex].Value;
+            string deletePersonal = Controller.ControllerPersona.eliminarPersona(personal);
+            if (deletePersonal.Equals("Persona Eliminada"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Personal Eliminado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Eliminar Personal');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
 
         protected void dplPersonal_SelectedIndexChanged(object sender, EventArgs e)
@@ -748,10 +747,32 @@ namespace EasyLife.Vista
 
         protected void btnHabilitarPersonal_Click(object sender, EventArgs e)
         {
+            GridViewRow gvr = grPersonal.SelectedRow;
+            long personal = (long)grPersonal.DataKeys[gvr.RowIndex].Value;
+            string cambioEstado = Controller.ControllerPersona.modificarEstadoPersona(personal, true);
+            if (cambioEstado.Equals("Estado Persona Modificada"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Personal Habilitado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Habilitar Personal');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
 
         protected void btnDeshabilitarPersonal_Click(object sender, EventArgs e)
         {
+            GridViewRow gvr = grPersonal.SelectedRow;
+            long personal = (long)grPersonal.DataKeys[gvr.RowIndex].Value;
+            string cambioEstado = Controller.ControllerPersona.modificarEstadoPersona(personal, false);
+            if (cambioEstado.Equals("Estado Persona Modificada"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Personal Deshabilitado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Deshabilitado Personal');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
 
         protected void grTurno_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -794,6 +815,17 @@ namespace EasyLife.Vista
 
         protected void btnEliminarPropietario_Click(object sender, EventArgs e)
         {
+            GridViewRow gvr = grPropietarios.SelectedRow;
+            long propietario = (long)grPropietarios.DataKeys[gvr.RowIndex].Value;
+            string deletePropietario = Controller.ControllerPersona.eliminarPersona(propietario);
+            if (deletePropietario.Equals("Persona Eliminada"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Propietario Eliminado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Eliminar Propietario');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
 
         protected void btnAsignarMulta_Click(object sender, EventArgs e)

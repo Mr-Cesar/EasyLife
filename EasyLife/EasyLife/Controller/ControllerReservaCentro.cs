@@ -12,6 +12,7 @@ namespace EasyLife.Controller
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
                 dbc.insertReservaConserje(departamento, centro, horario, boleta);
+                dbc.updateEstadoHorario(horario, false);
                 return "Reserva Creada";
             }
         }
@@ -215,8 +216,9 @@ namespace EasyLife.Controller
                             u.ID_CENTRO == c.ID_CENTRO && u.COD_HORARIO == h.ID_HORARIO_CENTRO &&
                             b.DEP == u.ID_DEPARTAMENTO && c.ID_TIPO_CENTRO == t.ID_TIPO_CENTRO &&
                             b.ID_BOLETA == u.ID_BOLETA && b.DEP == u.ID_DEPARTAMENTO &&
-                            (h.DIA_HORARIO.Contains(parametro) || h.HORA_INICIO_D.Contains(parametro) || h.HORA_TERMINO_D.Contains(parametro) ||
-                            d.NUMERO_DEP.Contains(parametro) || t.NOMBRE_TIPO_CENTRO.Contains(parametro))
+                            (c.NOMBRE_CENTRO.Contains(parametro) || h.DIA_HORARIO.Contains(parametro) || h.HORA_INICIO_D.Contains(parametro) ||
+                            h.HORA_TERMINO_D.Contains(parametro) || d.NUMERO_DEP.Contains(parametro) ||
+                            t.NOMBRE_TIPO_CENTRO.Contains(parametro))
                             select new Adapter.AdapterReserva()
                             {
                                 _ID_RESERVA_CENTRO = u.ID_RESERVA_CENTRO,

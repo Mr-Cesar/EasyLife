@@ -38,6 +38,21 @@ namespace EasyLife.Vista
                     cargarParametros(registroSalida);
                 }
             }
+
+            /*if (!IsPostBack)
+            {
+                long conserje = 2;
+                cargarEdificio(conserje);
+
+                string registroSalida = (string)Session["SalidaEst"];
+                registroSalida = "8";
+                if (registroSalida != null)
+                {
+                    txtHoraSalida.Enabled = true;
+                    idEstacionamiento = registroSalida;
+                    cargarParametros(registroSalida);
+                }
+            }*/
         }
 
         private static string idEstacionamiento = "";
@@ -60,7 +75,8 @@ namespace EasyLife.Vista
             ESTACIONAMIENTO_VISITA aux = Controller.ControllerEstacionamientoVisita.buscarIdEstacionamiento(Convert.ToInt64(estacionamiento));
             dplEdificio.SelectedValue = aux.EDIFICIO.ToString();
             txtPatente.Text = aux.PATENTE;
-            txtHoraEntrada.Text = aux.HORA_ENTRADA;
+            string horaE = aux.HORA_ENTRADA.Substring(11, 5);
+            txtHoraEntrada.Text = horaE;
             btnRegistroEst.Visible = false;
             btnRegistroSalida.Visible = true;
         }
@@ -113,9 +129,9 @@ namespace EasyLife.Vista
         {
             System.Threading.Thread.Sleep(5000);
             DEPARTAMENTO departamento = Controller.ControllerDepartamento.buscarIdDepartamento(Convert.ToInt64(dplDepartamento.SelectedValue));
-            DateTime day = DateTime.Now;
+            string date = DateTime.Now.Date.ToString();
             string patente = txtPatente.Text;
-            string horaE = day.ToString("dd/MMM/yyy") + " " + txtHoraEntrada.Text;
+            string horaE = date.Substring(0, 10) + " " + txtHoraEntrada.Text;
             total = 0;
             string result = Controller.ControllerEstacionamientoVisita.crearEstacionamiento(departamento.NUMERO_DEP, Convert.ToInt64(dplEdificio.SelectedValue),
                 patente, horaE, total);
@@ -138,9 +154,9 @@ namespace EasyLife.Vista
             if (resultBoleta.Equals("Boleta Creada"))
             {
                 BOLETA boleta = Controller.ControllerBoleta.buscarBoletaEst(estacionamiento);
-                DateTime day = DateTime.Now;
+                string date = DateTime.Now.Date.ToString();
                 string patente = txtPatente.Text;
-                string horaS = day.ToString("dd/MMM/yyy") + " " + txtHoraSalida.Text;
+                string horaS = date.Substring(0, 10) + " " + txtHoraSalida.Text;
                 string resultEst = Controller.ControllerEstacionamientoVisita.salidaEstacionamiento(estacionamiento, boleta.ID_BOLETA, horaS, total, false);
                 if (resultEst.Equals("Salida Registrada"))
                 {

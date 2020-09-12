@@ -37,6 +37,11 @@ namespace EasyLife.Vista
                     cargarCondominioAdministrador(admCondominio.ID_PERSONA);
                 }
             }
+
+            /*if (!IsPostBack)
+            {
+                cargarCondominio();
+            }*/
         }
 
         private static List<Adapter.AdapterDepartamento> listaDepartamento = new List<Adapter.AdapterDepartamento>();

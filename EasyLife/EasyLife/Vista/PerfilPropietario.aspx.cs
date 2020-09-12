@@ -13,7 +13,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -34,6 +34,16 @@ namespace EasyLife.Vista
                 cargarControl(propietario.ID_PERSONA);
                 cargarMulta(propietario.ID_PERSONA);
                 cargarCentro(propietario.ID_PERSONA);
+            }*/
+
+            if (!IsPostBack)
+            {
+                long propietario = 4;
+                cargarDatos(propietario);
+                cargarGastos(propietario);
+                cargarControl(propietario);
+                cargarMulta(propietario);
+                cargarCentro(propietario);
             }
         }
 
