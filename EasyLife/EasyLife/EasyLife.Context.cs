@@ -1835,5 +1835,18 @@ namespace EasyLife
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBodega", edificioParameter, dimensionParameter, numeroParameter);
         }
+    
+        public virtual int asignarDimensionDep(Nullable<long> departamento, Nullable<double> dimension)
+        {
+            var departamentoParameter = departamento.HasValue ?
+                new ObjectParameter("departamento", departamento) :
+                new ObjectParameter("departamento", typeof(long));
+    
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarDimensionDep", departamentoParameter, dimensionParameter);
+        }
     }
 }

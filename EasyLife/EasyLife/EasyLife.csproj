@@ -126,6 +126,7 @@
     <Content Include="Vista\RegistroCentro.aspx" />
     <Content Include="Vista\RegistroCondominio.aspx" />
     <Content Include="Vista\RegistroConserje.aspx" />
+    <Content Include="Vista\RegistroDimension.aspx" />
     <Content Include="Vista\RegistroEstacionamiento.aspx" />
     <Content Include="Vista\RegistroGasto.aspx" />
     <Content Include="Vista\RegistroHorario.aspx" />
@@ -147,6 +148,7 @@
     <Compile Include="Adapter\AdapterControlLuzEdificio.cs" />
     <Compile Include="Adapter\AdapterDepartamento.cs" />
     <Compile Include="Adapter\AdapterEdificio.cs" />
+    <Compile Include="Adapter\AdapterElemento.cs" />
     <Compile Include="Adapter\AdapterEstacionamiento.cs" />
     <Compile Include="Adapter\AdapterGastoComun.cs" />
     <Compile Include="Adapter\AdapterLuzDepartamento.cs" />
@@ -529,6 +531,13 @@
     </Compile>
     <Compile Include="Vista\RegistroConserje.aspx.designer.cs">
       <DependentUpon>RegistroConserje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroDimension.aspx.cs">
+      <DependentUpon>RegistroDimension.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistroDimension.aspx.designer.cs">
+      <DependentUpon>RegistroDimension.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistroEstacionamiento.aspx.cs">
       <DependentUpon>RegistroEstacionamiento.aspx</DependentUpon>

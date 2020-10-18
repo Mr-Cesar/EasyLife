@@ -858,6 +858,10 @@
           <Parameter Name="conserje" Type="bigint" Mode="In" />
           <Parameter Name="condominio" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="asignarDimensionDep" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="departamento" Type="bigint" Mode="In" />
+          <Parameter Name="dimension" Type="float" Mode="In" />
+        </Function>
         <Function Name="asignarEstacionamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estacionamiento" Type="bigint" Mode="In" />
           <Parameter Name="dep" Type="bigint" Mode="In" />
@@ -2047,6 +2051,11 @@
             <Parameter Name="estado" Mode="In" Type="Boolean" />
             <Parameter Name="total" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="insertBodega">
+            <Parameter Name="edificio" Mode="In" Type="Int64" />
+            <Parameter Name="dimension" Mode="In" Type="Double" />
+            <Parameter Name="numero" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="BODEGA" EntityType="EasyLifeModel.BODEGA" />
           <EntitySet Name="BOLETA" EntityType="EasyLifeModel.BOLETA" />
           <EntitySet Name="BOLETA_GASTO" EntityType="EasyLifeModel.BOLETA_GASTO" />
@@ -2228,10 +2237,9 @@
             <End Role="CONSERJE" EntitySet="CONSERJE" />
             <End Role="TURNO" EntitySet="TURNO" />
           </AssociationSet>
-          <FunctionImport Name="insertBodega">
-            <Parameter Name="edificio" Mode="In" Type="Int64" />
+          <FunctionImport Name="asignarDimensionDep">
+            <Parameter Name="departamento" Mode="In" Type="Int64" />
             <Parameter Name="dimension" Mode="In" Type="Double" />
-            <Parameter Name="numero" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="boletaGasto_Result">
@@ -3255,6 +3263,7 @@
           <FunctionImportMapping FunctionImportName="updateBodega" FunctionName="EasyLifeModel.Store.updateBodega" />
           <FunctionImportMapping FunctionImportName="insertEstacionamientoVisita" FunctionName="EasyLifeModel.Store.insertEstacionamientoVisita" />
           <FunctionImportMapping FunctionImportName="updateEstacionamientoVisita" FunctionName="EasyLifeModel.Store.updateEstacionamientoVisita" />
+          <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
           <EntitySetMapping Name="BODEGA">
             <EntityTypeMapping TypeName="EasyLifeModel.BODEGA">
               <MappingFragment StoreEntitySet="BODEGA">
@@ -3602,7 +3611,7 @@
               <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
+          <FunctionImportMapping FunctionImportName="asignarDimensionDep" FunctionName="EasyLifeModel.Store.asignarDimensionDep" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

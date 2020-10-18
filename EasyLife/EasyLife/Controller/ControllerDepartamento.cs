@@ -34,6 +34,24 @@ namespace EasyLife.Controller
             }
         }
 
+        public static string asignarProrroteoDep(long departamento, long proroteo)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                dbc.AsignarProrroteo(departamento, proroteo);
+                return "Prorroteo Asignado";
+            }
+        }
+
+        public static string asignarDimDepartamento(long departamento, double dimension)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                dbc.asignarDimensionDep(departamento, dimension);
+                return "Dimension Asignada";
+            }
+        }
+
         public static DEPARTAMENTO buscarIdDepartamento(long departamento)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())

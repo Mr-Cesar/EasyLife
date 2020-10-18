@@ -110,6 +110,19 @@
             <br />
             <br />
 
+            <%-- Campo de ingreso Precio Estacionamiento --%>
+            <asp:Label ID="Label13" runat="server" Text="Precio Estacionamiento Visita" ForeColor="Black"></asp:Label><br />
+            <div style="display: inline-block; width: 90%">
+                <asp:TextBox ID="txtEst" runat="server" placeholder="Precio Estacionamiento Visita" CssClass="form-control" TextMode="Number"></asp:TextBox>
+            </div>
+            <%-- Validacion de Precio Estacionamiento  --%>
+            <div style="display: inline-block">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtEst"
+                    ValidationGroup="dimensionEdificio"></asp:RequiredFieldValidator>
+            </div>
+            <br />
+            <br />
+
             <%-- Campo de ingreso Prefijo Nombre Edificio --%>
             <asp:Label ID="Label5" runat="server" Text="Prefijo Nombre Edificio" ForeColor="Black"></asp:Label><br />
             <div style="display: inline-block; width: 90%">
@@ -136,16 +149,18 @@
             </div>
             <br />
 
-            <%-- Campo de ingreso Cantidad Edificios --%>
-            <asp:Label ID="Label6" runat="server" Text="Cantidad Edificios" ForeColor="Black"></asp:Label><br />
+            <%-- Campo de ingreso Dimension Edificios --%>
+            <asp:Label ID="Label6" runat="server" Text="Dimensión Edificio" ForeColor="Black"></asp:Label><br />
             <div style="display: inline-block; width: 90%">
-                <asp:TextBox ID="txtCantidadE" runat="server" placeholder="Cantidad Edificios" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtDimensionEdificio" runat="server" placeholder="Dimensión Edificio" CssClass="form-control"></asp:TextBox>
             </div>
-            <%-- Validacion de Nombre Condominio --%>
+            <%-- Validacion de Dimension Edificios --%>
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtCantidadE"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDimensionEdificio"
+                    ValidationGroup="dimensionEdificio"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Solo Decimal" ForeColor="Red"
+                    ControlToValidate="txtDimensionEdificio" ValidationGroup="dimensionEdificio" ValidationExpression="^[1-9]\d*(\,\d+)?$"></asp:RegularExpressionValidator>
             </div>
-            <br />
             <br />
 
             <%-- Campo de ingreso Cantidad Pisos por Edificio --%>
@@ -153,9 +168,10 @@
             <div style="display: inline-block; width: 90%">
                 <asp:TextBox ID="txtPiso" runat="server" placeholder="Cantidad Pisos por Edificios" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-            <%-- Validacion de Nombre Condominio --%>
+            <%-- Validacion de Cantidad Pisos por Edificio --%>
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPiso"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPiso"
+                    ValidationGroup="dimensionEdificio"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -165,24 +181,28 @@
             <div style="display: inline-block; width: 90%">
                 <asp:TextBox ID="txtDepartamento" runat="server" placeholder="Cantidad Departamentos por Edificio" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-            <%-- Validacion de Nombre Departamentos --%>
+            <%-- Validacion de Cantidad Departamentos --%>
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDepartamento"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDepartamento"
+                    ValidationGroup="dimensionEdificio"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
 
-            <%-- Campo de ingreso Precio Estacionamiento --%>
-            <asp:Label ID="Label13" runat="server" Text="Precio Estacionamiento Visita" ForeColor="Black"></asp:Label><br />
-            <div style="display: inline-block; width: 90%">
-                <asp:TextBox ID="txtEst" runat="server" placeholder="Precio Estacionamiento Visita" CssClass="form-control" TextMode="Number"></asp:TextBox>
-            </div>
-            <%-- Validacion de Precio Estacionamiento  --%>
-            <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtEst"></asp:RequiredFieldValidator>
-            </div>
-            <br />
-            <br />
+            <asp:Button runat="server" ID="btnAgregar" class="btn btn-light btn-block my-4" Text="Agregar Edificio" ValidationGroup="dimensionEdificio"
+                OnClick="btnAgregar_Click" />
+
+            <!-- Lista Edificios -->
+            <asp:Label ID="lbEdificio" runat="server" Text="Lista Edificios" ForeColor="Black" Visible="false"></asp:Label><br />
+            <asp:GridView ID="grEdificio" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="_ID_EDIFICIO"
+                Font-Size="10pt" AllowPaging="true" PageSize="6" OnPageIndexChanging="grEdificio_PageIndexChanging" Visible="false">
+                <Columns>
+                    <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Nombre" SortExpression="_NOMBRE_EDIFICIO" />
+                    <asp:BoundField DataField="_CANTIDAD_PISO" HeaderText="Cant. de Pisos" SortExpression="_CANTIDAD_PISO" />
+                    <asp:BoundField DataField="_CANTIDAD_DEPARTAMENTO" HeaderText="Cant. Departamento" SortExpression="_CANTIDAD_DEPARTAMENTO" />
+                    <asp:BoundField DataField="_DIMENSION_EDIFICIO" HeaderText="Dimensión" SortExpression="_DIMENSION_EDIFICIO" />
+                </Columns>
+            </asp:GridView>
 
             <!-- Boton Registro de Condominio -->
             <asp:UpdatePanel ID="barraProgreso" runat="server">
@@ -190,7 +210,7 @@
                     <asp:Button runat="server" ID="btnRegistroCondominio" class="btn btn-light btn-block my-4" Text="Registrar Condominio"
                         OnClick="btnRegistroCondominio_Click" />
                     <asp:Button runat="server" ID="btnModificarCondominio" class="btn btn-light btn-block my-4" Text="Modificar Condominio"
-                        OnClick="btnModificarCondominio_Click" Visible="false" />
+                        Visible="false" OnClick="btnModificarCondominio_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </form>

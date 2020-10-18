@@ -12,7 +12,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -24,22 +24,25 @@ namespace EasyLife.Vista
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
                 Response.Redirect("Index.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {
                 cargarRegion();
                 cargarAdministrador();
-                string pagoCondominio = (string)Session["CondominioSinPago"];
+                string pagoCondominio = (string)Session["CondominioSinDimension"];
                 if (pagoCondominio != null)
                 {
-                    Response.Redirect("RegistroGasto.aspx");
+                    Response.Redirect("RegistroDimension.aspx");
                 }
             }
         }
 
         private static List<string> listaLetras = new List<string>() {"", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P",
                         "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+        private static List<Adapter.AdapterEdificio> listaEdificio = new List<Adapter.AdapterEdificio>();
+        private static int position = 1;
 
         public void cargarRegion()
         {
@@ -111,6 +114,43 @@ namespace EasyLife.Vista
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string nombreEdificio = "";
+            lbEdificio.Visible = true;
+            grEdificio.Visible = true;
+            radioEdificios.Enabled = false;
+            txtPrefijo.Enabled = false;
+            if (radioEdificios.SelectedIndex == 0)
+            {
+                nombreEdificio = txtPrefijo.Text + " " + listaLetras[position];
+                position++;
+            }
+            else
+            {
+                nombreEdificio = txtPrefijo.Text + " " + position;
+                position++;
+            }
+            Adapter.AdapterEdificio adapter = new Adapter.AdapterEdificio();
+            adapter._NOMBRE_EDIFICIO = nombreEdificio;
+            adapter._CANTIDAD_PISO = Convert.ToInt32(txtPiso.Text);
+            adapter._CANTIDAD_DEPARTAMENTO = Convert.ToInt32(txtDepartamento.Text);
+            adapter._DIMENSION_EDIFICIO = Convert.ToDouble(txtDimensionEdificio.Text);
+            listaEdificio.Add(adapter);
+            grEdificio.DataSource = listaEdificio;
+            grEdificio.DataBind();
+            txtDimensionEdificio.Text = "";
+            txtPiso.Text = "";
+            txtDepartamento.Text = "";
+        }
+
+        protected void grEdificio_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grEdificio.PageIndex = e.NewPageIndex;
+            grEdificio.DataSource = listaEdificio;
+            grEdificio.DataBind();
+        }
+
         protected void btnRegistroCondominio_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
@@ -124,49 +164,37 @@ namespace EasyLife.Vista
                     txtNombre.Text, Convert.ToInt32(txtEst.Text));
                 if (resulCondominio.Equals("Condominio Creado"))
                 {
-                    string nomEdificio = txtPrefijo.Text;
-                    int cantEdificio = Convert.ToInt32(txtCantidadE.Text);
-                    int piso = Convert.ToInt32(txtPiso.Text);
-                    int dep = Convert.ToInt32(txtDepartamento.Text);
-                    string nombreE = "";
-                    string numeroDep = "";
+                    CONDOMINIO condominio = Controller.ControllerCondominio.buscarCondominio(direccion.ID_DIRECCION);
                     string resultEdificio = "";
                     string resultDep = "";
+                    string numeroDep = "";
                     string letra = "";
-                    CONDOMINIO condominio = Controller.ControllerCondominio.buscarCondominio(direccion.ID_DIRECCION);
-                    if (radioEdificios.SelectedIndex == 0)
+                    foreach (Adapter.AdapterEdificio adapter in listaEdificio)
                     {
-                        for (int i = 1; i <= cantEdificio; i++)
+                        resultEdificio = Controller.ControllerEdificio.crearEdificio(condominio.ID_CONDOMINIO, adapter._NOMBRE_EDIFICIO,
+                            adapter._CANTIDAD_PISO, adapter._CANTIDAD_DEPARTAMENTO, adapter._DIMENSION_EDIFICIO);
+                    }
+
+                    if (resultEdificio.Equals("Edificio Creado"))
+                    {
+                        int index = 1;
+                        List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(condominio.ID_CONDOMINIO);
+                        foreach (EDIFICIO item in listaEdificio)
                         {
-                            nombreE = nomEdificio + " " + listaLetras[i];
-                            resultEdificio = Controller.ControllerEdificio.crearEdificio(condominio.ID_CONDOMINIO, nombreE, piso, dep);
+                            letra = listaLetras[index];
+                            for (int i = 1; i <= item.CANTIDAD_DEPARTAMENTO; i++)
+                            {
+                                numeroDep = letra + " " + i;
+                                resultDep = Controller.ControllerDepartamento.crearDepartamento(item.ID_EDIFICIO, numeroDep, 0);
+                            }
+                            index++;
                         }
 
-                        if (resultEdificio.Equals("Edificio Creado"))
+                        if (resultDep.Equals("Departamento Creado"))
                         {
-                            int index = 1;
-                            List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(condominio.ID_CONDOMINIO);
-                            foreach (EDIFICIO item in listaEdificio)
-                            {
-                                letra = listaLetras[index];
-                                for (int i = 1; i <= dep; i++)
-                                {
-                                    numeroDep = letra + " " + i;
-                                    resultDep = Controller.ControllerDepartamento.crearDepartamento(item.ID_EDIFICIO, numeroDep);
-                                }
-                                index++;
-                            }
-
-                            if (resultDep.Equals("Departamento Creado"))
-                            {
-                                string condominioPago = condominio.ID_CONDOMINIO.ToString();
-                                Session["CondominioSinPago"] = condominioPago;
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Condominio Registrado');window.location.href='" + Request.RawUrl + "';", true);
-                            }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Registrar Edificio');window.location.href='" + Request.RawUrl + "';", true);
-                            }
+                            string condominioPago = condominio.ID_CONDOMINIO.ToString();
+                            Session["CondominioSinDimension"] = condominioPago;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Condominio Registrado');window.location.href='" + Request.RawUrl + "';", true);
                         }
                         else
                         {
@@ -175,38 +203,7 @@ namespace EasyLife.Vista
                     }
                     else
                     {
-                        for (int i = 1; i <= cantEdificio; i++)
-                        {
-                            nombreE = nomEdificio + " " + i;
-                            resultEdificio = Controller.ControllerEdificio.crearEdificio(condominio.ID_CONDOMINIO, nombreE, piso, dep);
-                        }
-
-                        if (resultEdificio.Equals("Edificio Creado"))
-                        {
-                            List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(condominio.ID_CONDOMINIO);
-                            foreach (EDIFICIO item in listaEdificio)
-                            {
-                                for (int i = 1; i <= dep; i++)
-                                {
-                                    resultDep = Controller.ControllerDepartamento.crearDepartamento(item.ID_EDIFICIO, i.ToString());
-                                }
-                            }
-
-                            if (resultDep.Equals("Departamento Creado"))
-                            {
-                                string condominioPago = condominio.ID_CONDOMINIO.ToString();
-                                Session["CondominioSinPago"] = condominioPago;
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Condominio Registrado');window.location.href='" + Request.RawUrl + "';", true);
-                            }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Registrar Edificio');window.location.href='" + Request.RawUrl + "';", true);
-                            }
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Registrar Edificio');window.location.href='" + Request.RawUrl + "';", true);
-                        }
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Registrar Edificio');window.location.href='" + Request.RawUrl + "';", true);
                     }
                 }
                 else

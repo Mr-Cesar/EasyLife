@@ -292,7 +292,7 @@ namespace EasyLife.Vista
 
         protected void btnRegistroReserva_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(5000);
+            /*System.Threading.Thread.Sleep(5000);
             string resultBoleta = Controller.ControllerBoleta.crearBoletaReserva(personal, Convert.ToInt32(lbTotal.Text), Convert.ToInt64(dplDepartamento.SelectedValue));
             if (resultBoleta.Equals("Boleta Creada"))
             {
@@ -319,7 +319,7 @@ namespace EasyLife.Vista
             else
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Ingresar Boleta');window.location.href='" + Request.RawUrl + "';", true);
-            }
+            }*/
         }
 
         protected void btnModificarReserva_Click(object sender, EventArgs e)

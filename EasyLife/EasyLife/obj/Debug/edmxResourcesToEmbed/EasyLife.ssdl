@@ -853,6 +853,10 @@
     <Parameter Name="conserje" Type="bigint" Mode="In" />
     <Parameter Name="condominio" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="asignarDimensionDep" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="departamento" Type="bigint" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
+  </Function>
   <Function Name="asignarEstacionamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="estacionamiento" Type="bigint" Mode="In" />
     <Parameter Name="dep" Type="bigint" Mode="In" />
