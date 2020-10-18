@@ -116,7 +116,7 @@ namespace EasyLife.MasterPage
 
         protected void lnkContacto_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Contacto.aspx");
+            Response.Redirect("~/Vista/Contacto.aspx");
         }
 
         protected void lnkLogin_Click(object sender, EventArgs e)

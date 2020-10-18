@@ -13,6 +13,20 @@ namespace EasyLife.Modelo
         private LuzDepartamento luzDepartamento;
         private string numeroDep;
         private string fechaRegistro;
+        private float dimensionDep;
+        private float prorroteo;
+
+        public float _prorroteo
+        {
+            get { return prorroteo; }
+            set { prorroteo = value; }
+        }
+
+        public float _dimensionDep
+        {
+            get { return dimensionDep; }
+            set { dimensionDep = value; }
+        }
 
         public string _fechaRegistro
         {

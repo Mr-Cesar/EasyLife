@@ -124,10 +124,29 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="insertBoletaMulta" FunctionName="EasyLifeModel.Store.insertBoletaMulta" />
+    <FunctionImportMapping FunctionImportName="asignarBodega" FunctionName="EasyLifeModel.Store.asignarBodega" />
+    <FunctionImportMapping FunctionImportName="asignarBoletaMulta" FunctionName="EasyLifeModel.Store.asignarBoletaMulta" />
+    <FunctionImportMapping FunctionImportName="asignarEstacionamiento" FunctionName="EasyLifeModel.Store.asignarEstacionamiento" />
+    <FunctionImportMapping FunctionImportName="AsignarProrroteo" FunctionName="EasyLifeModel.Store.AsignarProrroteo" />
+    <FunctionImportMapping FunctionImportName="updateBodega" FunctionName="EasyLifeModel.Store.updateBodega" />
+    <FunctionImportMapping FunctionImportName="insertEstacionamientoVisita" FunctionName="EasyLifeModel.Store.insertEstacionamientoVisita" />
+    <FunctionImportMapping FunctionImportName="updateEstacionamientoVisita" FunctionName="EasyLifeModel.Store.updateEstacionamientoVisita" />
+    <EntitySetMapping Name="BODEGA">
+      <EntityTypeMapping TypeName="EasyLifeModel.BODEGA">
+        <MappingFragment StoreEntitySet="BODEGA">
+          <ScalarProperty Name="DEP_BODEGA" ColumnName="DEP_BODEGA" />
+          <ScalarProperty Name="NUMERO_BODEGA" ColumnName="NUMERO_BODEGA" />
+          <ScalarProperty Name="DIMENSION_BODEGA" ColumnName="DIMENSION_BODEGA" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BOLETA">
       <EntityTypeMapping TypeName="EasyLifeModel.BOLETA">
         <MappingFragment StoreEntitySet="BOLETA">
           <ScalarProperty Name="FECHA_REGISTRO_BOLETA" ColumnName="FECHA_REGISTRO_BOLETA" />
+          <ScalarProperty Name="CODIGO_TRANSACCION" ColumnName="CODIGO_TRANSACCION" />
           <ScalarProperty Name="COSTO_BOLETA" ColumnName="COSTO_BOLETA" />
           <ScalarProperty Name="DEP" ColumnName="DEP" />
           <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
@@ -226,6 +245,8 @@
       <EntityTypeMapping TypeName="EasyLifeModel.DEPARTAMENTO">
         <MappingFragment StoreEntitySet="DEPARTAMENTO">
           <ScalarProperty Name="FECHA_REGISTRO_DEP" ColumnName="FECHA_REGISTRO_DEP" />
+          <ScalarProperty Name="PRORROTEO" ColumnName="PRORROTEO" />
+          <ScalarProperty Name="DIMENSION_DEP" ColumnName="DIMENSION_DEP" />
           <ScalarProperty Name="NUMERO_DEP" ColumnName="NUMERO_DEP" />
           <ScalarProperty Name="ID_LUZ_D" ColumnName="ID_LUZ_D" />
           <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
@@ -249,12 +270,24 @@
       <EntityTypeMapping TypeName="EasyLifeModel.EDIFICIO">
         <MappingFragment StoreEntitySet="EDIFICIO">
           <ScalarProperty Name="FECHA_REGISTRO_EDIFICIO" ColumnName="FECHA_REGISTRO_EDIFICIO" />
+          <ScalarProperty Name="DIMENSION_EDIFICIO" ColumnName="DIMENSION_EDIFICIO" />
           <ScalarProperty Name="CANTIDAD_DEPARTAMENTO" ColumnName="CANTIDAD_DEPARTAMENTO" />
           <ScalarProperty Name="CANTIDAD_PISO" ColumnName="CANTIDAD_PISO" />
           <ScalarProperty Name="NOMBRE_EDIFICIO" ColumnName="NOMBRE_EDIFICIO" />
           <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
           <ScalarProperty Name="ID_GASTOS" ColumnName="ID_GASTOS" />
           <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTACIONAMIENTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.ESTACIONAMIENTO">
+        <MappingFragment StoreEntitySet="ESTACIONAMIENTO">
+          <ScalarProperty Name="DEP_EST" ColumnName="DEP_EST" />
+          <ScalarProperty Name="PRECIO_EST" ColumnName="PRECIO_EST" />
+          <ScalarProperty Name="NUMERO_EST" ColumnName="NUMERO_EST" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_EST" ColumnName="ID_EST" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -445,5 +478,6 @@
         <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
   </EntityContainerMapping>
 </Mapping>

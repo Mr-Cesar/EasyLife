@@ -14,6 +14,13 @@ namespace EasyLife.Modelo
         private string fechaRegistroE;
         private GastoComun gastoComun;
         private Condominio condominio;
+        private float dimensionEdificio;
+
+        public float _dimensionEdificio
+        {
+            get { return dimensionEdificio; }
+            set { dimensionEdificio = value; }
+        }
 
         public Condominio _condominio
         {

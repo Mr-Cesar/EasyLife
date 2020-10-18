@@ -7,20 +7,20 @@ namespace EasyLife.Controller
 {
     public class ControllerEdificio
     {
-        public static string crearEdificio(long condominio, string nombre, int piso, int departamento)
+        public static string crearEdificio(long condominio, string nombre, int piso, int departamento, double dimension)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.insertEdificio(condominio, nombre, piso, departamento);
+                dbc.insertEdificio(condominio, nombre, piso, departamento, dimension);
                 return "Edificio Creado";
             }
         }
 
-        public static string modificarEdificio(long edificio, string nombre, int piso, int departamento)
+        public static string modificarEdificio(long edificio, string nombre, int piso, int departamento, double dimension)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.updateEdificio(edificio, nombre, piso, departamento);
+                dbc.updateEdificio(edificio, nombre, piso, departamento, dimension);
                 return "Edificio Modificado";
             }
         }

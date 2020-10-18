@@ -27,6 +27,7 @@ namespace EasyLife
         public Nullable<long> ID_PERSONA { get; set; }
         public Nullable<long> DEP { get; set; }
         public long COSTO_BOLETA { get; set; }
+        public string CODIGO_TRANSACCION { get; set; }
         public string FECHA_REGISTRO_BOLETA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

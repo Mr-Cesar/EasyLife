@@ -114,11 +114,13 @@
       <Parameter Name="persona" Mode="In" Type="Int64" />
       <Parameter Name="costo" Mode="In" Type="Int64" />
       <Parameter Name="dep" Mode="In" Type="Int64" />
+      <Parameter Name="codigo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="insertBoletaReserva">
       <Parameter Name="persona" Mode="In" Type="Int64" />
       <Parameter Name="costo" Mode="In" Type="Int64" />
       <Parameter Name="dep" Mode="In" Type="Int64" />
+      <Parameter Name="codigo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="insertCentro">
       <Parameter Name="tipo" Mode="In" Type="Int64" />
@@ -151,6 +153,7 @@
     <FunctionImport Name="insertDepartamento">
       <Parameter Name="edificio" Mode="In" Type="Int64" />
       <Parameter Name="numero" Mode="In" Type="String" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="insertDireccion">
       <Parameter Name="comuna" Mode="In" Type="Int64" />
@@ -162,13 +165,12 @@
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="piso" Mode="In" Type="Int32" />
       <Parameter Name="departamentos" Mode="In" Type="Int32" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="insertEstacionamiento">
-      <Parameter Name="dep" Mode="In" Type="String" />
       <Parameter Name="edificio" Mode="In" Type="Int64" />
-      <Parameter Name="patente" Mode="In" Type="String" />
-      <Parameter Name="horaE" Mode="In" Type="String" />
-      <Parameter Name="total" Mode="In" Type="Int32" />
+      <Parameter Name="numero" Mode="In" Type="String" />
+      <Parameter Name="precio" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="insertGasto">
       <Parameter Name="edificio" Mode="In" Type="Int64" />
@@ -297,6 +299,7 @@
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="piso" Mode="In" Type="Int32" />
       <Parameter Name="dep" Mode="In" Type="Int32" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="updateEdificioGasto">
       <Parameter Name="edificio" Mode="In" Type="Int64" />
@@ -415,15 +418,10 @@
       <Parameter Name="persona" Mode="In" Type="Int64" />
     </FunctionImport>
     <FunctionImport Name="updateEstacionamiento">
-      <Parameter Name="est" Mode="In" Type="Int64" />
-      <Parameter Name="boleta" Mode="In" Type="Int64" />
-      <Parameter Name="dep" Mode="In" Type="String" />
+      <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
       <Parameter Name="edificio" Mode="In" Type="Int64" />
-      <Parameter Name="patente" Mode="In" Type="String" />
-      <Parameter Name="horaE" Mode="In" Type="String" />
-      <Parameter Name="horaS" Mode="In" Type="String" />
-      <Parameter Name="estado" Mode="In" Type="Boolean" />
-      <Parameter Name="total" Mode="In" Type="Int32" />
+      <Parameter Name="numero" Mode="In" Type="String" />
+      <Parameter Name="precio" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="deleteHorario">
       <Parameter Name="horario" Mode="In" Type="Int64" />
@@ -471,7 +469,54 @@
       <Parameter Name="persona" Mode="In" Type="Int64" />
       <Parameter Name="costo" Mode="In" Type="Int64" />
       <Parameter Name="dep" Mode="In" Type="Int64" />
+      <Parameter Name="codigo" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="asignarBodega">
+      <Parameter Name="bodega" Mode="In" Type="Int64" />
+      <Parameter Name="dep" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="asignarBoletaMulta">
+      <Parameter Name="multa" Mode="In" Type="Int64" />
+      <Parameter Name="boleta" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="asignarEstacionamiento">
+      <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+      <Parameter Name="dep" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="AsignarProrroteo">
+      <Parameter Name="departamento" Mode="In" Type="Int64" />
+      <Parameter Name="porroteo" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="insetBodega">
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
+      <Parameter Name="numero" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateBodega">
+      <Parameter Name="bodega" Mode="In" Type="Int64" />
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
+      <Parameter Name="numero" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertEstacionamientoVisita">
+      <Parameter Name="dep" Mode="In" Type="String" />
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="patente" Mode="In" Type="String" />
+      <Parameter Name="horaE" Mode="In" Type="String" />
+      <Parameter Name="total" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateEstacionamientoVisita">
+      <Parameter Name="est" Mode="In" Type="Int64" />
+      <Parameter Name="boleta" Mode="In" Type="Int64" />
+      <Parameter Name="dep" Mode="In" Type="String" />
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="patente" Mode="In" Type="String" />
+      <Parameter Name="horaE" Mode="In" Type="String" />
+      <Parameter Name="horaS" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+      <Parameter Name="total" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="BODEGA" EntityType="EasyLifeModel.BODEGA" />
     <EntitySet Name="BOLETA" EntityType="EasyLifeModel.BOLETA" />
     <EntitySet Name="BOLETA_GASTO" EntityType="EasyLifeModel.BOLETA_GASTO" />
     <EntitySet Name="CENTRO" EntityType="EasyLifeModel.CENTRO" />
@@ -484,6 +529,7 @@
     <EntitySet Name="DEPARTAMENTO" EntityType="EasyLifeModel.DEPARTAMENTO" />
     <EntitySet Name="DIRECCION" EntityType="EasyLifeModel.DIRECCION" />
     <EntitySet Name="EDIFICIO" EntityType="EasyLifeModel.EDIFICIO" />
+    <EntitySet Name="ESTACIONAMIENTO" EntityType="EasyLifeModel.ESTACIONAMIENTO" />
     <EntitySet Name="ESTACIONAMIENTO_VISITA" EntityType="EasyLifeModel.ESTACIONAMIENTO_VISITA" />
     <EntitySet Name="GASTOS_COMUNES" EntityType="EasyLifeModel.GASTOS_COMUNES" />
     <EntitySet Name="HORARIO_CENTRO" EntityType="EasyLifeModel.HORARIO_CENTRO" />
@@ -499,6 +545,10 @@
     <EntitySet Name="TIPO_CENTRO" EntityType="EasyLifeModel.TIPO_CENTRO" />
     <EntitySet Name="TIPO_MENSAJE" EntityType="EasyLifeModel.TIPO_MENSAJE" />
     <EntitySet Name="TURNO" EntityType="EasyLifeModel.TURNO" />
+    <AssociationSet Name="FK_BODEGA_RELATIONS_EDIFICIO" Association="EasyLifeModel.FK_BODEGA_RELATIONS_EDIFICIO">
+      <End Role="EDIFICIO" EntitySet="EDIFICIO" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
     <AssociationSet Name="FK_BOLETA_G_RELATIONS_BOLETA" Association="EasyLifeModel.FK_BOLETA_G_RELATIONS_BOLETA">
       <End Role="BOLETA" EntitySet="BOLETA" />
       <End Role="BOLETA_GASTO" EntitySet="BOLETA_GASTO" />
@@ -611,6 +661,10 @@
       <End Role="GASTOS_COMUNES" EntitySet="GASTOS_COMUNES" />
       <End Role="EDIFICIO" EntitySet="EDIFICIO" />
     </AssociationSet>
+    <AssociationSet Name="FK_ESTACION_RELATIONS_EDIFICIO" Association="EasyLifeModel.FK_ESTACION_RELATIONS_EDIFICIO">
+      <End Role="EDIFICIO" EntitySet="EDIFICIO" />
+      <End Role="ESTACIONAMIENTO" EntitySet="ESTACIONAMIENTO" />
+    </AssociationSet>
     <AssociationSet Name="FK_GASTOS_C_RELATIONS_EDIFICIO" Association="EasyLifeModel.FK_GASTOS_C_RELATIONS_EDIFICIO">
       <End Role="EDIFICIO" EntitySet="EDIFICIO" />
       <End Role="GASTOS_COMUNES" EntitySet="GASTOS_COMUNES" />
@@ -643,6 +697,11 @@
       <End Role="CONSERJE" EntitySet="CONSERJE" />
       <End Role="TURNO" EntitySet="TURNO" />
     </AssociationSet>
+    <FunctionImport Name="insertBodega">
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="dimension" Mode="In" Type="Double" />
+      <Parameter Name="numero" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="boletaGasto_Result">
     <Property Type="Int64" Name="ID_BOLETA" Nullable="false" />
@@ -662,6 +721,17 @@
     <Property Type="String" Name="FECHA_INICIO" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="FECHA_TERMINO" Nullable="false" MaxLength="25" />
   </ComplexType>
+  <EntityType Name="BODEGA">
+    <Key>
+      <PropertyRef Name="ID_BODEGA" />
+    </Key>
+    <Property Name="ID_BODEGA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EDIFICIO" Type="Int64" Nullable="false" />
+    <Property Name="DIMENSION_BODEGA" Type="Double" Nullable="false" />
+    <Property Name="NUMERO_BODEGA" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DEP_BODEGA" Type="Int64" />
+    <NavigationProperty Name="EDIFICIO" Relationship="EasyLifeModel.FK_BODEGA_RELATIONS_EDIFICIO" FromRole="BODEGA" ToRole="EDIFICIO" />
+  </EntityType>
   <EntityType Name="BOLETA">
     <Key>
       <PropertyRef Name="ID_BOLETA" />
@@ -671,6 +741,7 @@
     <Property Name="ID_PERSONA" Type="Int64" />
     <Property Name="DEP" Type="Int64" />
     <Property Name="COSTO_BOLETA" Type="Int64" Nullable="false" />
+    <Property Name="CODIGO_TRANSACCION" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="FECHA_REGISTRO_BOLETA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="BOLETA_GASTO" Relationship="EasyLifeModel.FK_BOLETA_G_RELATIONS_BOLETA" FromRole="BOLETA" ToRole="BOLETA_GASTO" />
     <NavigationProperty Name="ESTACIONAMIENTO_VISITA" Relationship="EasyLifeModel.FK_BOLETA_RELATIONS_ESTACION" FromRole="BOLETA" ToRole="ESTACIONAMIENTO_VISITA" />
@@ -786,6 +857,8 @@
     <Property Name="ID_EDIFICIO" Type="Int64" Nullable="false" />
     <Property Name="ID_LUZ_D" Type="Int64" />
     <Property Name="NUMERO_DEP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DIMENSION_DEP" Type="Double" Nullable="false" />
+    <Property Name="PRORROTEO" Type="Double" />
     <Property Name="FECHA_REGISTRO_DEP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="EDIFICIO" Relationship="EasyLifeModel.FK_DEPARTAM_RELATIONS_EDIFICIO" FromRole="DEPARTAMENTO" ToRole="EDIFICIO" />
     <NavigationProperty Name="LUZ_DEPARTAMENTO" Relationship="EasyLifeModel.FK_DEPARTAM_RELATIONS_LUZ_DEPA" FromRole="DEPARTAMENTO" ToRole="LUZ_DEPARTAMENTO" />
@@ -817,13 +890,27 @@
     <Property Name="NOMBRE_EDIFICIO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CANTIDAD_PISO" Type="Int32" Nullable="false" />
     <Property Name="CANTIDAD_DEPARTAMENTO" Type="Int32" Nullable="false" />
+    <Property Name="DIMENSION_EDIFICIO" Type="Double" Nullable="false" />
     <Property Name="FECHA_REGISTRO_EDIFICIO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BODEGA" Relationship="EasyLifeModel.FK_BODEGA_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="BODEGA" />
     <NavigationProperty Name="CENTRO" Relationship="EasyLifeModel.FK_CENTRO_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="CENTRO" />
     <NavigationProperty Name="CONDOMINIO" Relationship="EasyLifeModel.FK_EDIFICIO_RELATIONS_CONDOMIN" FromRole="EDIFICIO" ToRole="CONDOMINIO" />
     <NavigationProperty Name="DEPARTAMENTO" Relationship="EasyLifeModel.FK_DEPARTAM_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="DEPARTAMENTO" />
     <NavigationProperty Name="GASTOS_COMUNES" Relationship="EasyLifeModel.FK_EDIFICIO_RELATIONS_GASTOS_C" FromRole="EDIFICIO" ToRole="GASTOS_COMUNES" />
+    <NavigationProperty Name="ESTACIONAMIENTO" Relationship="EasyLifeModel.FK_ESTACION_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="ESTACIONAMIENTO" />
     <NavigationProperty Name="GASTOS_COMUNES1" Relationship="EasyLifeModel.FK_GASTOS_C_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="GASTOS_COMUNES" />
     <NavigationProperty Name="LUZ_EDIFICIO" Relationship="EasyLifeModel.FK_LUZ_EDIF_RELATIONS_EDIFICIO" FromRole="EDIFICIO" ToRole="LUZ_EDIFICIO" />
+  </EntityType>
+  <EntityType Name="ESTACIONAMIENTO">
+    <Key>
+      <PropertyRef Name="ID_EST" />
+    </Key>
+    <Property Name="ID_EST" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EDIFICIO" Type="Int64" Nullable="false" />
+    <Property Name="NUMERO_EST" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="PRECIO_EST" Type="Int32" Nullable="false" />
+    <Property Name="DEP_EST" Type="Int64" />
+    <NavigationProperty Name="EDIFICIO" Relationship="EasyLifeModel.FK_ESTACION_RELATIONS_EDIFICIO" FromRole="ESTACIONAMIENTO" ToRole="EDIFICIO" />
   </EntityType>
   <EntityType Name="ESTACIONAMIENTO_VISITA">
     <Key>
@@ -919,8 +1006,8 @@
     <Property Name="ID_TIPO_MENSAJE" Type="Int64" Nullable="false" />
     <Property Name="ID_PERSONA" Type="Int64" />
     <Property Name="DESCRIPCION_MENSAJE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="EMISOR_MENSAJE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="DESTINATARIO_MENSAJE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EMISOR_MENSAJE" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="DESTINATARIO_MENSAJE" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="ESTADO_MENSAJE" Type="Boolean" />
     <Property Name="FECHA_REGISTRO_M" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PERSONA" Relationship="EasyLifeModel.FK_MENSAJE_RELATIONS_PERSONA" FromRole="MENSAJE" ToRole="PERSONA" />
@@ -1021,6 +1108,18 @@
     <Property Name="FECHA_TERMINO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CONSERJE" Relationship="EasyLifeModel.CONSERJE_TURNO" FromRole="TURNO" ToRole="CONSERJE" />
   </EntityType>
+  <Association Name="FK_BODEGA_RELATIONS_EDIFICIO">
+    <End Type="EasyLifeModel.EDIFICIO" Role="EDIFICIO" Multiplicity="1" />
+    <End Type="EasyLifeModel.BODEGA" Role="BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDIFICIO">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BOLETA_G_RELATIONS_BOLETA">
     <End Type="EasyLifeModel.BOLETA" Role="BOLETA" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1380,6 +1479,18 @@
       </Principal>
       <Dependent Role="EDIFICIO">
         <PropertyRef Name="ID_GASTOS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTACION_RELATIONS_EDIFICIO">
+    <End Type="EasyLifeModel.EDIFICIO" Role="EDIFICIO" Multiplicity="1" />
+    <End Type="EasyLifeModel.ESTACIONAMIENTO" Role="ESTACIONAMIENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDIFICIO">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Principal>
+      <Dependent Role="ESTACIONAMIENTO">
+        <PropertyRef Name="ID_EDIFICIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -17,8 +17,10 @@ namespace EasyLife
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EDIFICIO()
         {
+            this.BODEGA = new HashSet<BODEGA>();
             this.CENTRO = new HashSet<CENTRO>();
             this.DEPARTAMENTO = new HashSet<DEPARTAMENTO>();
+            this.ESTACIONAMIENTO = new HashSet<ESTACIONAMIENTO>();
             this.GASTOS_COMUNES1 = new HashSet<GASTOS_COMUNES>();
             this.LUZ_EDIFICIO = new HashSet<LUZ_EDIFICIO>();
         }
@@ -29,14 +31,19 @@ namespace EasyLife
         public string NOMBRE_EDIFICIO { get; set; }
         public int CANTIDAD_PISO { get; set; }
         public int CANTIDAD_DEPARTAMENTO { get; set; }
+        public double DIMENSION_EDIFICIO { get; set; }
         public string FECHA_REGISTRO_EDIFICIO { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BODEGA> BODEGA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CENTRO> CENTRO { get; set; }
         public virtual CONDOMINIO CONDOMINIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         public virtual GASTOS_COMUNES GASTOS_COMUNES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ESTACIONAMIENTO> ESTACIONAMIENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GASTOS_COMUNES> GASTOS_COMUNES1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

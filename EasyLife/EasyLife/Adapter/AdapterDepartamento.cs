@@ -21,6 +21,20 @@ namespace EasyLife.Adapter
         private long ID_MULTA;
         private string MOTIVO;
         private Boolean ESTADO_MULTA;
+        private double DIMENSION_DEP;
+        private double PRORROTEO;
+
+        public double _PRORROTEO
+        {
+            get { return PRORROTEO; }
+            set { PRORROTEO = value; }
+        }
+
+        public double _DIMENSION_DEP
+        {
+            get { return DIMENSION_DEP; }
+            set { DIMENSION_DEP = value; }
+        }
 
         public Boolean _ESTADO_MULTA
         {

@@ -11,7 +11,7 @@ namespace EasyLife.Controller
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.insertEstacionamiento(departamento, edificio, patente, horaE, total);
+                dbc.insertEstacionamientoVisita(departamento, edificio, patente, horaE, total);
                 return "Estacionamiento Creado";
             }
         }
@@ -21,7 +21,7 @@ namespace EasyLife.Controller
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.updateEstacionamiento(estacionamiento, boleta, departamento, edificio, patente, horaE, horaS, estado, total);
+                dbc.updateEstacionamientoVisita(estacionamiento, boleta, departamento, edificio, patente, horaE, horaS, estado, total);
                 return "Estacionamiento Modificado";
             }
         }

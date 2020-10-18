@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EasyLifeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BODEGA">
+    <Key>
+      <PropertyRef Name="ID_BODEGA" />
+    </Key>
+    <Property Name="ID_BODEGA" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EDIFICIO" Type="bigint" Nullable="false" />
+    <Property Name="DIMENSION_BODEGA" Type="float" Nullable="false" />
+    <Property Name="NUMERO_BODEGA" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="DEP_BODEGA" Type="bigint" />
+  </EntityType>
   <EntityType Name="BOLETA">
     <Key>
       <PropertyRef Name="ID_BOLETA" />
@@ -9,6 +19,7 @@
     <Property Name="ID_PERSONA" Type="bigint" />
     <Property Name="DEP" Type="bigint" />
     <Property Name="COSTO_BOLETA" Type="bigint" Nullable="false" />
+    <Property Name="CODIGO_TRANSACCION" Type="varchar" MaxLength="40" />
     <Property Name="FECHA_REGISTRO_BOLETA" Type="varchar" MaxLength="25" />
   </EntityType>
   <EntityType Name="BOLETA_GASTO">
@@ -107,6 +118,8 @@
     <Property Name="ID_EDIFICIO" Type="bigint" Nullable="false" />
     <Property Name="ID_LUZ_D" Type="bigint" />
     <Property Name="NUMERO_DEP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DIMENSION_DEP" Type="float" Nullable="false" />
+    <Property Name="PRORROTEO" Type="float" />
     <Property Name="FECHA_REGISTRO_DEP" Type="varchar" MaxLength="25" />
   </EntityType>
   <EntityType Name="DIRECCION">
@@ -129,7 +142,18 @@
     <Property Name="NOMBRE_EDIFICIO" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="CANTIDAD_PISO" Type="int" Nullable="false" />
     <Property Name="CANTIDAD_DEPARTAMENTO" Type="int" Nullable="false" />
+    <Property Name="DIMENSION_EDIFICIO" Type="float" Nullable="false" />
     <Property Name="FECHA_REGISTRO_EDIFICIO" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="ESTACIONAMIENTO">
+    <Key>
+      <PropertyRef Name="ID_EST" />
+    </Key>
+    <Property Name="ID_EST" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EDIFICIO" Type="bigint" Nullable="false" />
+    <Property Name="NUMERO_EST" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="PRECIO_EST" Type="int" Nullable="false" />
+    <Property Name="DEP_EST" Type="bigint" />
   </EntityType>
   <EntityType Name="ESTACIONAMIENTO_VISITA">
     <Key>
@@ -212,8 +236,8 @@
     <Property Name="ID_TIPO_MENSAJE" Type="bigint" Nullable="false" />
     <Property Name="ID_PERSONA" Type="bigint" />
     <Property Name="DESCRIPCION_MENSAJE" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="EMISOR_MENSAJE" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="DESTINATARIO_MENSAJE" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="EMISOR_MENSAJE" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="DESTINATARIO_MENSAJE" Type="varchar" MaxLength="12" Nullable="false" />
     <Property Name="ESTADO_MENSAJE" Type="bit" />
     <Property Name="FECHA_REGISTRO_M" Type="varchar" MaxLength="25" />
   </EntityType>
@@ -295,6 +319,18 @@
     <Property Name="FECHA_INICIO" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="FECHA_TERMINO" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
+  <Association Name="FK_BODEGA_RELATIONS_EDIFICIO">
+    <End Role="EDIFICIO" Type="Self.EDIFICIO" Multiplicity="1" />
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDIFICIO">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BOLETA_G_RELATIONS_BOLETA">
     <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -605,6 +641,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ESTACION_RELATIONS_EDIFICIO">
+    <End Role="EDIFICIO" Type="Self.EDIFICIO" Multiplicity="1" />
+    <End Role="ESTACIONAMIENTO" Type="Self.ESTACIONAMIENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDIFICIO">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Principal>
+      <Dependent Role="ESTACIONAMIENTO">
+        <PropertyRef Name="ID_EDIFICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_GASTOS_C_RELATIONS_EDIFICIO">
     <End Role="EDIFICIO" Type="Self.EDIFICIO" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -779,6 +827,10 @@
     <Parameter Name="administrador" Type="bigint" Mode="In" />
     <Parameter Name="condominio" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="asignarBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bodega" Type="bigint" Mode="In" />
+    <Parameter Name="dep" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="AsignarBoletaEst" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="estacionamiento" Type="bigint" Mode="In" />
     <Parameter Name="boleta" Type="bigint" Mode="In" />
@@ -789,6 +841,10 @@
     <Parameter Name="mes" Type="varchar" Mode="In" />
     <Parameter Name="año" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="asignarBoletaMulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="multa" Type="bigint" Mode="In" />
+    <Parameter Name="boleta" Type="bit" Mode="In" />
+  </Function>
   <Function Name="AsignarBoletaReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="reserva" Type="bigint" Mode="In" />
     <Parameter Name="boleta" Type="bigint" Mode="In" />
@@ -796,6 +852,10 @@
   <Function Name="asignarConserjeCondominio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="conserje" Type="bigint" Mode="In" />
     <Parameter Name="condominio" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="asignarEstacionamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estacionamiento" Type="bigint" Mode="In" />
+    <Parameter Name="dep" Type="bigint" Mode="In" />
   </Function>
   <Function Name="AsignarGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="edificio" Type="bigint" Mode="In" />
@@ -813,6 +873,10 @@
     <Parameter Name="departamento" Type="bigint" Mode="In" />
     <Parameter Name="multa" Type="int" Mode="In" />
     <Parameter Name="motivo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AsignarProrroteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="departamento" Type="bigint" Mode="In" />
+    <Parameter Name="porroteo" Type="bigint" Mode="In" />
   </Function>
   <Function Name="boletaGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="persona" Type="bigint" Mode="In" />
@@ -897,6 +961,11 @@
     <Parameter Name="conserje" Type="bigint" Mode="In" />
   </Function>
   <Function Name="depOcupados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="insertBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="edificio" Type="bigint" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="insertBoletaEst" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="est" Type="bigint" Mode="In" />
     <Parameter Name="persona" Type="bigint" Mode="In" />
@@ -906,16 +975,19 @@
     <Parameter Name="persona" Type="bigint" Mode="In" />
     <Parameter Name="costo" Type="bigint" Mode="In" />
     <Parameter Name="dep" Type="bigint" Mode="In" />
+    <Parameter Name="codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="insertBoletaMulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="persona" Type="bigint" Mode="In" />
     <Parameter Name="costo" Type="bigint" Mode="In" />
     <Parameter Name="dep" Type="bigint" Mode="In" />
+    <Parameter Name="codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="insertBoletaReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="persona" Type="bigint" Mode="In" />
     <Parameter Name="costo" Type="bigint" Mode="In" />
     <Parameter Name="dep" Type="bigint" Mode="In" />
+    <Parameter Name="codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="insertCentro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="tipo" Type="bigint" Mode="In" />
@@ -948,6 +1020,7 @@
   <Function Name="insertDepartamento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="edificio" Type="bigint" Mode="In" />
     <Parameter Name="numero" Type="varchar" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
   </Function>
   <Function Name="insertDireccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="comuna" Type="bigint" Mode="In" />
@@ -959,8 +1032,14 @@
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="piso" Type="int" Mode="In" />
     <Parameter Name="departamentos" Type="int" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
   </Function>
   <Function Name="insertEstacionamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="edificio" Type="bigint" Mode="In" />
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+    <Parameter Name="precio" Type="int" Mode="In" />
+  </Function>
+  <Function Name="insertEstacionamientoVisita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="dep" Type="varchar" Mode="In" />
     <Parameter Name="edificio" Type="bigint" Mode="In" />
     <Parameter Name="patente" Type="varchar" Mode="In" />
@@ -1034,6 +1113,12 @@
     <Parameter Name="conserje" Type="bigint" Mode="In" />
   </Function>
   <Function Name="turnosConserje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="updateBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bodega" Type="bigint" Mode="In" />
+    <Parameter Name="edificio" Type="bigint" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="updateBoletaReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="costo" Type="bigint" Mode="In" />
     <Parameter Name="boleta" Type="bigint" Mode="In" />
@@ -1101,12 +1186,19 @@
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="piso" Type="int" Mode="In" />
     <Parameter Name="dep" Type="int" Mode="In" />
+    <Parameter Name="dimension" Type="float" Mode="In" />
   </Function>
   <Function Name="updateEdificioGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="edificio" Type="bigint" Mode="In" />
     <Parameter Name="gasto" Type="bigint" Mode="In" />
   </Function>
   <Function Name="updateEstacionamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estacionamiento" Type="bigint" Mode="In" />
+    <Parameter Name="edificio" Type="bigint" Mode="In" />
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+    <Parameter Name="precio" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateEstacionamientoVisita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="est" Type="bigint" Mode="In" />
     <Parameter Name="boleta" Type="bigint" Mode="In" />
     <Parameter Name="dep" Type="varchar" Mode="In" />
@@ -1243,6 +1335,7 @@
     <Parameter Name="fechaT" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="EasyLifeModelStoreContainer">
+    <EntitySet Name="BODEGA" EntityType="Self.BODEGA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BOLETA" EntityType="Self.BOLETA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BOLETA_GASTO" EntityType="Self.BOLETA_GASTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CENTRO" EntityType="Self.CENTRO" Schema="dbo" store:Type="Tables" />
@@ -1256,6 +1349,7 @@
     <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EDIFICIO" EntityType="Self.EDIFICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESTACIONAMIENTO" EntityType="Self.ESTACIONAMIENTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ESTACIONAMIENTO_VISITA" EntityType="Self.ESTACIONAMIENTO_VISITA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GASTOS_COMUNES" EntityType="Self.GASTOS_COMUNES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HORARIO_CENTRO" EntityType="Self.HORARIO_CENTRO" Schema="dbo" store:Type="Tables" />
@@ -1271,6 +1365,10 @@
     <EntitySet Name="TIPO_CENTRO" EntityType="Self.TIPO_CENTRO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_MENSAJE" EntityType="Self.TIPO_MENSAJE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TURNO" EntityType="Self.TURNO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BODEGA_RELATIONS_EDIFICIO" Association="Self.FK_BODEGA_RELATIONS_EDIFICIO">
+      <End Role="EDIFICIO" EntitySet="EDIFICIO" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
     <AssociationSet Name="FK_BOLETA_G_RELATIONS_BOLETA" Association="Self.FK_BOLETA_G_RELATIONS_BOLETA">
       <End Role="BOLETA" EntitySet="BOLETA" />
       <End Role="BOLETA_GASTO" EntitySet="BOLETA_GASTO" />
@@ -1366,6 +1464,10 @@
     <AssociationSet Name="FK_ESTACION_RELATIONS_BOLETA" Association="Self.FK_ESTACION_RELATIONS_BOLETA">
       <End Role="BOLETA" EntitySet="BOLETA" />
       <End Role="ESTACIONAMIENTO_VISITA" EntitySet="ESTACIONAMIENTO_VISITA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTACION_RELATIONS_EDIFICIO" Association="Self.FK_ESTACION_RELATIONS_EDIFICIO">
+      <End Role="EDIFICIO" EntitySet="EDIFICIO" />
+      <End Role="ESTACIONAMIENTO" EntitySet="ESTACIONAMIENTO" />
     </AssociationSet>
     <AssociationSet Name="FK_GASTOS_C_RELATIONS_EDIFICIO" Association="Self.FK_GASTOS_C_RELATIONS_EDIFICIO">
       <End Role="EDIFICIO" EntitySet="EDIFICIO" />

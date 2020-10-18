@@ -15,6 +15,13 @@ namespace EasyLife.Adapter
         private string CODIGO_LUZ_E;
         private long ID_CONDOMINIO;
         private string NOMBRE_CONDOMINIO;
+        private double DIMENSION_EDIFICIO;
+
+        public double _DIMENSION_EDIFICIO
+        {
+            get { return DIMENSION_EDIFICIO; }
+            set { DIMENSION_EDIFICIO = value; }
+        }
 
         public string _NOMBRE_CONDOMINIO
         {

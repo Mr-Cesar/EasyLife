@@ -155,6 +155,9 @@
     <Compile Include="Adapter\AdapterPersonal.cs" />
     <Compile Include="Adapter\AdapterPropietario.cs" />
     <Compile Include="Adapter\AdapterReserva.cs" />
+    <Compile Include="BODEGA.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
     <Compile Include="BOLETA.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
@@ -179,6 +182,7 @@
     <Compile Include="CONSERJE.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ControllerBodega.cs" />
     <Compile Include="Controller\ControllerBoleta.cs" />
     <Compile Include="Controller\ControllerCentro.cs" />
     <Compile Include="Controller\ControllerCiudad.cs" />
@@ -191,6 +195,7 @@
     <Compile Include="Controller\ControllerDireccion.cs" />
     <Compile Include="Controller\ControllerEdificio.cs" />
     <Compile Include="Controller\ControllerEncryption.cs" />
+    <Compile Include="Controller\ControllerEstacionamiento.cs" />
     <Compile Include="Controller\ControllerEstacionamientoVisita.cs" />
     <Compile Include="Controller\ControllerGastoComun.cs" />
     <Compile Include="Controller\ControllerHorarioCentro.cs" />
@@ -239,6 +244,9 @@
     <Compile Include="EDIFICIO.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
+    <Compile Include="ESTACIONAMIENTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
     <Compile Include="ESTACIONAMIENTO_VISITA.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
@@ -270,6 +278,7 @@
     <Compile Include="MENSAJE.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Bodega.cs" />
     <Compile Include="Modelo\Boleta.cs" />
     <Compile Include="Modelo\Centro.cs" />
     <Compile Include="Modelo\Ciudad.cs" />
@@ -281,6 +290,7 @@
     <Compile Include="Modelo\Departamento.cs" />
     <Compile Include="Modelo\Direccion.cs" />
     <Compile Include="Modelo\Edificio.cs" />
+    <Compile Include="Modelo\Estacionamiento.cs" />
     <Compile Include="Modelo\EstacionamientoVisita.cs" />
     <Compile Include="Modelo\GastoComun.cs" />
     <Compile Include="Modelo\HorarioCentro.cs" />

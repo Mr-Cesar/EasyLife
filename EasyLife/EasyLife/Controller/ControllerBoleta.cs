@@ -16,20 +16,20 @@ namespace EasyLife.Controller
             }
         }
 
-        public static string crearBoletaReserva(long persona, int costo, long departamento)
+        public static string crearBoletaReserva(long persona, int costo, long departamento, string codigo)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.insertBoletaReserva(persona, costo, departamento);
+                dbc.insertBoletaReserva(persona, costo, departamento, codigo);
                 return "Boleta Creada";
             }
         }
 
-        public static string crearBoletaGasto(long persona, int costo, long departamento)
+        public static string crearBoletaGasto(long persona, int costo, long departamento, string codigo)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.insertBoletaGasto(persona, costo, departamento);
+                dbc.insertBoletaGasto(persona, costo, departamento, codigo);
                 return "Boleta Creada";
             }
         }

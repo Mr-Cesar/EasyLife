@@ -29,6 +29,7 @@ namespace EasyLife.Vista
 
         protected void lnkRecuperar_Click(object sender, EventArgs e)
         {
+            Response.Redirect("RecuperarPassword.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

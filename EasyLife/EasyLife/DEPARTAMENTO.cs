@@ -27,6 +27,8 @@ namespace EasyLife
         public long ID_EDIFICIO { get; set; }
         public Nullable<long> ID_LUZ_D { get; set; }
         public string NUMERO_DEP { get; set; }
+        public double DIMENSION_DEP { get; set; }
+        public Nullable<double> PRORROTEO { get; set; }
         public string FECHA_REGISTRO_DEP { get; set; }
     
         public virtual EDIFICIO EDIFICIO { get; set; }

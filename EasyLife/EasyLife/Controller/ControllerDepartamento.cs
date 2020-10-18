@@ -7,11 +7,11 @@ namespace EasyLife.Controller
 {
     public class ControllerDepartamento
     {
-        public static string crearDepartamento(long edificio, string numero)
+        public static string crearDepartamento(long edificio, string numero, double dimension)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
-                dbc.insertDepartamento(edificio, numero);
+                dbc.insertDepartamento(edificio, numero, dimension);
                 return "Departamento Creado";
             }
         }

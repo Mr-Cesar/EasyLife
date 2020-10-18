@@ -27,6 +27,7 @@ namespace EasyLife
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BODEGA> BODEGA { get; set; }
         public virtual DbSet<BOLETA> BOLETA { get; set; }
         public virtual DbSet<BOLETA_GASTO> BOLETA_GASTO { get; set; }
         public virtual DbSet<CENTRO> CENTRO { get; set; }
@@ -39,6 +40,7 @@ namespace EasyLife
         public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         public virtual DbSet<DIRECCION> DIRECCION { get; set; }
         public virtual DbSet<EDIFICIO> EDIFICIO { get; set; }
+        public virtual DbSet<ESTACIONAMIENTO> ESTACIONAMIENTO { get; set; }
         public virtual DbSet<ESTACIONAMIENTO_VISITA> ESTACIONAMIENTO_VISITA { get; set; }
         public virtual DbSet<GASTOS_COMUNES> GASTOS_COMUNES { get; set; }
         public virtual DbSet<HORARIO_CENTRO> HORARIO_CENTRO { get; set; }
@@ -408,7 +410,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaEst", estParameter, personaParameter, costoParameter);
         }
     
-        public virtual int insertBoletaGasto(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep)
+        public virtual int insertBoletaGasto(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep, string codigo)
         {
             var personaParameter = persona.HasValue ?
                 new ObjectParameter("persona", persona) :
@@ -422,10 +424,14 @@ namespace EasyLife
                 new ObjectParameter("dep", dep) :
                 new ObjectParameter("dep", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaGasto", personaParameter, costoParameter, depParameter);
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaGasto", personaParameter, costoParameter, depParameter, codigoParameter);
         }
     
-        public virtual int insertBoletaReserva(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep)
+        public virtual int insertBoletaReserva(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep, string codigo)
         {
             var personaParameter = persona.HasValue ?
                 new ObjectParameter("persona", persona) :
@@ -439,7 +445,11 @@ namespace EasyLife
                 new ObjectParameter("dep", dep) :
                 new ObjectParameter("dep", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaReserva", personaParameter, costoParameter, depParameter);
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaReserva", personaParameter, costoParameter, depParameter, codigoParameter);
         }
     
         public virtual int insertCentro(Nullable<long> tipo, Nullable<long> edificio, string nombre, Nullable<int> costo)
@@ -539,7 +549,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertControlEdificio", luzParameter, horaIParameter, horaTParameter, estadoParameter);
         }
     
-        public virtual int insertDepartamento(Nullable<long> edificio, string numero)
+        public virtual int insertDepartamento(Nullable<long> edificio, string numero, Nullable<double> dimension)
         {
             var edificioParameter = edificio.HasValue ?
                 new ObjectParameter("edificio", edificio) :
@@ -549,7 +559,11 @@ namespace EasyLife
                 new ObjectParameter("numero", numero) :
                 new ObjectParameter("numero", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertDepartamento", edificioParameter, numeroParameter);
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertDepartamento", edificioParameter, numeroParameter, dimensionParameter);
         }
     
         public virtual int insertDireccion(Nullable<long> comuna, string calle, Nullable<int> numero)
@@ -569,7 +583,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertDireccion", comunaParameter, calleParameter, numeroParameter);
         }
     
-        public virtual int insertEdificio(Nullable<long> condominio, string nombre, Nullable<int> piso, Nullable<int> departamentos)
+        public virtual int insertEdificio(Nullable<long> condominio, string nombre, Nullable<int> piso, Nullable<int> departamentos, Nullable<double> dimension)
         {
             var condominioParameter = condominio.HasValue ?
                 new ObjectParameter("condominio", condominio) :
@@ -587,32 +601,28 @@ namespace EasyLife
                 new ObjectParameter("departamentos", departamentos) :
                 new ObjectParameter("departamentos", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertEdificio", condominioParameter, nombreParameter, pisoParameter, departamentosParameter);
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertEdificio", condominioParameter, nombreParameter, pisoParameter, departamentosParameter, dimensionParameter);
         }
     
-        public virtual int insertEstacionamiento(string dep, Nullable<long> edificio, string patente, string horaE, Nullable<int> total)
+        public virtual int insertEstacionamiento(Nullable<long> edificio, string numero, Nullable<int> precio)
         {
-            var depParameter = dep != null ?
-                new ObjectParameter("dep", dep) :
-                new ObjectParameter("dep", typeof(string));
-    
             var edificioParameter = edificio.HasValue ?
                 new ObjectParameter("edificio", edificio) :
                 new ObjectParameter("edificio", typeof(long));
     
-            var patenteParameter = patente != null ?
-                new ObjectParameter("patente", patente) :
-                new ObjectParameter("patente", typeof(string));
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
     
-            var horaEParameter = horaE != null ?
-                new ObjectParameter("horaE", horaE) :
-                new ObjectParameter("horaE", typeof(string));
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("precio", precio) :
+                new ObjectParameter("precio", typeof(int));
     
-            var totalParameter = total.HasValue ?
-                new ObjectParameter("total", total) :
-                new ObjectParameter("total", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertEstacionamiento", depParameter, edificioParameter, patenteParameter, horaEParameter, totalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertEstacionamiento", edificioParameter, numeroParameter, precioParameter);
         }
     
         public virtual int insertGasto(Nullable<long> edificio, Nullable<int> conserje, Nullable<int> guardia, Nullable<int> mantAreas, Nullable<int> camaras, Nullable<int> artAseo, Nullable<int> aseo, Nullable<int> ascensor, Nullable<int> agua, Nullable<int> otro, Nullable<int> total)
@@ -1038,7 +1048,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateDireccion", direccionParameter, condominioParameter, calleParameter, numeroParameter, comunaParameter);
         }
     
-        public virtual int updateEdificio(Nullable<long> edificio, string nombre, Nullable<int> piso, Nullable<int> dep)
+        public virtual int updateEdificio(Nullable<long> edificio, string nombre, Nullable<int> piso, Nullable<int> dep, Nullable<double> dimension)
         {
             var edificioParameter = edificio.HasValue ?
                 new ObjectParameter("edificio", edificio) :
@@ -1056,7 +1066,11 @@ namespace EasyLife
                 new ObjectParameter("dep", dep) :
                 new ObjectParameter("dep", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEdificio", edificioParameter, nombreParameter, pisoParameter, depParameter);
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEdificio", edificioParameter, nombreParameter, pisoParameter, depParameter, dimensionParameter);
         }
     
         public virtual int updateEdificioGasto(Nullable<long> edificio, Nullable<long> gasto)
@@ -1466,45 +1480,25 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteConserje", personaParameter);
         }
     
-        public virtual int updateEstacionamiento(Nullable<long> est, Nullable<long> boleta, string dep, Nullable<long> edificio, string patente, string horaE, string horaS, Nullable<bool> estado, Nullable<int> total)
+        public virtual int updateEstacionamiento(Nullable<long> estacionamiento, Nullable<long> edificio, string numero, Nullable<int> precio)
         {
-            var estParameter = est.HasValue ?
-                new ObjectParameter("est", est) :
-                new ObjectParameter("est", typeof(long));
-    
-            var boletaParameter = boleta.HasValue ?
-                new ObjectParameter("boleta", boleta) :
-                new ObjectParameter("boleta", typeof(long));
-    
-            var depParameter = dep != null ?
-                new ObjectParameter("dep", dep) :
-                new ObjectParameter("dep", typeof(string));
+            var estacionamientoParameter = estacionamiento.HasValue ?
+                new ObjectParameter("estacionamiento", estacionamiento) :
+                new ObjectParameter("estacionamiento", typeof(long));
     
             var edificioParameter = edificio.HasValue ?
                 new ObjectParameter("edificio", edificio) :
                 new ObjectParameter("edificio", typeof(long));
     
-            var patenteParameter = patente != null ?
-                new ObjectParameter("patente", patente) :
-                new ObjectParameter("patente", typeof(string));
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
     
-            var horaEParameter = horaE != null ?
-                new ObjectParameter("horaE", horaE) :
-                new ObjectParameter("horaE", typeof(string));
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("precio", precio) :
+                new ObjectParameter("precio", typeof(int));
     
-            var horaSParameter = horaS != null ?
-                new ObjectParameter("horaS", horaS) :
-                new ObjectParameter("horaS", typeof(string));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(bool));
-    
-            var totalParameter = total.HasValue ?
-                new ObjectParameter("total", total) :
-                new ObjectParameter("total", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEstacionamiento", estParameter, boletaParameter, depParameter, edificioParameter, patenteParameter, horaEParameter, horaSParameter, estadoParameter, totalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEstacionamiento", estacionamientoParameter, edificioParameter, numeroParameter, precioParameter);
         }
     
         public virtual int deleteHorario(Nullable<long> horario)
@@ -1648,7 +1642,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTurno_Result>("listaTurno", conserjeParameter);
         }
     
-        public virtual int insertBoletaMulta(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep)
+        public virtual int insertBoletaMulta(Nullable<long> persona, Nullable<long> costo, Nullable<long> dep, string codigo)
         {
             var personaParameter = persona.HasValue ?
                 new ObjectParameter("persona", persona) :
@@ -1662,7 +1656,184 @@ namespace EasyLife
                 new ObjectParameter("dep", dep) :
                 new ObjectParameter("dep", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaMulta", personaParameter, costoParameter, depParameter);
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBoletaMulta", personaParameter, costoParameter, depParameter, codigoParameter);
+        }
+    
+        public virtual int asignarBodega(Nullable<long> bodega, Nullable<long> dep)
+        {
+            var bodegaParameter = bodega.HasValue ?
+                new ObjectParameter("bodega", bodega) :
+                new ObjectParameter("bodega", typeof(long));
+    
+            var depParameter = dep.HasValue ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarBodega", bodegaParameter, depParameter);
+        }
+    
+        public virtual int asignarBoletaMulta(Nullable<long> multa, Nullable<bool> boleta)
+        {
+            var multaParameter = multa.HasValue ?
+                new ObjectParameter("multa", multa) :
+                new ObjectParameter("multa", typeof(long));
+    
+            var boletaParameter = boleta.HasValue ?
+                new ObjectParameter("boleta", boleta) :
+                new ObjectParameter("boleta", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarBoletaMulta", multaParameter, boletaParameter);
+        }
+    
+        public virtual int asignarEstacionamiento(Nullable<long> estacionamiento, Nullable<long> dep)
+        {
+            var estacionamientoParameter = estacionamiento.HasValue ?
+                new ObjectParameter("estacionamiento", estacionamiento) :
+                new ObjectParameter("estacionamiento", typeof(long));
+    
+            var depParameter = dep.HasValue ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarEstacionamiento", estacionamientoParameter, depParameter);
+        }
+    
+        public virtual int AsignarProrroteo(Nullable<long> departamento, Nullable<long> porroteo)
+        {
+            var departamentoParameter = departamento.HasValue ?
+                new ObjectParameter("departamento", departamento) :
+                new ObjectParameter("departamento", typeof(long));
+    
+            var porroteoParameter = porroteo.HasValue ?
+                new ObjectParameter("porroteo", porroteo) :
+                new ObjectParameter("porroteo", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AsignarProrroteo", departamentoParameter, porroteoParameter);
+        }
+    
+        public virtual int insetBodega(Nullable<long> edificio, Nullable<double> dimension, string numero)
+        {
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insetBodega", edificioParameter, dimensionParameter, numeroParameter);
+        }
+    
+        public virtual int updateBodega(Nullable<long> bodega, Nullable<long> edificio, Nullable<double> dimension, string numero)
+        {
+            var bodegaParameter = bodega.HasValue ?
+                new ObjectParameter("bodega", bodega) :
+                new ObjectParameter("bodega", typeof(long));
+    
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateBodega", bodegaParameter, edificioParameter, dimensionParameter, numeroParameter);
+        }
+    
+        public virtual int insertEstacionamientoVisita(string dep, Nullable<long> edificio, string patente, string horaE, Nullable<int> total)
+        {
+            var depParameter = dep != null ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(string));
+    
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var patenteParameter = patente != null ?
+                new ObjectParameter("patente", patente) :
+                new ObjectParameter("patente", typeof(string));
+    
+            var horaEParameter = horaE != null ?
+                new ObjectParameter("horaE", horaE) :
+                new ObjectParameter("horaE", typeof(string));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertEstacionamientoVisita", depParameter, edificioParameter, patenteParameter, horaEParameter, totalParameter);
+        }
+    
+        public virtual int updateEstacionamientoVisita(Nullable<long> est, Nullable<long> boleta, string dep, Nullable<long> edificio, string patente, string horaE, string horaS, Nullable<bool> estado, Nullable<int> total)
+        {
+            var estParameter = est.HasValue ?
+                new ObjectParameter("est", est) :
+                new ObjectParameter("est", typeof(long));
+    
+            var boletaParameter = boleta.HasValue ?
+                new ObjectParameter("boleta", boleta) :
+                new ObjectParameter("boleta", typeof(long));
+    
+            var depParameter = dep != null ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(string));
+    
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var patenteParameter = patente != null ?
+                new ObjectParameter("patente", patente) :
+                new ObjectParameter("patente", typeof(string));
+    
+            var horaEParameter = horaE != null ?
+                new ObjectParameter("horaE", horaE) :
+                new ObjectParameter("horaE", typeof(string));
+    
+            var horaSParameter = horaS != null ?
+                new ObjectParameter("horaS", horaS) :
+                new ObjectParameter("horaS", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEstacionamientoVisita", estParameter, boletaParameter, depParameter, edificioParameter, patenteParameter, horaEParameter, horaSParameter, estadoParameter, totalParameter);
+        }
+    
+        public virtual int insertBodega(Nullable<long> edificio, Nullable<double> dimension, string numero)
+        {
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var dimensionParameter = dimension.HasValue ?
+                new ObjectParameter("dimension", dimension) :
+                new ObjectParameter("dimension", typeof(double));
+    
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertBodega", edificioParameter, dimensionParameter, numeroParameter);
         }
     }
 }
