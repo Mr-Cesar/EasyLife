@@ -63,6 +63,42 @@ namespace EasyLife.Controller
             }
         }
 
+        public static Adapter.AdapterGastoComun buscarAdapterGastoComunEdificio(long edificio)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.GASTOS_COMUNES
+                            from e in dbc.EDIFICIO
+                            where e.ID_EDIFICIO == edificio && u.ID_EDIFICIO == edificio &&
+                            u.ID_EDIFICIO == e.ID_EDIFICIO
+                            select new Adapter.AdapterGastoComun()
+                            {
+                                _ID_GASTOS = u.ID_GASTOS,
+                                _NOMBRE_EDIFICIO = e.NOMBRE_EDIFICIO,
+                                _GASTO_CONSERJE = u.GASTO_CONSERJE,
+                                _GASTO_GUARDIA = u.GASTO_GUARDIA,
+                                _GASTO_MANTENCION_AREAS = u.GASTO_MANTENCION_AREAS,
+                                _GASTO_CAMARAS = u.GASTO_CAMARAS,
+                                _GASTO_ARTICULOS_ASEO = u.GASTO_ARTICULOS_ASEO,
+                                _GASTOS_ASEO = u.GASTOS_ASEO,
+                                _GASTO_ASCENSOR = u.GASTO_ASCENSOR,
+                                _GASTO_AGUA_CALIENTE = u.GASTO_AGUA_CALIENTE,
+                                _GASTO_OTRO = u.GASTO_OTRO,
+                                _MES = u.FECHA_REGISTRO_GASTO.Substring(3, 3),
+                                _ANO = u.FECHA_REGISTRO_GASTO.Substring(7, 4),
+                                _TOTAL_GASTO = u.TOTAL_GASTO
+                            };
+                if (query != null)
+                {
+                    return query.FirstOrDefault();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public static List<Adapter.AdapterGastoComun> listaGastos()
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
@@ -270,6 +306,24 @@ namespace EasyLife.Controller
                 if (query != null)
                 {
                     return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static List<BOLETA_GASTO> listaAños()
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = (from u in dbc.BOLETA_GASTO
+                             select u).ToList();
+                if (query != null)
+                {
+                    var lista = query.GroupBy(x => x.ANO).Select(y => y.FirstOrDefault());
+                    return lista.ToList();
                 }
                 else
                 {

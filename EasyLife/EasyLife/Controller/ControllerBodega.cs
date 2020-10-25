@@ -30,7 +30,7 @@ namespace EasyLife.Controller
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
                 dbc.asignarBodega(bodega, departamento);
-                return "Bodega Asignada";
+                return "Elemento Asignado";
             }
         }
 

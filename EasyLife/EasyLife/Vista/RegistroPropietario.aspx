@@ -189,12 +189,109 @@
             <br />
             <br />
 
+            <%-- Campo de ingreso de Elemento --%>
+            <asp:Label ID="Label11" runat="server" Text="Seleccione un Elemento" ForeColor="Black"></asp:Label><br />
+            <div style="display: inline-block; width: 90%">
+                <asp:DropDownList ID="dplElemento" runat="server" CssClass="form-control" OnSelectedIndexChanged="dplElemento_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:ListItem>Seleccione una Opcion</asp:ListItem>
+                    <asp:ListItem>Estacionamiento</asp:ListItem>
+                    <asp:ListItem>Bodega</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <%-- Validacion de Elemento --%>
+            <div style="display: inline-block;">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
+                    Display="Dynamic" InitialValue="Seleccione una Opcion" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
+                    Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+            </div>
+            <br />
+            <br />
+
+            <%-- Campo de ingreso de Departamento --%>
+            <asp:Label ID="Label14" runat="server" Text="Departamento" ForeColor="Black"></asp:Label><br />
+            <div style="display: inline-block; width: 90%">
+                <asp:DropDownList ID="dplDepElemento" runat="server" CssClass="form-control" AutoPostBack="true">
+                </asp:DropDownList>
+            </div>
+            <%-- Validacion de Departamento --%>
+            <div style="display: inline-block;">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
+                    Display="Dynamic" InitialValue="Seleccione un Departamento" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
+                    Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+            </div>
+            <br />
+            <br />
+
+            <%-- Panel de Seleccion Estacionamiento--%>
+            <asp:Panel ID="panelEstacionamiento" runat="server" Visible="false">
+                <%-- Campo de ingreso de Estacionamiento --%>
+                <asp:Label ID="Label12" runat="server" Text="Seleccione un Estacionamiento" ForeColor="Black"></asp:Label><br />
+                <div style="display: inline-block; width: 90%">
+                    <asp:DropDownList ID="dplEstacionamiento" runat="server" CssClass="form-control">
+                        <asp:ListItem>Seleccione una Opcion</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <%-- Validacion de Estacionamiento --%>
+                <div style="display: inline-block;">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEstacionamiento"
+                        Display="Dynamic" InitialValue="Seleccione una Opcion" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEstacionamiento"
+                        Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                </div>
+                <br />
+                <br />
+
+                <asp:Button runat="server" ID="btnAgregarEstacionamiento" class="btn btn-light btn-block my-4" Text="Agregar" OnClick="btnAgregarEstacionamiento_Click"
+                    Width="40%" ValidationGroup="elemento" />
+            </asp:Panel>
+
+            <%-- Panel de Seleccion Bodega--%>
+            <asp:Panel ID="panelBodega" runat="server" Visible="false">
+                <%-- Campo de ingreso de Bodega --%>
+                <asp:Label ID="Label13" runat="server" Text="Seleccione una Bodega" ForeColor="Black"></asp:Label><br />
+                <div style="display: inline-block; width: 90%">
+                    <asp:DropDownList ID="dplBodega" runat="server" CssClass="form-control">
+                        <asp:ListItem>Seleccione una Opcion</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <%-- Validacion de Bodega --%>
+                <div style="display: inline-block;">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplBodega"
+                        Display="Dynamic" InitialValue="Seleccione una Opcion" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplBodega"
+                        Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                </div>
+                <br />
+                <br />
+
+                <asp:Button runat="server" ID="btnAgregarBodega" class="btn btn-light btn-block my-4" Text="Agregar" OnClick="btnAgregarBodega_Click"
+                    Width="40%" ValidationGroup="elemento" />
+            </asp:Panel>
+
+            <%-- Lista de Elementos--%>
+            <asp:Label ID="lbElementos" runat="server" Text="Lista Elementos" ForeColor="Black" Visible="false"></asp:Label><br />
+            <asp:Label ID="lbErrorElemento" runat="server" Text="Elemento ya Agregado" ForeColor="Red" Visible="false"></asp:Label><br />
+            <asp:GridView ID="grElementos" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="_ID_EDIFICIO"
+                Font-Size="10pt" AllowPaging="true" PageSize="6" OnSelectedIndexChanged="grElementos_SelectedIndexChanged"
+                OnPageIndexChanging="grElementos_PageIndexChanging" Visible="false">
+                <Columns>
+                    <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Nombre" SortExpression="_NOMBRE_EDIFICIO" />
+                    <asp:BoundField DataField="_DEP" HeaderText="Departamento" SortExpression="_DEP" />
+                    <asp:BoundField DataField="_TIPO" HeaderText="Tipo" SortExpression="_TIPO" />
+                    <asp:BoundField DataField="_NUMERO_ELEMENTO" HeaderText="Numero" SortExpression="_NUMERO_ELEMENTO" />
+                    <asp:BoundField DataField="_DIMENSION" HeaderText="Dimensión" SortExpression="_DIMENSION" />
+                    <asp:BoundField DataField="_PRECIO" HeaderText="Precio" SortExpression="_PRECIO" />
+                </Columns>
+            </asp:GridView>
+
             <!-- Sign in button -->
             <asp:UpdatePanel ID="barraProgreso" runat="server">
                 <ContentTemplate>
-                    <asp:Button runat="server" ID="btnRegistroPropietario" class="btn btn-light btn-block my-4" Text="Registrar" OnClick="btnRegistroPropietario_Click"
+                    <asp:Button runat="server" ID="btnRegistroPropietario" class="btn btn-light btn-block my-4" Text="Registrar" OnClick="btnRegistroPropietario_Click1"
                         ValidationGroup="prop" />
-                    <asp:Button runat="server" ID="btnModificarPropietario" class="btn btn-light btn-block my-4" Text="Modificar" OnClick="btnModificarPropietario_Click"
+                    <asp:Button runat="server" ID="btnModificarPropietario" class="btn btn-light btn-block my-4" Text="Modificar" OnClick="btnModificarPropietario_Click1"
                         Visible="false" ValidationGroup="prop" />
                 </ContentTemplate>
             </asp:UpdatePanel>

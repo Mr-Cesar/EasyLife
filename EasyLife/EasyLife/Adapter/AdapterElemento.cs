@@ -13,6 +13,41 @@ namespace EasyLife.Adapter
         private int CANTIDAD;
         private double DIMENSION;
         private int PRECIO;
+        private string NUMERO_ELEMENTO;
+        private long ID_BODEGA;
+        private long ID_EST;
+        private string DEP;
+        private long ID_DEP;
+
+        public long _ID_DEP
+        {
+            get { return ID_DEP; }
+            set { ID_DEP = value; }
+        }
+
+        public string _DEP
+        {
+            get { return DEP; }
+            set { DEP = value; }
+        }
+
+        public long _ID_EST
+        {
+            get { return ID_EST; }
+            set { ID_EST = value; }
+        }
+
+        public long _ID_BODEGA
+        {
+            get { return ID_BODEGA; }
+            set { ID_BODEGA = value; }
+        }
+
+        public string _NUMERO_ELEMENTO
+        {
+            get { return NUMERO_ELEMENTO; }
+            set { NUMERO_ELEMENTO = value; }
+        }
 
         public int _PRECIO
         {

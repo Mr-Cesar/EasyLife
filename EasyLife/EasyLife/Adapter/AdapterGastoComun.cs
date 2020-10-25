@@ -19,6 +19,20 @@ namespace EasyLife.Adapter
         private int GASTO_AGUA_CALIENTE;
         private int GASTO_OTRO;
         private int TOTAL_GASTO;
+        private string MES;
+        private string ANO;
+
+        public string _ANO
+        {
+            get { return ANO; }
+            set { ANO = value; }
+        }
+
+        public string _MES
+        {
+            get { return MES; }
+            set { MES = value; }
+        }
 
         public int _TOTAL_GASTO
         {

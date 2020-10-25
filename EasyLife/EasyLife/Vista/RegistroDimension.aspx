@@ -173,7 +173,7 @@
                 </Columns>
             </asp:GridView>
 
-            <!-- Boton Registro de Condominio -->
+            <!-- Boton Registro de Dimension -->
             <asp:UpdatePanel ID="barraProgreso" runat="server">
                 <ContentTemplate>
                     <asp:Button runat="server" ID="btnRegistroDimension" class="btn btn-light btn-block my-4" Text="Registrar Parametros"
