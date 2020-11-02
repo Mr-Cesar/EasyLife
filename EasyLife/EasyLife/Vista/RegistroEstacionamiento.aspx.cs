@@ -30,7 +30,7 @@ namespace EasyLife.Vista
             {
                 cargarEdificio(conserje.ID_PERSONA);
 
-                string registroSalida = (string)Session["SalidaEst"];
+                string registroSalida = (string)Session["ModificarEstacionamiento"];
                 if (registroSalida != null)
                 {
                     txtHoraSalida.Enabled = true;
@@ -73,8 +73,16 @@ namespace EasyLife.Vista
         public void cargarParametros(string estacionamiento)
         {
             ESTACIONAMIENTO_VISITA aux = Controller.ControllerEstacionamientoVisita.buscarIdEstacionamiento(Convert.ToInt64(estacionamiento));
+            DEPARTAMENTO dep = Controller.ControllerDepartamento.buscarDepartamento(aux.NUM_DEP, aux.EDIFICIO);
+            List<DEPARTAMENTO> listaEdificio = Controller.ControllerDepartamento.listaDepartamentoOcupado(aux.EDIFICIO);
+            dplDepartamento.DataSource = listaEdificio;
+            dplDepartamento.DataValueField = "ID_DEPARTAMENTO";
+            dplDepartamento.DataTextField = "NUMERO_DEP";
+            dplDepartamento.DataBind();
             dplEdificio.SelectedValue = aux.EDIFICIO.ToString();
+            dplDepartamento.SelectedValue = dep.ID_DEPARTAMENTO.ToString();
             txtPatente.Text = aux.PATENTE;
+
             string horaE = aux.HORA_ENTRADA.Substring(11, 5);
             txtHoraEntrada.Text = horaE;
             btnRegistroEst.Visible = false;

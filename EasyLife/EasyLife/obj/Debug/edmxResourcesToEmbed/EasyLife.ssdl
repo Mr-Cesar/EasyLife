@@ -880,7 +880,7 @@
   </Function>
   <Function Name="AsignarProrroteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="departamento" Type="bigint" Mode="In" />
-    <Parameter Name="porroteo" Type="bigint" Mode="In" />
+    <Parameter Name="porroteo" Type="float" Mode="In" />
   </Function>
   <Function Name="boletaGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="persona" Type="bigint" Mode="In" />

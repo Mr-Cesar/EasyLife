@@ -48,7 +48,7 @@
                             <asp:LinkButton ID="lnkServicios" runat="server" CssClass="nav-link" OnClick="lnkServicios_Click">Servicios</asp:LinkButton>
                         </li>
                         <li class="nav-item">
-                            <asp:LinkButton ID="lnkContacto" runat="server" CssClass="nav-link" OnClick="lnkContacto_Click">Contactenos</asp:LinkButton>
+                            <asp:LinkButton ID="lnkContacto" runat="server" CssClass="nav-link" OnClick="lnkContacto_Click" Visible="false">Detalle Gasto Común</asp:LinkButton>
                         </li>
                     </ul>
 
@@ -100,6 +100,8 @@
                                         OnClick="lnkRegistroCondominio_Click">Registro Condominio</asp:LinkButton>
                                     <asp:LinkButton ID="lnkRegistroLuz" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkRegistroLuz_Click">Registrar Luz</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkGasto" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkGasto_Click">Registrar Gasto Común</asp:LinkButton>
                                     <asp:LinkButton ID="lnkCentro" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkCentro_Click">Registrar Centro</asp:LinkButton>
                                     <asp:LinkButton ID="lnkMulta" runat="server" CssClass="dropdown-item" CausesValidation="false"
@@ -260,9 +262,6 @@
                         </p>
                         <p>
                             <asp:LinkButton ID="LinkButton11" runat="server" OnClick="lnkServicios_Click">Servicios</asp:LinkButton>
-                        </p>
-                        <p>
-                            <asp:LinkButton ID="LinkButton14" runat="server" OnClick="lnkContacto_Click">Contactenos</asp:LinkButton>
                         </p>
                     </div>
                     <!-- Grid column -->

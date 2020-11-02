@@ -34,7 +34,7 @@ namespace EasyLife.Controller
             }
         }
 
-        public static string asignarProrroteoDep(long departamento, long proroteo)
+        public static string asignarProrroteoDep(long departamento, double proroteo)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())
             {
@@ -58,6 +58,24 @@ namespace EasyLife.Controller
             {
                 DEPARTAMENTO aux = (from u in dbc.DEPARTAMENTO
                                     where u.ID_DEPARTAMENTO == departamento
+                                    select u).SingleOrDefault();
+                if (aux != null)
+                {
+                    return aux;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static DEPARTAMENTO buscarDepartamento(string departamento, long edificio)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                DEPARTAMENTO aux = (from u in dbc.DEPARTAMENTO
+                                    where u.NUMERO_DEP == departamento && u.ID_EDIFICIO == edificio
                                     select u).SingleOrDefault();
                 if (aux != null)
                 {

@@ -11,7 +11,7 @@
                 <div class="text-white text-center py-5 px-4">
                     <div class="container">
                         <h2 class="display-4"><strong>Detalle de Gasto Común</strong></h2>
-                        <p class="mx-5 mb-5"><a href="Index.aspx">Home</a> / Preguntas Frecuentes</p>
+                        <p class="mx-5 mb-5"><a href="Index.aspx">Home</a> / Detalle Gasto Común</p>
                     </div>
                 </div>
             </div>

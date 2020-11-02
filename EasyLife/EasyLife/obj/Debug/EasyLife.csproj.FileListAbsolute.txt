@@ -72,3 +72,8 @@ D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\roslyn\System.Net.Sockets.dll
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\System.Net.Http.Extensions.dll
+D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\System.Net.Http.Primitives.dll
+D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\System.Net.Http.Extensions.xml
+D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\bin\System.Net.Http.Primitives.xml
+D:\Escrittorio\Inacap\8° Semestre\Proyecto Tesis\Software\EasyLife\EasyLife\obj\Debug\EasyLife.csproj.App.config

@@ -69,5 +69,23 @@ namespace EasyLife.Controller
                 }
             }
         }
+
+        public static List<ESTACIONAMIENTO> buscarEstacionamientoDepartamento(long departamento)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.ESTACIONAMIENTO
+                            where u.DEP_EST == departamento
+                            select u;
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

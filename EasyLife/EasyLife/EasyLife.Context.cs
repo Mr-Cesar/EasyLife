@@ -1702,7 +1702,7 @@ namespace EasyLife
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarEstacionamiento", estacionamientoParameter, depParameter);
         }
     
-        public virtual int AsignarProrroteo(Nullable<long> departamento, Nullable<long> porroteo)
+        public virtual int AsignarProrroteo(Nullable<long> departamento, Nullable<double> porroteo)
         {
             var departamentoParameter = departamento.HasValue ?
                 new ObjectParameter("departamento", departamento) :
@@ -1710,7 +1710,7 @@ namespace EasyLife
     
             var porroteoParameter = porroteo.HasValue ?
                 new ObjectParameter("porroteo", porroteo) :
-                new ObjectParameter("porroteo", typeof(long));
+                new ObjectParameter("porroteo", typeof(double));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AsignarProrroteo", departamentoParameter, porroteoParameter);
         }

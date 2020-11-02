@@ -56,6 +56,10 @@ namespace EasyLife.Vista
             {
                 listGastos.DataSource = null;
                 listGastos.DataBind();
+                string mes = DateTime.Now.ToString("MMMM");
+                string año = DateTime.Now.Year.ToString();
+                int costoEst = 0;
+                double prorroteo = 0;
                 DEPARTAMENTO departamento = Controller.ControllerDepartamento.buscarIdDepartamento(Convert.ToInt64(dplDepartamento.SelectedValue));
                 GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(departamento.ID_EDIFICIO);
                 List<MULTA> listaMultas = Controller.ControllerMulta.listaMultaNoPagadaDepartamento(Convert.ToInt64(dplDepartamento.SelectedValue));
@@ -64,17 +68,37 @@ namespace EasyLife.Vista
                 {
                     multa = multa + item.COSTO_MULTA;
                 }
+
+                List<ESTACIONAMIENTO> listaEst = Controller.ControllerEstacionamiento.buscarEstacionamientoDepartamento(departamento.ID_DEPARTAMENTO);
+                foreach (ESTACIONAMIENTO item in listaEst)
+                {
+                    costoEst = item.PRECIO_EST + costoEst;
+                }
+
+                prorroteo = Convert.ToDouble(departamento.PRORROTEO);
+                GASTOS_COMUNES aux = new GASTOS_COMUNES();
+                aux.GASTO_CONSERJE = Convert.ToInt32((gasto.GASTO_CONSERJE * prorroteo) / 100);
+                aux.GASTO_GUARDIA = Convert.ToInt32((gasto.GASTO_GUARDIA * prorroteo) / 100);
+                aux.GASTO_MANTENCION_AREAS = Convert.ToInt32((gasto.GASTO_MANTENCION_AREAS * prorroteo) / 100);
+                aux.GASTO_CAMARAS = Convert.ToInt32((gasto.GASTO_CAMARAS * prorroteo) / 100);
+                aux.GASTO_ARTICULOS_ASEO = Convert.ToInt32((gasto.GASTO_ARTICULOS_ASEO * prorroteo) / 100);
+                aux.GASTOS_ASEO = Convert.ToInt32((gasto.GASTOS_ASEO * prorroteo) / 100);
+                aux.GASTO_ASCENSOR = Convert.ToInt32((gasto.GASTO_ASCENSOR * prorroteo) / 100);
+                aux.GASTO_AGUA_CALIENTE = Convert.ToInt32((gasto.GASTO_AGUA_CALIENTE * prorroteo) / 100);
+                aux.GASTO_OTRO = Convert.ToInt32((gasto.GASTO_OTRO * prorroteo) / 100);
+
                 List<string> listaG = new List<string>()
                 {
-                    "Gasto Conserje " + gasto.GASTO_CONSERJE,
-                    "Gasto Guardia " + gasto.GASTO_GUARDIA,
-                    "Gasto Mantencion Areas " + gasto.GASTO_MANTENCION_AREAS,
-                    "Gasto Camaras " + gasto.GASTO_CAMARAS,
-                    "Gastos Articulos de Aseo " + gasto.GASTO_ARTICULOS_ASEO,
-                    "Gasto Aseo " + gasto.GASTOS_ASEO,
-                    "Gasto Ascensor " + gasto.GASTO_ASCENSOR,
-                    "Gasto Agua Caliente " + gasto.GASTO_AGUA_CALIENTE,
-                    "Otros Gastos " + gasto.GASTO_OTRO,
+                    "Gasto Conserje " + aux.GASTO_CONSERJE,
+                    "Gasto Guardia " + aux.GASTO_GUARDIA,
+                    "Gasto Mantencion Areas " + aux.GASTO_MANTENCION_AREAS,
+                    "Gasto Camaras " + aux.GASTO_CAMARAS,
+                    "Gastos Articulos de Aseo " + aux.GASTO_ARTICULOS_ASEO,
+                    "Gasto Aseo " + aux.GASTOS_ASEO,
+                    "Gasto Ascensor " + aux.GASTO_ASCENSOR,
+                    "Gasto Agua Caliente " + aux.GASTO_AGUA_CALIENTE,
+                    "Otros Gastos " + aux.GASTO_OTRO,
+                    "Estacionamiento " + costoEst,
                     "Multa " + multa.ToString()
                 };
                 long total = Convert.ToInt64(gasto.TOTAL_GASTO) + multa;

@@ -132,6 +132,7 @@
     <FunctionImportMapping FunctionImportName="insertEstacionamientoVisita" FunctionName="EasyLifeModel.Store.insertEstacionamientoVisita" />
     <FunctionImportMapping FunctionImportName="updateEstacionamientoVisita" FunctionName="EasyLifeModel.Store.updateEstacionamientoVisita" />
     <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
+    <FunctionImportMapping FunctionImportName="asignarDimensionDep" FunctionName="EasyLifeModel.Store.asignarDimensionDep" />
     <EntitySetMapping Name="BODEGA">
       <EntityTypeMapping TypeName="EasyLifeModel.BODEGA">
         <MappingFragment StoreEntitySet="BODEGA">
@@ -479,6 +480,5 @@
         <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="asignarDimensionDep" FunctionName="EasyLifeModel.Store.asignarDimensionDep" />
   </EntityContainerMapping>
 </Mapping>

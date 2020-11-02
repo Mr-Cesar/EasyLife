@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="ProgramarLuzDepartamento.aspx.cs" Inherits="EasyLife.Vista.ProgramarLuzDepartamento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="ProgramarLuzDepartamento.aspx.cs" Inherits="EasyLife.Vista.ProgramarLuzDepartamento" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Programar Luz</title>

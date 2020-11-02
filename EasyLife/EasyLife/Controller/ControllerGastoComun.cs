@@ -63,6 +63,24 @@ namespace EasyLife.Controller
             }
         }
 
+        public static GASTOS_COMUNES buscarGastoMes(long edificio, string mes, string año)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = (from u in dbc.GASTOS_COMUNES
+                             where u.ID_EDIFICIO == edificio && u.FECHA_REGISTRO_GASTO.Contains(mes) && u.FECHA_REGISTRO_GASTO.Contains(año)
+                             select u).FirstOrDefault();
+                if (query != null)
+                {
+                    return query;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public static Adapter.AdapterGastoComun buscarAdapterGastoComunEdificio(long edificio)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())

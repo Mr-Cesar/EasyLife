@@ -21,6 +21,13 @@ namespace EasyLife.Adapter
         private int TOTAL_GASTO;
         private string MES;
         private string ANO;
+        private long ID_EDIFICIO;
+
+        public long _ID_EDIFICIO
+        {
+            get { return ID_EDIFICIO; }
+            set { ID_EDIFICIO = value; }
+        }
 
         public string _ANO
         {

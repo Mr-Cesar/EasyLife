@@ -12,7 +12,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            /*LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -32,29 +32,32 @@ namespace EasyLife.Vista
                 if (adm != null)
                 {
                     cargarCondominio();
+                    prop = false;
                 }
                 else if (admCondominio != null)
                 {
                     cargarCondominioAdministrador(admCondominio.ID_PERSONA);
+                    prop = false;
                 }
                 else if (conserje != null)
                 {
                     cargarEdificioConserje(conserje.ID_PERSONA);
+                    prop = false;
                 }
                 else
                 {
                     cargarPropietario(propietario.ID_PERSONA);
                     prop = true;
                 }
-            }*/
+            }
 
-            if (!IsPostBack)
+            /*if (!IsPostBack)
             {
                 long propietario = 4;
                 cargarPropietario(propietario);
                 cargarAño();
                 prop = true;
-            }
+            }*/
         }
 
         private static Boolean prop = false;
@@ -150,7 +153,6 @@ namespace EasyLife.Vista
             try
             {
                 long condominio = Convert.ToInt64(dplCondominio.SelectedValue);
-                dplEdificio.SelectedIndex = 0;
                 dplAño.SelectedIndex = 0;
                 List<EDIFICIO> lista = new List<EDIFICIO>();
                 if (prop == false)

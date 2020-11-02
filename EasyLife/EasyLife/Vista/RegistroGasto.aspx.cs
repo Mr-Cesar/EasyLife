@@ -12,7 +12,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -24,18 +24,18 @@ namespace EasyLife.Vista
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
                 Response.Redirect("Index.aspx");
-            }
+            }*/
 
             if (!IsPostBack)
             {
                 cargarCondominio();
                 txtGOtro_TextChanged(sender, e);
-                string pagoCondominio = (string)Session["CondominioSinPago"];
+                /*string pagoCondominio = (string)Session["CondominioSinPago"];
                 if (pagoCondominio != null)
                 {
                     dplCondominio.SelectedValue = pagoCondominio;
                     dplCondominio_SelectedIndexChanged(sender, e);
-                }
+                }*/
 
                 string update = (string)Session["ModificarGasto"];
                 if (update != null)
@@ -50,6 +50,8 @@ namespace EasyLife.Vista
         private static long total;
         private static long modificarGasto;
         private static GASTOS_COMUNES gastoUpdate = new GASTOS_COMUNES();
+        private static List<Adapter.AdapterGastoComun> listaGastos = new List<Adapter.AdapterGastoComun>();
+        private static List<EDIFICIO> listaEdificio = new List<EDIFICIO>();
 
         public void cargarCondominio()
         {
@@ -98,13 +100,18 @@ namespace EasyLife.Vista
             try
             {
                 long condominio = Convert.ToInt64(dplCondominio.SelectedValue);
-                List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(condominio);
+                listaEdificio = new List<EDIFICIO>();
+                listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(condominio);
                 dplEdificio.DataSource = listaEdificio;
                 dplEdificio.DataValueField = "ID_EDIFICIO";
                 dplEdificio.DataTextField = "NOMBRE_EDIFICIO";
                 dplEdificio.DataBind();
                 dplEdificio.Items.Insert(0, "Seleccione un Edificio");
                 dplEdificio.SelectedIndex = 0;
+
+                listaGastos = new List<Adapter.AdapterGastoComun>();
+                grGastos.DataSource = listaGastos;
+                grGastos.DataBind();
             }
             catch (Exception ex)
             {
@@ -129,18 +136,21 @@ namespace EasyLife.Vista
         {
             try
             {
-                long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
-                GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(edificio);
-                txtGConserje.Text = gasto.GASTO_CONSERJE.ToString();
-                txtGGuardia.Text = gasto.GASTO_GUARDIA.ToString();
-                txtGMantAreas.Text = gasto.GASTO_MANTENCION_AREAS.ToString();
-                txtGCamaras.Text = gasto.GASTO_CAMARAS.ToString();
-                txtGArtAseo.Text = gasto.GASTO_ARTICULOS_ASEO.ToString();
-                txtGAseo.Text = gasto.GASTOS_ASEO.ToString();
-                txtGAscensor.Text = gasto.GASTO_ASCENSOR.ToString();
-                txtGAgua.Text = gasto.GASTO_AGUA_CALIENTE.ToString();
-                txtGOtro.Text = gasto.GASTO_OTRO.ToString();
-                lbTotal.Text = gasto.TOTAL_GASTO.ToString();
+                if (modificarGasto != 0)
+                {
+                    long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
+                    GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(edificio);
+                    txtGConserje.Text = gasto.GASTO_CONSERJE.ToString();
+                    txtGGuardia.Text = gasto.GASTO_GUARDIA.ToString();
+                    txtGMantAreas.Text = gasto.GASTO_MANTENCION_AREAS.ToString();
+                    txtGCamaras.Text = gasto.GASTO_CAMARAS.ToString();
+                    txtGArtAseo.Text = gasto.GASTO_ARTICULOS_ASEO.ToString();
+                    txtGAseo.Text = gasto.GASTOS_ASEO.ToString();
+                    txtGAscensor.Text = gasto.GASTO_ASCENSOR.ToString();
+                    txtGAgua.Text = gasto.GASTO_AGUA_CALIENTE.ToString();
+                    txtGOtro.Text = gasto.GASTO_OTRO.ToString();
+                    lbTotal.Text = gasto.TOTAL_GASTO.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -156,15 +166,6 @@ namespace EasyLife.Vista
                 lbTotal.Text = "";
                 System.Diagnostics.Debug.WriteLine("Error: " + ex);
             }
-        }
-
-        protected void radioOpcionGasto_CheckedChanged(object sender, EventArgs e)
-        {
-            RequiredFieldValidator12.IsValid = false;
-            RequiredFieldValidator13.IsValid = false;
-            RequiredFieldValidator12.Enabled = false;
-            RequiredFieldValidator13.Enabled = false;
-            dplEdificio.SelectedIndex = 0;
         }
 
         protected void txtGOtro_TextChanged(object sender, EventArgs e)
@@ -244,42 +245,87 @@ namespace EasyLife.Vista
             }
         }
 
+        protected void btnAgregarGasto_Click(object sender, EventArgs e)
+        {
+            Adapter.AdapterGastoComun gasto = new Adapter.AdapterGastoComun();
+            grGastos.Visible = true;
+            lbGastos.Visible = true;
+            lbError.Visible = false;
+            Boolean option = true;
+            EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(Convert.ToInt64(dplEdificio.SelectedValue));
+            gasto._NOMBRE_EDIFICIO = edificio.NOMBRE_EDIFICIO;
+            gasto._ID_EDIFICIO = edificio.ID_EDIFICIO;
+            gasto._GASTO_CONSERJE = Convert.ToInt32(txtGConserje.Text);
+            gasto._GASTO_GUARDIA = Convert.ToInt32(txtGGuardia.Text);
+            gasto._GASTO_MANTENCION_AREAS = Convert.ToInt32(txtGMantAreas.Text);
+            gasto._GASTO_CAMARAS = Convert.ToInt32(txtGCamaras.Text);
+            gasto._GASTO_ARTICULOS_ASEO = Convert.ToInt32(txtGArtAseo.Text);
+            gasto._GASTOS_ASEO = Convert.ToInt32(txtGAseo.Text);
+            gasto._GASTO_ASCENSOR = Convert.ToInt32(txtGAscensor.Text);
+            gasto._GASTO_AGUA_CALIENTE = Convert.ToInt32(txtGAgua.Text);
+            gasto._GASTO_OTRO = Convert.ToInt32(txtGOtro.Text);
+            gasto._TOTAL_GASTO = Convert.ToInt32(lbTotal.Text);
+            if (listaGastos.Count > 0)
+            {
+                foreach (Adapter.AdapterGastoComun item in listaGastos)
+                {
+                    if (item._ID_EDIFICIO == edificio.ID_EDIFICIO)
+                    {
+                        option = false;
+                    }
+                }
+            }
+
+            if (option == true)
+            {
+                listaGastos.Add(gasto);
+                grGastos.DataSource = listaGastos;
+                grGastos.DataBind();
+            }
+            else
+            {
+                lbError.Visible = true;
+            }
+        }
+
+        protected void grGastos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = grGastos.SelectedIndex;
+            listaGastos.RemoveAt(index);
+            grGastos.DataSource = listaGastos;
+            grGastos.DataBind();
+        }
+
+        protected void grGastos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grGastos.PageIndex = e.NewPageIndex;
+            grGastos.DataSource = listaGastos;
+            grGastos.DataBind();
+        }
+
         protected void btnRegistroGasto_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(5000);
-            int conserje = Convert.ToInt32(txtGConserje.Text);
-            int guardia = Convert.ToInt32(txtGGuardia.Text);
-            int mantencion = Convert.ToInt32(txtGMantAreas.Text);
-            int camaras = Convert.ToInt32(txtGCamaras.Text);
-            int articulos = Convert.ToInt32(txtGArtAseo.Text);
-            int aseo = Convert.ToInt32(txtGAseo.Text);
-            int ascensor = Convert.ToInt32(txtGAscensor.Text);
-            int agua = Convert.ToInt32(txtGAgua.Text);
-            int otro = Convert.ToInt32(txtGOtro.Text);
-            int totaL = Convert.ToInt32(lbTotal.Text);
             string resultGasto = "";
             string resultAsignar = "";
-            if (radioOpcionGasto.Checked == true)
+
+            if (listaGastos.Count == listaEdificio.Count)
             {
-                List<EDIFICIO> listaEdificio = Controller.ControllerEdificio.buscarEdificioCondominio(Convert.ToInt64(dplCondominio.SelectedValue));
-                foreach (EDIFICIO item in listaEdificio)
+                foreach (Adapter.AdapterGastoComun item in listaGastos)
                 {
-                    resultGasto = Controller.ControllerGastoComun.crearGastoComun(item.ID_EDIFICIO, conserje, guardia, mantencion, camaras, articulos, aseo,
-                        ascensor, agua, otro, totaL);
+                    resultGasto = Controller.ControllerGastoComun.crearGastoComun(item._ID_EDIFICIO, item._GASTO_CONSERJE, item._GASTO_GUARDIA,
+                        item._GASTO_MANTENCION_AREAS, item._GASTO_CAMARAS, item._GASTO_ARTICULOS_ASEO, item._GASTOS_ASEO, item._GASTO_ASCENSOR,
+                        item._GASTO_AGUA_CALIENTE, item._GASTO_OTRO, item._TOTAL_GASTO);
+
                     if (resultGasto.Equals("Gasto Comun Creado"))
                     {
-                        GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(item.ID_EDIFICIO);
-                        resultAsignar = Controller.ControllerEdificio.asignarGastoEdificio(item.ID_EDIFICIO, gasto.ID_GASTOS);
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Ingresar Gasto');window.location.href='" + Request.RawUrl + "';", true);
+                        GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(item._ID_EDIFICIO);
+                        resultAsignar = Controller.ControllerEdificio.asignarGastoEdificio(item._ID_EDIFICIO, gasto.ID_GASTOS);
                     }
                 }
 
                 if (resultAsignar.Equals("Gasto Asignado"))
                 {
-                    Session["CondominioSinPago"] = null;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Gasto Ingresado');window.location.href='" + Request.RawUrl + "';", true);
                 }
                 else
@@ -289,26 +335,7 @@ namespace EasyLife.Vista
             }
             else
             {
-                long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
-                resultGasto = Controller.ControllerGastoComun.crearGastoComun(edificio, conserje, guardia, mantencion, camaras, articulos, aseo, ascensor, agua,
-                    otro, totaL);
-                if (resultGasto.Equals("Gasto Comun Creado"))
-                {
-                    GASTOS_COMUNES gasto = Controller.ControllerGastoComun.buscarGastoComunEdificio(edificio);
-                    resultGasto = Controller.ControllerEdificio.asignarGastoEdificio(edificio, gasto.ID_GASTOS);
-                    if (resultGasto.Equals("Gasto Asignado"))
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Gasto Ingresado');window.location.href='" + Request.RawUrl + "';", true);
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Ingresar Gasto');window.location.href='" + Request.RawUrl + "';", true);
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Ingresar Gasto');window.location.href='" + Request.RawUrl + "';", true);
-                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Ingresar Gasto');window.location.href='" + Request.RawUrl + "';", true);
             }
         }
 

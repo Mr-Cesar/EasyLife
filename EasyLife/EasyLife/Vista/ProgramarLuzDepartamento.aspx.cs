@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Http;
+using System.ComponentModel;
 
 namespace EasyLife.Vista
 {
@@ -12,7 +14,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            /*LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -36,13 +38,13 @@ namespace EasyLife.Vista
                 {
                     cargarControl(modificar);
                 }
-            }*/
+            }
 
-            if (!IsPostBack)
+            /*if (!IsPostBack)
             {
                 long propietario = 4;
                 cargarDepartamentoPropietario(propietario);
-            }
+            }*/
         }
 
         private static CONTROL_ILUMINACION_DEPARTAMENTO controlDep = new CONTROL_ILUMINACION_DEPARTAMENTO();
@@ -110,10 +112,14 @@ namespace EasyLife.Vista
 
         protected void btnEncenderLuz_Click(object sender, EventArgs e)
         {
+            Controller.ControllerControlIlimunacionDep control = new Controller.ControllerControlIlimunacionDep();
+            control.prenderLuz();
         }
 
         protected void btnApagarLuz_Click(object sender, EventArgs e)
         {
+            Controller.ControllerControlIlimunacionDep control = new Controller.ControllerControlIlimunacionDep();
+            control.apagarLuz();
         }
 
         protected void btnProgramarLuz_Click(object sender, EventArgs e)

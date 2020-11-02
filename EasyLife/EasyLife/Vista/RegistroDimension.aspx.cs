@@ -29,16 +29,16 @@ namespace EasyLife.Vista
             if (!IsPostBack)
             {
                 string pagoCondominio = (string)Session["CondominioSinDimension"];
-                string gastoCondominio = (string)Session["CondominioSinPago"];
+                //string gastoCondominio = (string)Session["CondominioSinPago"];
                 if (pagoCondominio != null)
                 {
                     cargarEdificio(pagoCondominio);
                 }
 
-                if (gastoCondominio != null)
+                /*if (gastoCondominio != null)
                 {
-                    Response.Redirect("RegistroGasto");
-                }
+                    Response.Redirect("RegistroGasto.aspx");
+                }*/
             }
         }
 

@@ -53,6 +53,7 @@ namespace EasyLife.Vista
         private static List<Adapter.AdapterDepartamento> listaDepartamento = new List<Adapter.AdapterDepartamento>();
         private static PERSONA persona = new PERSONA();
         private static List<Adapter.AdapterElemento> listaElemento = new List<Adapter.AdapterElemento>();
+        private static List<DEPARTAMENTO> listaDep = new List<DEPARTAMENTO>();
 
         public void cargarCondominio()
         {
@@ -152,8 +153,8 @@ namespace EasyLife.Vista
             try
             {
                 long edificio = Convert.ToInt64(dplEdificio.SelectedValue);
-                List<DEPARTAMENTO> listaDep = Controller.ControllerDepartamento.listaDepartamentoLibre(edificio);
-                dplDepartamento.DataSource = listaDep;
+                List<DEPARTAMENTO> lista = Controller.ControllerDepartamento.listaDepartamentoLibre(edificio);
+                dplDepartamento.DataSource = lista;
                 dplDepartamento.DataValueField = "ID_DEPARTAMENTO";
                 dplDepartamento.DataTextField = "NUMERO_DEP";
                 dplDepartamento.DataBind();
@@ -230,20 +231,35 @@ namespace EasyLife.Vista
                 adapter._ID_DEPARTAMENTO = departamento.ID_DEPARTAMENTO;
                 adapter._NUMERO_DEP = departamento.NUMERO_DEP;
                 listaDepartamento.Add(adapter);
+                listaDep.Add(departamento);
                 grDepartamento.DataSource = listaDepartamento;
                 grDepartamento.DataBind();
                 dplCondominio.SelectedIndex = 0;
                 dplEdificio.SelectedIndex = 0;
                 dplDepartamento.SelectedIndex = 0;
             }
+
+            dplDepElemento.DataSource = listaDep;
+            dplDepElemento.DataValueField = "ID_DEPARTAMENTO";
+            dplDepElemento.DataTextField = "NUMERO_DEP";
+            dplDepElemento.DataBind();
+            dplDepElemento.Items.Insert(0, "Seleccione un Departamento");
+            dplDepElemento.SelectedIndex = 0;
         }
 
         protected void grDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = grDepartamento.SelectedIndex;
             listaDepartamento.RemoveAt(index);
+            listaDep.RemoveAt(index);
             grDepartamento.DataSource = listaDepartamento;
             grDepartamento.DataBind();
+            dplDepElemento.DataSource = listaDep;
+            dplDepElemento.DataValueField = "ID_DEPARTAMENTO";
+            dplDepElemento.DataTextField = "NUMERO_DEP";
+            dplDepElemento.DataBind();
+            dplDepElemento.Items.Insert(0, "Seleccione un Departamento");
+            dplDepElemento.SelectedIndex = 0;
         }
 
         protected void grDepartamento_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -425,6 +441,7 @@ namespace EasyLife.Vista
             string resultPropietario = "";
             string resultDepartamento = "";
             string resultElemento = "";
+            string rut = txtRut.Text;
             long rol = 4;
             Boolean luz = false;
             string opcion = dplLuz.SelectedValue;
@@ -465,12 +482,32 @@ namespace EasyLife.Vista
                         else
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Propietario Registrado');window.location.href='" + Request.RawUrl + "';", true);
+                            List<DEPARTAMENTO> lista = Controller.ControllerDepartamento.listaDepartamentoPersona(persona.ID_PERSONA);
+                            foreach (DEPARTAMENTO item in lista)
+                            {
+                                EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(item.ID_EDIFICIO);
+                                double prorroteo = (item.DIMENSION_DEP / edificio.DIMENSION_EDIFICIO) * 100;
+                                string result = Controller.ControllerDepartamento.asignarProrroteoDep(item.ID_DEPARTAMENTO, prorroteo);
+                            }
                             persona = new PERSONA();
                         }
 
                         if (resultElemento.Equals("Elemento Asignado"))
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Propietario Registrado');window.location.href='" + Request.RawUrl + "';", true);
+                            List<DEPARTAMENTO> lista = Controller.ControllerDepartamento.listaDepartamentoPersona(persona.ID_PERSONA);
+                            foreach (DEPARTAMENTO item in lista)
+                            {
+                                EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(item.ID_EDIFICIO);
+                                List<BODEGA> list = Controller.ControllerBodega.buscarBodegaDepartamento(item.ID_DEPARTAMENTO);
+                                double dimensionB = 0;
+                                foreach (BODEGA adapter in list)
+                                {
+                                    dimensionB = adapter.DIMENSION_BODEGA + dimensionB;
+                                }
+                                double prorroteo = ((item.DIMENSION_DEP + dimensionB) / edificio.DIMENSION_EDIFICIO) * 100;
+                                string result = Controller.ControllerDepartamento.asignarProrroteoDep(item.ID_DEPARTAMENTO, prorroteo);
+                            }
                             persona = new PERSONA();
                         }
                         else

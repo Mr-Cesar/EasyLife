@@ -21,8 +21,9 @@
                 <%-- Validacion de Condominio --%>
                 <div style="display: inline-block;">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplCondominio"
-                        Display="Dynamic" InitialValue="Seleccione un Condominio"></asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplCondominio" Display="Dynamic"></asp:RequiredFieldValidator>
+                        Display="Dynamic" InitialValue="Seleccione un Condominio" ValidationGroup="gasto"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplCondominio"
+                        Display="Dynamic" ValidationGroup="gasto"></asp:RequiredFieldValidator>
                 </div>
                 <br />
                 <br />
@@ -37,15 +38,9 @@
                 <%-- Validacion de Edificio --%>
                 <div style="display: inline-block;">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
-                        Display="Dynamic" InitialValue="Seleccione un Edificio"></asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio" Display="Dynamic"></asp:RequiredFieldValidator>
-                </div>
-                <br />
-
-                <%-- Campo de Opcion de Agregar el Mismo Gasto a todos los Edificios --%>
-                <div style="display: inline-block; width: 90%">
-                    <asp:RadioButton ID="radioOpcionGasto" runat="server" Text="Agregar Gasto a Todos los Edificios" ForeColor="Black"
-                        OnCheckedChanged="radioOpcionGasto_CheckedChanged" AutoPostBack="true" Checked="false" />
+                        Display="Dynamic" InitialValue="Seleccione un Edificio" ValidationGroup="gasto"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplEdificio"
+                        Display="Dynamic" ValidationGroup="gasto"></asp:RequiredFieldValidator>
                 </div>
                 <br />
                 <br />
@@ -58,7 +53,8 @@
             </div>
             <!-- Validacion de Gasto Conserje-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGConserje"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGConserje"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -71,7 +67,8 @@
             </div>
             <!-- Validacion de Gasto Guardia-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGGuardia"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGGuardia"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -84,7 +81,8 @@
             </div>
             <!-- Validacion de Mantencion Areas-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGMantAreas"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGMantAreas"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -97,7 +95,8 @@
             </div>
             <!-- Validacion de Gasto Camaras-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGCamaras"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGCamaras"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -110,7 +109,8 @@
             </div>
             <!-- Validacion de Gasto Articulos de Aseo-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGArtAseo"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGArtAseo"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -123,7 +123,8 @@
             </div>
             <!-- Validacion de Gasto Aseo-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAseo"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAseo"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -136,7 +137,8 @@
             </div>
             <!-- Validacion de Gasto Ascensor-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAscensor"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAscensor"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -149,7 +151,8 @@
             </div>
             <!-- Validacion de Gasto Agua Caliente-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAgua"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGAgua"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -162,7 +165,8 @@
             </div>
             <!-- Validacion de Gasto Otro-->
             <div style="display: inline-block">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGOtro"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtGOtro"
+                    ValidationGroup="gasto"></asp:RequiredFieldValidator>
             </div>
             <br />
             <br />
@@ -174,6 +178,30 @@
             </div>
             <br />
             <br />
+
+            <asp:Button runat="server" ID="btnAgregarGasto" class="btn btn-light btn-block my-4" Text="Agregar Gasto" OnClick="btnAgregarGasto_Click"
+                ValidationGroup="gasto" />
+            <!-- Lista Elementos -->
+            <asp:Label ID="lbGastos" runat="server" Text="Lista Gastos" ForeColor="Black" Visible="false"></asp:Label><br />
+            <asp:Label ID="lbError" runat="server" Text="Edificio ya Posee Gasto Asociado" ForeColor="Red" Visible="false"></asp:Label><br />
+            <asp:GridView ID="grGastos" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="_ID_EDIFICIO"
+                Font-Size="10pt" AllowPaging="true" PageSize="6" OnSelectedIndexChanged="grGastos_SelectedIndexChanged"
+                OnPageIndexChanging="grGastos_PageIndexChanging" Visible="false">
+                <Columns>
+                    <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Edificio" SortExpression="_NOMBRE_EDIFICIO" />
+                    <asp:BoundField DataField="_GASTO_CONSERJE" HeaderText="Conserje" SortExpression="_GASTO_CONSERJE" />
+                    <asp:BoundField DataField="_GASTO_GUARDIA" HeaderText="Guardia" SortExpression="_GASTO_GUARDIA" />
+                    <asp:BoundField DataField="_GASTO_MANTENCION_AREAS" HeaderText="Mant. Areas" SortExpression="_GASTO_MANTENCION_AREAS" />
+                    <asp:BoundField DataField="_GASTO_CAMARAS" HeaderText="Camaras" SortExpression="_GASTO_CAMARAS" />
+                    <asp:BoundField DataField="_GASTO_ARTICULOS_ASEO" HeaderText="Art. Aseo" SortExpression="_GASTO_ARTICULOS_ASEO" />
+                    <asp:BoundField DataField="_GASTOS_ASEO" HeaderText="Aseo" SortExpression="_GASTOS_ASEO" />
+                    <asp:BoundField DataField="_GASTO_ASCENSOR" HeaderText="Ascensor" SortExpression="_GASTO_ASCENSOR" />
+                    <asp:BoundField DataField="_GASTO_AGUA_CALIENTE" HeaderText="Agua" SortExpression="_GASTO_AGUA_CALIENTE" />
+                    <asp:BoundField DataField="_GASTO_OTRO" HeaderText="Otro" SortExpression="_GASTO_OTRO" />
+                    <asp:BoundField DataField="_TOTAL_GASTO" HeaderText="Total" SortExpression="_TOTAL_GASTO" />
+                    <asp:CommandField ShowSelectButton="True" HeaderText="Eliminar" />
+                </Columns>
+            </asp:GridView>
 
             <!-- Sign in button -->
             <asp:UpdatePanel ID="barraProgreso" runat="server">

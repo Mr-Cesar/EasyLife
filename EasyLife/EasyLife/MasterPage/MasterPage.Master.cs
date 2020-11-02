@@ -27,6 +27,7 @@ namespace EasyLife.MasterPage
             {
                 panelBotones.Visible = false;
                 panelAdm.Visible = true;
+                lnkContacto.Visible = true;
                 PERSONA aux = Controller.ControllerPersona.buscarPersonaRut(adm.FK_RUT);
                 char[] sexo = aux.SEXO.ToCharArray();
                 if (sexo[0] == 'M')
@@ -43,6 +44,7 @@ namespace EasyLife.MasterPage
             {
                 panelBotones.Visible = false;
                 panelConserje.Visible = true;
+                lnkContacto.Visible = true;
                 PERSONA aux = Controller.ControllerPersona.buscarPersonaRut(conserje.FK_RUT);
                 char[] sexo = aux.SEXO.ToCharArray();
                 if (sexo[0] == 'M')
@@ -75,6 +77,7 @@ namespace EasyLife.MasterPage
             {
                 panelBotones.Visible = false;
                 panelPropietario.Visible = true;
+                lnkContacto.Visible = true;
                 PERSONA aux = Controller.ControllerPersona.buscarPersonaRut(propietario.FK_RUT);
                 char[] sexo = aux.SEXO.ToCharArray();
                 if (sexo[0] == 'M')
@@ -91,6 +94,7 @@ namespace EasyLife.MasterPage
             {
                 panelBotones.Visible = false;
                 panelAdmCondominio.Visible = true;
+                lnkContacto.Visible = true;
                 PERSONA aux = Controller.ControllerPersona.buscarPersonaRut(admCondominio.FK_RUT);
                 char[] sexo = aux.SEXO.ToCharArray();
                 if (sexo[0] == 'M')
@@ -116,7 +120,7 @@ namespace EasyLife.MasterPage
 
         protected void lnkContacto_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Vista/Contacto.aspx");
+            Response.Redirect("~/Vista/DetalleGastoComun.aspx");
         }
 
         protected void lnkLogin_Click(object sender, EventArgs e)
@@ -273,6 +277,11 @@ namespace EasyLife.MasterPage
         protected void lnkLogo_Click(object sender, EventArgs e)
         {
             Response.Redirect("Index.aspx");
+        }
+
+        protected void lnkGasto_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistroGasto.aspx");
         }
     }
 }

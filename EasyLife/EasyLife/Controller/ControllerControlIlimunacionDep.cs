@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net.Http;
 
 namespace EasyLife.Controller
 {
@@ -135,6 +136,30 @@ namespace EasyLife.Controller
                 else
                 {
                     return null;
+                }
+            }
+        }
+
+        public async void prenderLuz()
+        {
+            var baseAddress = new Uri("http://blynk-cloud.com/%22");
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                using (var response = await httpClient.GetAsync("8012mzHS0fZqye2ZA7Sf9E7ApvjszLPP/update/D5?value=0"))
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
+                }
+            }
+        }
+
+        public async void apagarLuz()
+        {
+            var baseAddress = new Uri("http://blynk-cloud.com/%22");
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                using (var response = await httpClient.GetAsync("8012mzHS0fZqye2ZA7Sf9E7ApvjszLPP/update/D5?value=1"))
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
                 }
             }
         }

@@ -220,6 +220,15 @@ namespace EasyLife.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton lnkRegistroLuz;
         
         /// <summary>
+        /// Control lnkGasto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkGasto;
+        
+        /// <summary>
         /// Control lnkCentro.
         /// </summary>
         /// <remarks>
@@ -560,15 +569,6 @@ namespace EasyLife.MasterPage {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton11;
-        
-        /// <summary>
-        /// Control LinkButton14.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton14;
         
         /// <summary>
         /// Control lnkPreguntas.

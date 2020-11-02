@@ -69,5 +69,23 @@ namespace EasyLife.Controller
                 }
             }
         }
+
+        public static List<BODEGA> buscarBodegaDepartamento(long departamento)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.BODEGA
+                            where u.DEP_BODEGA == departamento
+                            select u;
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
