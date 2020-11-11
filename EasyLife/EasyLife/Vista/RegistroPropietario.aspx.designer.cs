@@ -409,6 +409,15 @@ namespace EasyLife.Vista {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
+        /// Control panelElemento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelElemento;
+        
+        /// <summary>
         /// Control Label11.
         /// </summary>
         /// <remarks>

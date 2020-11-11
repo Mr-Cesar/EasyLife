@@ -59,6 +59,7 @@ namespace EasyLife.Vista
         private static List<Adapter.AdapterCentro> listaSearchCentro = new List<Adapter.AdapterCentro>();
         private static List<HORARIO_CENTRO> listaHorario = new List<HORARIO_CENTRO>();
         private static Boolean searchCentro = false;
+        private static List<Adapter.AdapterElemento> listaElemento = new List<Adapter.AdapterElemento>();
 
         public void cargarDatos(long persona)
         {
@@ -1004,9 +1005,56 @@ namespace EasyLife.Vista
                 Session["AsignarMultaDepartamento"] = propietario.ToString();
             }
 
+            cargarElementos(prop);
             btnModificarPropietario.Enabled = true;
             btnEliminarPropietario.Enabled = true;
             btnAsignarMulta.Enabled = true;
+        }
+
+        public void cargarElementos(Adapter.AdapterPropietario propietario)
+        {
+            List<BODEGA> listaBodega = Controller.ControllerBodega.buscarBodegaDepartamento(propietario._ID_DEPARTAMENTO);
+            List<ESTACIONAMIENTO> listaEstacionamiento = Controller.ControllerEstacionamiento.buscarEstacionamientoDepartamento(propietario._ID_DEPARTAMENTO);
+            DEPARTAMENTO departamento = Controller.ControllerDepartamento.buscarIdDepartamento(propietario._ID_DEPARTAMENTO);
+            Adapter.AdapterElemento adapter = new Adapter.AdapterElemento();
+            if (listaBodega.Count > 0)
+            {
+                foreach (BODEGA item in listaBodega)
+                {
+                    EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(item.ID_EDIFICIO);
+                    adapter._NOMBRE_EDIFICIO = edificio.NOMBRE_EDIFICIO;
+                    adapter._DEP = departamento.NUMERO_DEP;
+                    adapter._ID_DEP = departamento.ID_DEPARTAMENTO;
+                    adapter._TIPO = "Bodega";
+                    adapter._ID_EST = 0;
+                    adapter._ID_BODEGA = item.ID_BODEGA;
+                    adapter._NUMERO_ELEMENTO = item.NUMERO_BODEGA;
+                    adapter._DIMENSION = item.DIMENSION_BODEGA;
+                    adapter._PRECIO = 0;
+                    listaElemento.Add(adapter);
+                }
+            }
+
+            if (listaEstacionamiento.Count > 0)
+            {
+                foreach (ESTACIONAMIENTO item in listaEstacionamiento)
+                {
+                    EDIFICIO edificio = Controller.ControllerEdificio.buscarIdEdificio(item.ID_EDIFICIO);
+                    adapter._NOMBRE_EDIFICIO = edificio.NOMBRE_EDIFICIO;
+                    adapter._DEP = departamento.NUMERO_DEP;
+                    adapter._ID_DEP = departamento.ID_DEPARTAMENTO;
+                    adapter._TIPO = "Estacionamiento";
+                    adapter._ID_EST = item.ID_EST;
+                    adapter._ID_BODEGA = 0;
+                    adapter._NUMERO_ELEMENTO = item.NUMERO_EST;
+                    adapter._DIMENSION = 0;
+                    adapter._PRECIO = item.PRECIO_EST;
+                    listaElemento.Add(adapter);
+                }
+            }
+
+            grElementos.DataSource = listaElemento;
+            grElementos.DataBind();
         }
 
         protected void grPropietarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -1264,6 +1312,13 @@ namespace EasyLife.Vista
             grHorario.PageIndex = e.NewPageIndex;
             grHorario.DataSource = listaHorario;
             grHorario.DataBind();
+        }
+
+        protected void grElementos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grElementos.PageIndex = e.NewPageIndex;
+            grElementos.DataSource = listaElemento;
+            grElementos.DataBind();
         }
     }
 }

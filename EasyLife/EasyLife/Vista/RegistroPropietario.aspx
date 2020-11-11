@@ -189,40 +189,42 @@
             <br />
             <br />
 
-            <%-- Campo de ingreso de Elemento --%>
-            <asp:Label ID="Label11" runat="server" Text="Seleccione un Elemento" ForeColor="Black"></asp:Label><br />
-            <div style="display: inline-block; width: 90%">
-                <asp:DropDownList ID="dplElemento" runat="server" CssClass="form-control" OnSelectedIndexChanged="dplElemento_SelectedIndexChanged" AutoPostBack="true">
-                    <asp:ListItem>Seleccione una Opcion</asp:ListItem>
-                    <asp:ListItem>Estacionamiento</asp:ListItem>
-                    <asp:ListItem>Bodega</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <%-- Validacion de Elemento --%>
-            <div style="display: inline-block;">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
-                    Display="Dynamic" InitialValue="Seleccione una Opcion" ValidationGroup="elemento"></asp:RequiredFieldValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
-                    Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
-            </div>
-            <br />
-            <br />
+            <asp:Panel ID="panelElemento" runat="server">
+                <%-- Campo de ingreso de Elemento --%>
+                <asp:Label ID="Label11" runat="server" Text="Seleccione un Elemento" ForeColor="Black"></asp:Label><br />
+                <div style="display: inline-block; width: 90%">
+                    <asp:DropDownList ID="dplElemento" runat="server" CssClass="form-control" OnSelectedIndexChanged="dplElemento_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem>Seleccione una Opcion</asp:ListItem>
+                        <asp:ListItem>Estacionamiento</asp:ListItem>
+                        <asp:ListItem>Bodega</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <%-- Validacion de Elemento --%>
+                <div style="display: inline-block;">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
+                        Display="Dynamic" InitialValue="Seleccione una Opcion" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplElemento"
+                        Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                </div>
+                <br />
+                <br />
 
-            <%-- Campo de ingreso de Departamento --%>
-            <asp:Label ID="Label14" runat="server" Text="Departamento" ForeColor="Black"></asp:Label><br />
-            <div style="display: inline-block; width: 90%">
-                <asp:DropDownList ID="dplDepElemento" runat="server" CssClass="form-control" AutoPostBack="true">
-                </asp:DropDownList>
-            </div>
-            <%-- Validacion de Departamento --%>
-            <div style="display: inline-block;">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
-                    Display="Dynamic" InitialValue="Seleccione un Departamento" ValidationGroup="elemento"></asp:RequiredFieldValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
-                    Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
-            </div>
-            <br />
-            <br />
+                <%-- Campo de ingreso de Departamento --%>
+                <asp:Label ID="Label14" runat="server" Text="Departamento" ForeColor="Black"></asp:Label><br />
+                <div style="display: inline-block; width: 90%">
+                    <asp:DropDownList ID="dplDepElemento" runat="server" CssClass="form-control" AutoPostBack="true">
+                    </asp:DropDownList>
+                </div>
+                <%-- Validacion de Departamento --%>
+                <div style="display: inline-block;">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
+                        Display="Dynamic" InitialValue="Seleccione un Departamento" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="dplDepElemento"
+                        Display="Dynamic" ValidationGroup="elemento"></asp:RequiredFieldValidator>
+                </div>
+                <br />
+                <br />
+            </asp:Panel>
 
             <%-- Panel de Seleccion Estacionamiento--%>
             <asp:Panel ID="panelEstacionamiento" runat="server" Visible="false">

@@ -137,6 +137,8 @@ namespace EasyLife.Controller
                                 _GASTO_ASCENSOR = u.GASTO_ASCENSOR,
                                 _GASTO_AGUA_CALIENTE = u.GASTO_AGUA_CALIENTE,
                                 _GASTO_OTRO = u.GASTO_OTRO,
+                                _MES = u.FECHA_REGISTRO_GASTO.Substring(3, 3),
+                                _ANO = u.FECHA_REGISTRO_GASTO.Substring(7, 4),
                                 _TOTAL_GASTO = u.TOTAL_GASTO
                             };
                 if (query != null)
@@ -171,6 +173,8 @@ namespace EasyLife.Controller
                                 _GASTO_ASCENSOR = u.GASTO_ASCENSOR,
                                 _GASTO_AGUA_CALIENTE = u.GASTO_AGUA_CALIENTE,
                                 _GASTO_OTRO = u.GASTO_OTRO,
+                                _MES = u.FECHA_REGISTRO_GASTO.Substring(3, 3),
+                                _ANO = u.FECHA_REGISTRO_GASTO.Substring(7, 4),
                                 _TOTAL_GASTO = u.TOTAL_GASTO
                             };
                 if (query != null)
@@ -204,6 +208,8 @@ namespace EasyLife.Controller
                                 _GASTO_ASCENSOR = u.GASTO_ASCENSOR,
                                 _GASTO_AGUA_CALIENTE = u.GASTO_AGUA_CALIENTE,
                                 _GASTO_OTRO = u.GASTO_OTRO,
+                                _MES = u.FECHA_REGISTRO_GASTO.Substring(3, 3),
+                                _ANO = u.FECHA_REGISTRO_GASTO.Substring(7, 4),
                                 _TOTAL_GASTO = u.TOTAL_GASTO
                             };
                 if (query != null)

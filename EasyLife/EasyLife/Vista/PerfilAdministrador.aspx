@@ -358,7 +358,7 @@
                             </div>
                             <br />
                             <asp:Button ID="btnAsignarMulta" runat="server" Text="Asignar Multa" class="btn btn-outline-primary btn-rounded waves-effect"
-                                CausesValidation="false" OnClick="btnAsignarMulta_Click" Enabled="false" />
+                                CausesValidation="false" OnClick="btnAsignarMulta_Click" Enabled="false" Visible="false" />
                             <br />
                             <br />
 
@@ -479,6 +479,8 @@
                                 OnPageIndexChanging="grGastos_PageIndexChanging">
                                 <Columns>
                                     <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Edificio" SortExpression="_NOMBRE_EDIFICIO" />
+                                    <asp:BoundField DataField="_MES" HeaderText="Mes" SortExpression="_MES" />
+                                    <asp:BoundField DataField="_ANO" HeaderText="Año" SortExpression="_ANO" />
                                     <asp:BoundField DataField="_GASTO_CONSERJE" HeaderText="Conserje" SortExpression="_GASTO_CONSERJE" />
                                     <asp:BoundField DataField="_GASTO_GUARDIA" HeaderText="Guardia" SortExpression="_GASTO_GUARDIA" />
                                     <asp:BoundField DataField="_GASTO_MANTENCION_AREAS" HeaderText="Mantención Areas" SortExpression="_GASTO_MANTENCION_AREAS" />
@@ -542,7 +544,7 @@
                                     <asp:BoundField DataField="_NOMBRE_CONDOMINIO" HeaderText="Condominio" SortExpression="_NOMBRE_CONDOMINIO" />
                                     <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Edificio" SortExpression="_NOMBRE_EDIFICIO" />
                                     <asp:BoundField DataField="_COSTO" HeaderText="Coto" SortExpression="_COSTO" />
-                                    <asp:CommandField ShowSelectButton="True" HeaderText="Horario" />
+                                    <asp:CommandField ShowSelectButton="True" HeaderText="Ver Más" />
                                 </Columns>
                             </asp:GridView>
 

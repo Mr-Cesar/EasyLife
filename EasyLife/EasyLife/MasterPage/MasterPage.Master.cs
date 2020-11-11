@@ -110,178 +110,237 @@ namespace EasyLife.MasterPage
 
         protected void lnkQuienes_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("QuienesSomos.aspx");
         }
 
         protected void lnkServicios_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Servicios.aspx");
         }
 
         protected void lnkContacto_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("~/Vista/DetalleGastoComun.aspx");
         }
 
         protected void lnkLogin_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Login.aspx");
         }
 
         protected void lnkPerfil_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PerfilPropietario.aspx");
         }
 
         protected void lnkLuces_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("ProgramarLuzDepartamento.aspx");
         }
 
         protected void btnPagarGasto_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PagoGastoPropietario.aspx");
         }
 
         protected void btnReserva_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroReservaPropietario.aspx");
         }
 
         protected void lnkMensaje_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Mensaje.aspx");
         }
 
         protected void lnkCerrar_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Session.Clear();
             Response.Redirect("Index.aspx");
         }
 
         protected void lnkPerfilAdm_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PerfilAdministrador.aspx");
         }
 
         protected void lnkRegistroProp_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroPropietario.aspx");
         }
 
         protected void lnkRegistroPersonal_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroPersonal.aspx");
         }
 
         protected void lnkRegistroCondominio_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroCondominio.aspx");
         }
 
         protected void lnkRegistroLuz_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroLuz.aspx");
         }
 
         protected void lnkCentro_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroCentro.aspx");
         }
 
         protected void lnkMulta_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("AsignarMulta.aspx");
         }
 
         protected void lnkAsignarTurno_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("AsignarTurnoConserje.aspx");
         }
 
         protected void lnkAsignarLuzEdificio_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("AsignarLuzEdificio.aspx");
         }
 
         protected void lnkAsignarLuzDep_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("AsignarLuzDepartamento.aspx");
         }
 
         protected void btnAsignarPersonal_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("AsignarPersonal.aspx");
         }
 
         protected void lnkEnviarMensaje_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Mensaje.aspx");
         }
 
         protected void lnkPerfilVendedor_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PerfilVendedor.aspx");
         }
 
         protected void lnkRegistroPropV_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroPropietario.aspx");
         }
 
         protected void lnkPerfilConserje_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PerfilConserje.aspx");
         }
 
         protected void lnkRegistroEstacionamiento_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroEstacionamiento.aspx");
         }
 
         protected void lnkPagoGastos_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PagoGasto.aspx");
         }
 
         protected void LnkControlLuces_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("ProgramarLuzEdificio.aspx");
         }
 
         protected void lnkReservaConserje_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroReservaConserje.aspx");
         }
 
         protected void lnkPerfilAdmCondominio_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("PerfilAdmCondominio.aspx");
         }
 
         protected void lnkRegistroConserje_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroConserje.aspx");
         }
 
         protected void lnkPreguntas_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Preguntas.aspx");
         }
 
         protected void lnkTerminos_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Terminos.aspx");
         }
 
         protected void lnkLogo_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("Index.aspx");
         }
 
         protected void lnkGasto_Click(object sender, EventArgs e)
         {
+            limpiarSession();
             Response.Redirect("RegistroGasto.aspx");
+        }
+
+        public void limpiarSession()
+        {
+            Session["ModificarConserje"] = null;
+            Session["ModificarTurno"] = null;
+            Session["ModificarPropietario"] = null;
+            Session["AsignarLuzDepartamento"] = null;
+            Session["AsignarMultaDepartamento"] = null;
+            Session["ModificarGasto"] = null;
+            Session["ModificarCentro"] = null;
+            Session["ModificarHorario"] = null;
+            Session["ModificarPersonal"] = null;
+            Session["ModificarTurno"] = null;
+            Session["ModificarPropietario"] = null;
+            Session["AsignarLuzDepartamento"] = null;
+            Session["AsignarMultaDepartamento"] = null;
+            Session["ModificarGasto"] = null;
+            Session["ModificarCentro"] = null;
+            Session["ModificarHorario"] = null;
+            Session["ModificarControlIluminacionEdifciio"] = null;
+            Session["ModificarEstacionamiento"] = null;
+            Session["ModificarControlIluminacionDep"] = null;
+            Session["ModificarPropietario"] = null;
         }
     }
 }

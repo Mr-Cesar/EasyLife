@@ -34,6 +34,29 @@ namespace EasyLife.Controller
             }
         }
 
+        public static long cantidadDep(long condominio)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = (from u in dbc.EDIFICIO
+                             select u).ToList();
+                long total = 0;
+                foreach (var item in query)
+                {
+                    total = item.CANTIDAD_DEPARTAMENTO + total;
+                }
+
+                if (query != null)
+                {
+                    return total;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
         public static List<EDIFICIO> buscarEdificioCondominio(long condominio)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())

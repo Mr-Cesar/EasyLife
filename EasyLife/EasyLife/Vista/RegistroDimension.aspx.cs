@@ -45,6 +45,7 @@ namespace EasyLife.Vista
         private static List<Adapter.AdapterElemento> listaElemento = new List<Adapter.AdapterElemento>();
         private static List<Adapter.AdapterDepartamento> listaDepartamento = new List<Adapter.AdapterDepartamento>();
         private static string idCondominio = "";
+        private static long totalDep = 0;
 
         public void cargarEdificio(string condominio)
         {
@@ -59,22 +60,33 @@ namespace EasyLife.Vista
             dplEdificio.Items.Insert(0, "Seleccione un Edificio");
             dplEdificio.SelectedIndex = 0;
             idCondominio = condominio;
+            totalDep = Controller.ControllerEdificio.cantidadDep(Convert.ToInt64(condominio));
         }
 
         protected void dplEdificio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dplTipo.Items.Insert(0, "Seleccione un Elemento");
-            dplTipo.Items.Insert(1, "Bodega");
-            dplTipo.Items.Insert(2, "Estacionamiento");
-            dplTipo.SelectedIndex = 0;
+            try
+            {
+                dplTipo.Items.Insert(0, "Seleccione un Elemento");
+                dplTipo.Items.Insert(1, "Bodega");
+                dplTipo.Items.Insert(2, "Estacionamiento");
+                dplTipo.SelectedIndex = 0;
 
-            List<DEPARTAMENTO> listaDep = Controller.ControllerDepartamento.listaDepartamento(Convert.ToInt64(dplEdificio.SelectedValue));
-            dplDepartamento.DataSource = listaDep;
-            dplDepartamento.DataValueField = "ID_DEPARTAMENTO";
-            dplDepartamento.DataTextField = "NUMERO_DEP";
-            dplDepartamento.DataBind();
-            dplDepartamento.Items.Insert(0, "Seleccione un Departamento");
-            dplDepartamento.SelectedIndex = 0;
+                List<DEPARTAMENTO> listaDep = Controller.ControllerDepartamento.listaDepartamento(Convert.ToInt64(dplEdificio.SelectedValue));
+                dplDepartamento.DataSource = listaDep;
+                dplDepartamento.DataValueField = "ID_DEPARTAMENTO";
+                dplDepartamento.DataTextField = "NUMERO_DEP";
+                dplDepartamento.DataBind();
+                dplDepartamento.Items.Insert(0, "Seleccione un Departamento");
+                dplDepartamento.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                dplTipo.SelectedIndex = 0;
+                dplDepartamento.Items.Insert(0, "Seleccione un Departamento");
+                dplDepartamento.SelectedIndex = 0;
+                System.Diagnostics.Debug.WriteLine("Error " + ex);
+            }
         }
 
         protected void dplTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -208,6 +220,19 @@ namespace EasyLife.Vista
             string numeroEstacionamiento = "";
             int positionBodega = 1;
             int positionEstacionamiento = 1;
+            Boolean operation = false;
+
+            if (listaDepartamento.Count == totalDep)
+            {
+                foreach (Adapter.AdapterDepartamento item in listaDepartamento)
+                {
+                    resultDepartamento = Controller.ControllerDepartamento.asignarDimDepartamento(item._ID_DEPARTAMENTO, item._DIMENSION_DEP);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error Falta Ingresar Departamentos');window.location.href='" + Request.RawUrl + "';", true);
+            }
 
             if (listaElemento.Count > 0)
             {
@@ -233,17 +258,26 @@ namespace EasyLife.Vista
                         }
                     }
                 }
+                operation = true;
+            }
+            else
+            {
+                operation = true;
             }
 
-            if (listaDepartamento.Count > 0)
+            if (operation == true)
             {
-                foreach (Adapter.AdapterDepartamento item in listaDepartamento)
+                if (resultBodega.Equals("Bodega Creada") && resultEstacionamiento.Equals("Estacionamiento Creada"))
                 {
-                    resultDepartamento = Controller.ControllerDepartamento.asignarDimDepartamento(item._ID_DEPARTAMENTO, item._DIMENSION_DEP);
+                    operation = true;
+                }
+                else
+                {
+                    operation = false;
                 }
             }
 
-            if (resultBodega.Equals("Bodega Creada") || resultEstacionamiento.Equals("Estacionamiento Creada") || resultDepartamento.Equals("Dimension Asignada"))
+            if (operation == true && resultDepartamento.Equals("Dimension Asignada"))
             {
                 string condominioPago = idCondominio;
                 Session["CondominioSinPago"] = condominioPago;

@@ -643,7 +643,7 @@ namespace EasyLife.Vista
         {
             GridViewRow gvr = grPersonal.SelectedRow;
             long personal = (long)grPersonal.DataKeys[gvr.RowIndex].Value;
-            string deletePersonal = Controller.ControllerPersona.eliminarPersona(personal);
+            string deletePersonal = Controller.ControllerPersona.modificarEstadoPersona(personal, false);
             if (deletePersonal.Equals("Persona Eliminada"))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Personal Eliminado');window.location.href='" + Request.RawUrl + "';", true);
@@ -817,7 +817,7 @@ namespace EasyLife.Vista
         {
             GridViewRow gvr = grPropietarios.SelectedRow;
             long propietario = (long)grPropietarios.DataKeys[gvr.RowIndex].Value;
-            string deletePropietario = Controller.ControllerPersona.eliminarPersona(propietario);
+            string deletePropietario = Controller.ControllerPersona.modificarEstadoPersona(propietario, false);
             if (deletePropietario.Equals("Persona Eliminada"))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Propietario Eliminado');window.location.href='" + Request.RawUrl + "';", true);

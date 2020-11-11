@@ -32,9 +32,10 @@ namespace EasyLife.Vista
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Reserva Cancelada');window.location.href='" + Request.RawUrl + "';", true);
             try
             {
-                System.Threading.Thread.Sleep(5000);
+                /*System.Threading.Thread.Sleep(5000);
                 string message = "";
                 message += "";
 
@@ -48,12 +49,13 @@ namespace EasyLife.Vista
                 /*Para realizar envio de mensaje con copia*/
                 /*MailAddress ms = new MailAddress("easylifeapartaments@gmail.com");
                 msg.CC.Add(ms);*/
-                SmtpClient sc = new SmtpClient("smtp.gmail.com");
+                /*SmtpClient sc = new SmtpClient("smtp.gmail.com");
                 sc.Port = 25;
                 sc.Credentials = new NetworkCredential("easylifeapartaments@gmail.com", "easylife2020");
                 sc.EnableSsl = true;
                 sc.Send(msg);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Mensaje Enviado');window.location.href='" + Request.RawUrl + "';", true);
+                */
             }
             catch (Exception ex)
             {

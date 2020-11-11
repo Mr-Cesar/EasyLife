@@ -931,6 +931,33 @@ namespace EasyLife.Vista {
         protected global::System.Web.UI.WebControls.Label lbDLuz;
         
         /// <summary>
+        /// Control lbElementos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbElementos;
+        
+        /// <summary>
+        /// Control lbErrorElemento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbErrorElemento;
+        
+        /// <summary>
+        /// Control grElementos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grElementos;
+        
+        /// <summary>
         /// Control btnAsignarLuz.
         /// </summary>
         /// <remarks>

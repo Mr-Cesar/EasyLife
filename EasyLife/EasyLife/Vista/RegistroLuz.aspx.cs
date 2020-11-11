@@ -12,7 +12,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -24,7 +24,7 @@ namespace EasyLife.Vista
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
                 Response.Redirect("Index.aspx");
-            }
+            }*/
         }
 
         private static List<LUZ_EDIFICIO> listaLuzEdificio = new List<LUZ_EDIFICIO>();
@@ -40,7 +40,7 @@ namespace EasyLife.Vista
                     btnAgregarLuzEdificio.Visible = false;
                     btnAgregarLuzDep.Visible = false;
                     btnRegistroLuzEdificio.Visible = false;
-                    btnAgregarLuzDep.Visible = false;
+                    btnRegistroLuzDep.Visible = false;
                     listaLuzEdificio = new List<LUZ_EDIFICIO>();
                     grCodLuzEdificio.DataSource = listaLuzEdificio;
                     grCodLuzEdificio.DataBind();

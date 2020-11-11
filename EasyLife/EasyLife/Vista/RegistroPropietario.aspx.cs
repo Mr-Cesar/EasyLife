@@ -42,6 +42,10 @@ namespace EasyLife.Vista
                 {
                     cargarParametros(updatePropietario);
                 }
+                else
+                {
+                    panelElemento.Visible = true;
+                }
             }
 
             if (!IsPostBack)
@@ -91,6 +95,7 @@ namespace EasyLife.Vista
         {
             lbOpcion.Text = "Modificar Propietario";
             panelProp.Visible = false;
+            panelElemento.Visible = false;
             btnAgregarDepartamento.Visible = false;
             btnRegistroPropietario.Visible = false;
             btnModificarPropietario.Visible = true;

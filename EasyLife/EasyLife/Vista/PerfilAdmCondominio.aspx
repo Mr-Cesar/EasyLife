@@ -327,7 +327,7 @@
                                 CausesValidation="false" OnClick="btnEliminarPropietario_Click" Enabled="false" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                            <asp:Button ID="btnAsignarMulta" runat="server" Text="Asignar Multa" class="btn btn-outline-primary btn-rounded waves-effect"
-                               CausesValidation="false" OnClick="btnAsignarMulta_Click" Enabled="false" />
+                               CausesValidation="false" OnClick="btnAsignarMulta_Click" Enabled="false" Visible="false" />
                             <br />
                             <br />
 
@@ -422,6 +422,22 @@
                                         <asp:Label ID="lbDLuz" runat="server" Text="" CssClass="col-sm-4 col-form-label"></asp:Label>
                                     </div>
                                 </div>
+
+                                <%-- Lista de Elementos--%>
+                                <asp:Label ID="lbElementos" runat="server" Text="Lista Elementos" ForeColor="Black" Visible="false"></asp:Label><br />
+                                <asp:Label ID="lbErrorElemento" runat="server" Text="No Posee Elementos Asignados" ForeColor="Red" Visible="false"></asp:Label><br />
+                                <asp:GridView ID="grElementos" runat="server" CssClass="table table-striped w-auto" AutoGenerateColumns="False" DataKeyNames="_ID_EDIFICIO"
+                                    Font-Size="10pt" AllowPaging="true" PageSize="6" OnPageIndexChanging="grElementos_PageIndexChanging" Visible="false">
+                                    <Columns>
+                                        <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Nombre" SortExpression="_NOMBRE_EDIFICIO" />
+                                        <asp:BoundField DataField="_DEP" HeaderText="Departamento" SortExpression="_DEP" />
+                                        <asp:BoundField DataField="_TIPO" HeaderText="Tipo" SortExpression="_TIPO" />
+                                        <asp:BoundField DataField="_NUMERO_ELEMENTO" HeaderText="Numero" SortExpression="_NUMERO_ELEMENTO" />
+                                        <asp:BoundField DataField="_DIMENSION" HeaderText="Dimensión" SortExpression="_DIMENSION" />
+                                        <asp:BoundField DataField="_PRECIO" HeaderText="Precio" SortExpression="_PRECIO" />
+                                    </Columns>
+                                </asp:GridView>
+
                                 <asp:Button ID="btnAsignarLuz" runat="server" Text="Asignar Luz" class="btn btn-outline-primary btn-rounded waves-effect"
                                     CausesValidation="false" OnClick="btnAsignarLuz_Click" Enabled="false" />
                             </asp:Panel>
