@@ -54,6 +54,8 @@
                 <!-- Campo de Patente -->
                 <div style="display: inline-block">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPatente"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato no Valido" ForeColor="Red"
+                        Display="Dynamic" ControlToValidate="txtPatente" ValidationExpression="^[a-z]{4}[0-9]{2}$"></asp:RegularExpressionValidator>
                 </div>
                 <br />
                 <br />

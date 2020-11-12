@@ -261,6 +261,24 @@ namespace EasyLife.Controller
             }
         }
 
+        public static List<string> listaAñosProp(long persona)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                string query = (from u in dbc.PERSONA
+                                where u.ID_PERSONA == persona
+                                select u.FECHA_REGISTRO_PERSONA.Substring(7, 4)).FirstOrDefault().ToString();
+                string actual = DateTime.Now.ToString().Substring(6, 4);
+                List<string> lista = new List<string>();
+                for (int i = Convert.ToInt32(query); i <= Convert.ToInt32(actual); i++)
+                {
+                    string año = i.ToString();
+                    lista.Add(año);
+                }
+                return lista;
+            }
+        }
+
         public static List<Adapter.AdapterBoletaGasto> listaGastosBoletaEdificio(long edificio)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())

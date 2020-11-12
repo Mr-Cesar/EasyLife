@@ -112,6 +112,17 @@ namespace EasyLife.Vista
                 listaGastos = new List<Adapter.AdapterGastoComun>();
                 grGastos.DataSource = listaGastos;
                 grGastos.DataBind();
+
+                txtGConserje.Text = "";
+                txtGGuardia.Text = "";
+                txtGMantAreas.Text = "";
+                txtGCamaras.Text = "";
+                txtGArtAseo.Text = "";
+                txtGAseo.Text = "";
+                txtGAscensor.Text = "";
+                txtGAgua.Text = "";
+                txtGOtro.Text = "";
+                lbTotal.Text = "";
             }
             catch (Exception ex)
             {
@@ -150,6 +161,19 @@ namespace EasyLife.Vista
                     txtGAgua.Text = gasto.GASTO_AGUA_CALIENTE.ToString();
                     txtGOtro.Text = gasto.GASTO_OTRO.ToString();
                     lbTotal.Text = gasto.TOTAL_GASTO.ToString();
+                }
+                else
+                {
+                    txtGConserje.Text = "";
+                    txtGGuardia.Text = "";
+                    txtGMantAreas.Text = "";
+                    txtGCamaras.Text = "";
+                    txtGArtAseo.Text = "";
+                    txtGAseo.Text = "";
+                    txtGAscensor.Text = "";
+                    txtGAgua.Text = "";
+                    txtGOtro.Text = "";
+                    lbTotal.Text = "";
                 }
             }
             catch (Exception ex)

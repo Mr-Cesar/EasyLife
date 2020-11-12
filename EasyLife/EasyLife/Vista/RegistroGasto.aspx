@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <section class="form-control mb-4" style="margin: 30px; width: 40%; height: auto; margin-left: 30%; margin-top: 5%; background-color: #BB8FCE">
+    <section class="form-control mb-4" style="margin: 30px; width: 45%; height: auto; margin-left: 30%; margin-top: 5%; background-color: #BB8FCE">
         <!-- Default form login -->
         <form class="text-center border border-light p-5" action="#!">
             <p class="h4 mb-4 text-center" style="color: black">

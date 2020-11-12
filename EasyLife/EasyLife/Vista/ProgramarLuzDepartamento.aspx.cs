@@ -30,7 +30,6 @@ namespace EasyLife.Vista
 
             //Recuperar Session de Modificar Control
             string modificar = (string)Session["ModificarControlIluminacionDep"];
-
             if (!IsPostBack)
             {
                 cargarDepartamentoPropietario(propietario.ID_PERSONA);
@@ -42,8 +41,13 @@ namespace EasyLife.Vista
 
             /*if (!IsPostBack)
             {
+                string modificar = (string)Session["ModificarControlIluminacionDep"];
                 long propietario = 4;
                 cargarDepartamentoPropietario(propietario);
+                if (modificar != null)
+                {
+                    cargarControl(modificar);
+                }
             }*/
         }
 

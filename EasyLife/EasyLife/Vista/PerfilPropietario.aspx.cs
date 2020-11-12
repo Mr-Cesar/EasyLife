@@ -13,7 +13,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -34,17 +34,19 @@ namespace EasyLife.Vista
                 cargarControl(propietario.ID_PERSONA);
                 cargarMulta(propietario.ID_PERSONA);
                 cargarCentro(propietario.ID_PERSONA);
-            }
+            }*/
 
-            /*if (!IsPostBack)
+            if (!IsPostBack)
             {
+                DateTime fecha = DateTime.Now;
+                System.Diagnostics.Debug.WriteLine("Fecha  " + fecha.ToString().Substring(6, 4));
                 long propietario = 4;
                 cargarDatos(propietario);
                 cargarGastos(propietario);
                 cargarControl(propietario);
                 cargarMulta(propietario);
                 cargarCentro(propietario);
-            }*/
+            }
         }
 
         private static PERSONA propietario = new PERSONA();
@@ -120,6 +122,11 @@ namespace EasyLife.Vista
 
             //Carga de Años
             listaAños = new List<string>();
+            listaAños = Controller.ControllerGastoComun.listaAñosProp(propietario);
+            dplGastos.DataSource = listaAños;
+            dplGastos.DataBind();
+            dplGastos.Items.Insert(0, "Seleccione un Año");
+            dplGastos.SelectedIndex = 0;
         }
 
         public void cargarControl(long propietario)
@@ -379,9 +386,20 @@ namespace EasyLife.Vista
         {
             try
             {
+                listaSearchGasto = new List<Adapter.AdapterBoletaGasto>();
+                string año = dplGastos.SelectedValue;
+                foreach (Adapter.AdapterBoletaGasto item in listagastos)
+                {
+                    if (item._AÑO.Equals(año))
+                    {
+                        listaSearchGasto.Add(item);
+                    }
+                }
             }
             catch (Exception ex)
             {
+                grGastos.DataSource = listagastos;
+                grGastos.DataBind();
                 System.Diagnostics.Debug.WriteLine("Error:  " + ex);
             }
         }
@@ -487,6 +505,10 @@ namespace EasyLife.Vista
 
         protected void grLuces_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gvr = grLuces.SelectedRow;
+            long control = (long)grLuces.DataKeys[gvr.RowIndex].Value;
+            Session["ModificarControlIluminacionDep"] = control.ToString();
+            Response.Redirect("ProgramarLuzDepartamento.aspx");
         }
 
         protected void grLuces_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -12,7 +12,7 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            LOGIN adm = (LOGIN)Session["adm"];
+            /*LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
@@ -29,6 +29,9 @@ namespace EasyLife.Vista
             if (!IsPostBack)
             {
                 cargarEdificio(conserje.ID_PERSONA);
+                DateTime fecha = DateTime.Now;
+                txtHoraEntrada.Text = fecha.ToString().Substring(11, 5);
+                txtHoraEntrada.Enabled = false;
 
                 string registroSalida = (string)Session["ModificarEstacionamiento"];
                 if (registroSalida != null)
@@ -37,22 +40,26 @@ namespace EasyLife.Vista
                     idEstacionamiento = registroSalida;
                     cargarParametros(registroSalida);
                 }
-            }
+            }*/
 
-            /*if (!IsPostBack)
+            if (!IsPostBack)
             {
                 long conserje = 2;
                 cargarEdificio(conserje);
 
+                DateTime fecha = DateTime.Now;
+                txtHoraEntrada.Text = fecha.ToString().Substring(11, 5);
+                txtHoraEntrada.Enabled = false;
+
                 string registroSalida = (string)Session["SalidaEst"];
-                registroSalida = "8";
+                //registroSalida = "8";
                 if (registroSalida != null)
                 {
                     txtHoraSalida.Enabled = true;
                     idEstacionamiento = registroSalida;
                     cargarParametros(registroSalida);
                 }
-            }*/
+            }
         }
 
         private static string idEstacionamiento = "";

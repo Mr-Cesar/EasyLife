@@ -150,10 +150,10 @@
                                     <asp:BoundField DataField="_FK_RUT" HeaderText="Rut" SortExpression="_FK_RUT" />
                                     <asp:BoundField DataField="_NOMBRE_EDIFICIO" HeaderText="Edificio" SortExpression="_NOMBRE_EDIFICIO" />
                                     <asp:BoundField DataField="_NUMERO_DEP" HeaderText="Departamento" SortExpression="_NUMERO_DEP" />
-                                    <asp:BoundField DataField="_MULTA" HeaderText="Multa" SortExpression="_MULTA" />
-                                    <asp:BoundField DataField="_TOTAL_GASTO" HeaderText="Total gastos" SortExpression="_TOTAL_GASTO" />
                                     <asp:BoundField DataField="_MES" HeaderText="Mes" SortExpression="_MES" />
                                     <asp:BoundField DataField="_AÑO" HeaderText="Año" SortExpression="_AÑO" />
+                                    <asp:BoundField DataField="_MULTA" HeaderText="Multa" SortExpression="_MULTA" />
+                                    <asp:BoundField DataField="_TOTAL_GASTO" HeaderText="Total gastos" SortExpression="_TOTAL_GASTO" />
                                     <asp:BoundField DataField="_COSTO_BOLETA" HeaderText="Total Boleta" SortExpression="_COSTO_BOLETA" />
                                     <asp:CommandField ShowSelectButton="true" HeaderText="Ver Detalle" />
                                 </Columns>
