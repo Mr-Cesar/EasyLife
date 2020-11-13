@@ -12,18 +12,18 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            /*LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (vendedor != null || propietario != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
 
             if (!IsPostBack)
@@ -40,8 +40,8 @@ namespace EasyLife.Vista
                     idEstacionamiento = registroSalida;
                     cargarParametros(registroSalida);
                 }
-            }*/
-
+            }
+            /*
             if (!IsPostBack)
             {
                 long conserje = 2;
@@ -59,7 +59,7 @@ namespace EasyLife.Vista
                     idEstacionamiento = registroSalida;
                     cargarParametros(registroSalida);
                 }
-            }
+            }*/
         }
 
         private static string idEstacionamiento = "";

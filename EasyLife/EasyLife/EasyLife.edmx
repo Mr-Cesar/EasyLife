@@ -2060,6 +2060,89 @@
             <Parameter Name="departamento" Mode="In" Type="Int64" />
             <Parameter Name="dimension" Mode="In" Type="Double" />
           </FunctionImport>
+          <FunctionImport Name="AsignarBoletaEst1">
+            <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+            <Parameter Name="boleta" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstadoEst1">
+            <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstCDep1">
+            <Parameter Name="control" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstCEdi1">
+            <Parameter Name="control" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstLuzDep1">
+            <Parameter Name="luz" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstLuzEdi1">
+            <Parameter Name="luz" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambioEstHorario1">
+            <Parameter Name="horario" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambioEstPersona1">
+            <Parameter Name="persona" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CambioRol1">
+            <Parameter Name="persona" Mode="In" Type="Int64" />
+            <Parameter Name="rol" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="deleteCondominio1">
+          <Parameter Name="condominio" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="deleteGasto1">
+          <Parameter Name="gasto" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="depOcupados1" ReturnType="Collection(EasyLifeModel.depOcupados1_Result)" />
+          <FunctionImport Name="turnosConserje1" ReturnType="Collection(EasyLifeModel.turnosConserje1_Result)" />
+          <FunctionImport Name="updateCondominioAdm1">
+            <Parameter Name="condominio" Mode="In" Type="Int64" />
+            <Parameter Name="persona" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="updateDepPropietario1">
+            <Parameter Name="dep" Mode="In" Type="Int64" />
+            <Parameter Name="persona" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="updateDepPropietarioNull1">
+          <Parameter Name="dep" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="updateEdificioGasto1">
+            <Parameter Name="edificio" Mode="In" Type="Int64" />
+            <Parameter Name="gasto" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="updateEstadoLuzDep1">
+            <Parameter Name="luz" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="updateEstadoLuzEdificio1">
+            <Parameter Name="luz" Mode="In" Type="Int64" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePersonaAdm1">
+            <Parameter Name="rol" Mode="In" Type="Int64" />
+            <Parameter Name="persona" Mode="In" Type="Int64" />
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ape" Mode="In" Type="String" />
+            <Parameter Name="rut" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="sexo" Mode="In" Type="String" />
+            <Parameter Name="condominio" Mode="In" Type="Int64" />
+            <Parameter Name="condominio2" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTotalEst1">
+            <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+            <Parameter Name="total" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="BODEGA" EntityType="EasyLifeModel.BODEGA" />
           <EntitySet Name="BOLETA" EntityType="EasyLifeModel.BOLETA" />
           <EntitySet Name="BOLETA_GASTO" EntityType="EasyLifeModel.BOLETA_GASTO" />
@@ -2259,6 +2342,14 @@
           <Property Type="String" Name="DESCRIPCION_TURNO" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="FECHA_INICIO" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="FECHA_TERMINO" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="depOcupados1_Result">
+          <Property Type="Int32" Name="Dep_Ocupados" Nullable="true" />
+          <Property Type="String" Name="NOMBRE_CONDOMINIO" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="turnosConserje1_Result">
+          <Property Type="Int64" Name="ID_TURNO" Nullable="false" />
+          <Property Type="Int64" Name="ID_CONSERJE" Nullable="false" />
         </ComplexType>
         <EntityType Name="BODEGA">
           <Key>
@@ -3134,7 +3225,6 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EasyLifeModelStoreContainer" CdmEntityContainer="EasyLifeEntities">
           <FunctionImportMapping FunctionImportName="asignarAdministradorCondominio" FunctionName="EasyLifeModel.Store.asignarAdministradorCondominio" />
-          <FunctionImportMapping FunctionImportName="AsignarBoletaEst" FunctionName="EasyLifeModel.Store.AsignarBoletaEst" />
           <FunctionImportMapping FunctionImportName="AsignarBoletaGasto" FunctionName="EasyLifeModel.Store.AsignarBoletaGasto" />
           <FunctionImportMapping FunctionImportName="AsignarBoletaReserva" FunctionName="EasyLifeModel.Store.AsignarBoletaReserva" />
           <FunctionImportMapping FunctionImportName="asignarConserjeCondominio" FunctionName="EasyLifeModel.Store.asignarConserjeCondominio" />
@@ -3150,31 +3240,13 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CambiarEstadoEst" FunctionName="EasyLifeModel.Store.CambiarEstadoEst" />
-          <FunctionImportMapping FunctionImportName="CambiarEstCDep" FunctionName="EasyLifeModel.Store.CambiarEstCDep" />
-          <FunctionImportMapping FunctionImportName="CambiarEstCEdi" FunctionName="EasyLifeModel.Store.CambiarEstCEdi" />
-          <FunctionImportMapping FunctionImportName="CambiarEstLuzDep" FunctionName="EasyLifeModel.Store.CambiarEstLuzDep" />
-          <FunctionImportMapping FunctionImportName="CambiarEstLuzEdi" FunctionName="EasyLifeModel.Store.CambiarEstLuzEdi" />
           <FunctionImportMapping FunctionImportName="cambioEstadoPersona" FunctionName="EasyLifeModel.Store.cambioEstadoPersona" />
-          <FunctionImportMapping FunctionImportName="CambioEstHorario" FunctionName="EasyLifeModel.Store.CambioEstHorario" />
           <FunctionImportMapping FunctionImportName="CambioEstMensaje" FunctionName="EasyLifeModel.Store.CambioEstMensaje" />
-          <FunctionImportMapping FunctionImportName="CambioEstPersona" FunctionName="EasyLifeModel.Store.CambioEstPersona" />
-          <FunctionImportMapping FunctionImportName="CambioRol" FunctionName="EasyLifeModel.Store.CambioRol" />
-          <FunctionImportMapping FunctionImportName="deleteCondominio" FunctionName="EasyLifeModel.Store.deleteCondominio" />
-          <FunctionImportMapping FunctionImportName="deleteGasto" FunctionName="EasyLifeModel.Store.deleteGasto" />
           <FunctionImportMapping FunctionImportName="deleteMulta" FunctionName="EasyLifeModel.Store.deleteMulta" />
           <FunctionImportMapping FunctionImportName="deletePersona" FunctionName="EasyLifeModel.Store.deletePersona" />
           <FunctionImportMapping FunctionImportName="deleteTurno" FunctionName="EasyLifeModel.Store.deleteTurno" />
           <FunctionImportMapping FunctionImportName="denegarAdministradorCondominio" FunctionName="EasyLifeModel.Store.denegarAdministradorCondominio" />
           <FunctionImportMapping FunctionImportName="denegarConserjeCondominio" FunctionName="EasyLifeModel.Store.denegarConserjeCondominio" />
-          <FunctionImportMapping FunctionImportName="depOcupados" FunctionName="EasyLifeModel.Store.depOcupados">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EasyLifeModel.depOcupados_Result">
-                <ScalarProperty Name="Dep_Ocupados" ColumnName="Dep Ocupados" />
-                <ScalarProperty Name="NOMBRE_CONDOMINIO" ColumnName="NOMBRE_CONDOMINIO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="insertBoletaEst" FunctionName="EasyLifeModel.Store.insertBoletaEst" />
           <FunctionImportMapping FunctionImportName="insertBoletaGasto" FunctionName="EasyLifeModel.Store.insertBoletaGasto" />
           <FunctionImportMapping FunctionImportName="insertBoletaReserva" FunctionName="EasyLifeModel.Store.insertBoletaReserva" />
@@ -3196,30 +3268,16 @@
           <FunctionImportMapping FunctionImportName="insertReservaConserje" FunctionName="EasyLifeModel.Store.insertReservaConserje" />
           <FunctionImportMapping FunctionImportName="insertTurno" FunctionName="EasyLifeModel.Store.insertTurno" />
           <FunctionImportMapping FunctionImportName="insertTurno_Conserje" FunctionName="EasyLifeModel.Store.insertTurno_Conserje" />
-          <FunctionImportMapping FunctionImportName="turnosConserje" FunctionName="EasyLifeModel.Store.turnosConserje">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EasyLifeModel.turnosConserje_Result">
-                <ScalarProperty Name="ID_TURNO" ColumnName="ID_TURNO" />
-                <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="updateBoletaReserva" FunctionName="EasyLifeModel.Store.updateBoletaReserva" />
           <FunctionImportMapping FunctionImportName="UpdateCentro" FunctionName="EasyLifeModel.Store.UpdateCentro" />
           <FunctionImportMapping FunctionImportName="updateCondominio" FunctionName="EasyLifeModel.Store.updateCondominio" />
-          <FunctionImportMapping FunctionImportName="updateCondominioAdm" FunctionName="EasyLifeModel.Store.updateCondominioAdm" />
           <FunctionImportMapping FunctionImportName="updateConserje" FunctionName="EasyLifeModel.Store.updateConserje" />
           <FunctionImportMapping FunctionImportName="updateControlDep" FunctionName="EasyLifeModel.Store.updateControlDep" />
           <FunctionImportMapping FunctionImportName="updateControlEdificio" FunctionName="EasyLifeModel.Store.updateControlEdificio" />
           <FunctionImportMapping FunctionImportName="updateDepartamento" FunctionName="EasyLifeModel.Store.updateDepartamento" />
           <FunctionImportMapping FunctionImportName="UpdateDepartamentoPersona" FunctionName="EasyLifeModel.Store.UpdateDepartamentoPersona" />
-          <FunctionImportMapping FunctionImportName="updateDepPropietario" FunctionName="EasyLifeModel.Store.updateDepPropietario" />
-          <FunctionImportMapping FunctionImportName="updateDepPropietarioNull" FunctionName="EasyLifeModel.Store.updateDepPropietarioNull" />
           <FunctionImportMapping FunctionImportName="updateDireccion" FunctionName="EasyLifeModel.Store.updateDireccion" />
           <FunctionImportMapping FunctionImportName="updateEdificio" FunctionName="EasyLifeModel.Store.updateEdificio" />
-          <FunctionImportMapping FunctionImportName="updateEdificioGasto" FunctionName="EasyLifeModel.Store.updateEdificioGasto" />
-          <FunctionImportMapping FunctionImportName="updateEstadoLuzDep" FunctionName="EasyLifeModel.Store.updateEstadoLuzDep" />
-          <FunctionImportMapping FunctionImportName="updateEstadoLuzEdificio" FunctionName="EasyLifeModel.Store.updateEstadoLuzEdificio" />
           <FunctionImportMapping FunctionImportName="updateEstadoMulta" FunctionName="EasyLifeModel.Store.updateEstadoMulta" />
           <FunctionImportMapping FunctionImportName="updateEstSalida" FunctionName="EasyLifeModel.Store.updateEstSalida" />
           <FunctionImportMapping FunctionImportName="updateGasto" FunctionName="EasyLifeModel.Store.updateGasto" />
@@ -3229,11 +3287,9 @@
           <FunctionImportMapping FunctionImportName="updateMulta" FunctionName="EasyLifeModel.Store.updateMulta" />
           <FunctionImportMapping FunctionImportName="UpdatePassword" FunctionName="EasyLifeModel.Store.UpdatePassword" />
           <FunctionImportMapping FunctionImportName="UpdatePersona" FunctionName="EasyLifeModel.Store.UpdatePersona" />
-          <FunctionImportMapping FunctionImportName="UpdatePersonaAdm" FunctionName="EasyLifeModel.Store.UpdatePersonaAdm" />
           <FunctionImportMapping FunctionImportName="UpdatePersonal" FunctionName="EasyLifeModel.Store.UpdatePersonal" />
           <FunctionImportMapping FunctionImportName="updatePropietarioFull" FunctionName="EasyLifeModel.Store.updatePropietarioFull" />
           <FunctionImportMapping FunctionImportName="updateReserva" FunctionName="EasyLifeModel.Store.updateReserva" />
-          <FunctionImportMapping FunctionImportName="UpdateTotalEst" FunctionName="EasyLifeModel.Store.UpdateTotalEst" />
           <FunctionImportMapping FunctionImportName="deleteCentro" FunctionName="EasyLifeModel.Store.deleteCentro" />
           <FunctionImportMapping FunctionImportName="deleteConserje" FunctionName="EasyLifeModel.Store.deleteConserje" />
           <FunctionImportMapping FunctionImportName="updateEstacionamiento" FunctionName="EasyLifeModel.Store.updateEstacionamiento" />
@@ -3265,6 +3321,41 @@
           <FunctionImportMapping FunctionImportName="updateEstacionamientoVisita" FunctionName="EasyLifeModel.Store.updateEstacionamientoVisita" />
           <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
           <FunctionImportMapping FunctionImportName="asignarDimensionDep" FunctionName="EasyLifeModel.Store.asignarDimensionDep" />
+          <FunctionImportMapping FunctionImportName="AsignarBoletaEst1" FunctionName="EasyLifeModel.Store.AsignarBoletaEst" />
+          <FunctionImportMapping FunctionImportName="CambiarEstadoEst1" FunctionName="EasyLifeModel.Store.CambiarEstadoEst" />
+          <FunctionImportMapping FunctionImportName="CambiarEstCDep1" FunctionName="EasyLifeModel.Store.CambiarEstCDep" />
+          <FunctionImportMapping FunctionImportName="CambiarEstCEdi1" FunctionName="EasyLifeModel.Store.CambiarEstCEdi" />
+          <FunctionImportMapping FunctionImportName="CambiarEstLuzDep1" FunctionName="EasyLifeModel.Store.CambiarEstLuzDep" />
+          <FunctionImportMapping FunctionImportName="CambiarEstLuzEdi1" FunctionName="EasyLifeModel.Store.CambiarEstLuzEdi" />
+          <FunctionImportMapping FunctionImportName="CambioEstHorario1" FunctionName="EasyLifeModel.Store.CambioEstHorario" />
+          <FunctionImportMapping FunctionImportName="CambioEstPersona1" FunctionName="EasyLifeModel.Store.CambioEstPersona" />
+          <FunctionImportMapping FunctionImportName="CambioRol1" FunctionName="EasyLifeModel.Store.CambioRol" />
+          <FunctionImportMapping FunctionImportName="deleteCondominio1" FunctionName="EasyLifeModel.Store.deleteCondominio" />
+          <FunctionImportMapping FunctionImportName="deleteGasto1" FunctionName="EasyLifeModel.Store.deleteGasto" />
+          <FunctionImportMapping FunctionImportName="depOcupados1" FunctionName="EasyLifeModel.Store.depOcupados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EasyLifeModel.depOcupados1_Result">
+                <ScalarProperty Name="Dep_Ocupados" ColumnName="Dep Ocupados" />
+                <ScalarProperty Name="NOMBRE_CONDOMINIO" ColumnName="NOMBRE_CONDOMINIO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="turnosConserje1" FunctionName="EasyLifeModel.Store.turnosConserje">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EasyLifeModel.turnosConserje1_Result">
+                <ScalarProperty Name="ID_TURNO" ColumnName="ID_TURNO" />
+                <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="updateCondominioAdm1" FunctionName="EasyLifeModel.Store.updateCondominioAdm" />
+          <FunctionImportMapping FunctionImportName="updateDepPropietario1" FunctionName="EasyLifeModel.Store.updateDepPropietario" />
+          <FunctionImportMapping FunctionImportName="updateDepPropietarioNull1" FunctionName="EasyLifeModel.Store.updateDepPropietarioNull" />
+          <FunctionImportMapping FunctionImportName="updateEdificioGasto1" FunctionName="EasyLifeModel.Store.updateEdificioGasto" />
+          <FunctionImportMapping FunctionImportName="updateEstadoLuzDep1" FunctionName="EasyLifeModel.Store.updateEstadoLuzDep" />
+          <FunctionImportMapping FunctionImportName="updateEstadoLuzEdificio1" FunctionName="EasyLifeModel.Store.updateEstadoLuzEdificio" />
+          <FunctionImportMapping FunctionImportName="UpdatePersonaAdm1" FunctionName="EasyLifeModel.Store.UpdatePersonaAdm" />
+          <FunctionImportMapping FunctionImportName="UpdateTotalEst1" FunctionName="EasyLifeModel.Store.UpdateTotalEst" />
           <EntitySetMapping Name="BODEGA">
             <EntityTypeMapping TypeName="EasyLifeModel.BODEGA">
               <MappingFragment StoreEntitySet="BODEGA">

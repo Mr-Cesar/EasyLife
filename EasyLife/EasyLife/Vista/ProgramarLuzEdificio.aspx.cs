@@ -19,11 +19,11 @@ namespace EasyLife.Vista
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (vendedor != null || propietario != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
 
             //Recuperar Session de Modificar Control
@@ -49,9 +49,15 @@ namespace EasyLife.Vista
                     cargarControl(modificar);
                 }
             }
+            /*
+            if (!IsPostBack)
+            {
+                cargarCondominio();
+            }*/
         }
 
         private static CONTROL_ILUMINACION_EDIFICIO controlEdificio = new CONTROL_ILUMINACION_EDIFICIO();
+        private static CONDOMINIO condominio = new CONDOMINIO();
 
         public void cargarCondominio()
         {
@@ -62,6 +68,7 @@ namespace EasyLife.Vista
             dplCondominio.DataBind();
             dplCondominio.Items.Insert(0, "Seleccione un Condominio");
             dplCondominio.SelectedIndex = 0;
+            condominio = null;
         }
 
         public void cargarCondominioAdministrador(long administrador)
@@ -73,6 +80,7 @@ namespace EasyLife.Vista
             dplCondominio.DataBind();
             dplCondominio.Items.Insert(0, "Seleccione un Condominio");
             dplCondominio.SelectedIndex = 0;
+            condominio = null;
         }
 
         public void cargarEdificioConserje(long persona)
@@ -85,6 +93,7 @@ namespace EasyLife.Vista
             dplEdificio.DataBind();
             dplEdificio.Items.Insert(0, "Seleccione un Edificio");
             dplEdificio.SelectedIndex = 0;
+            condominio = Controller.ControllerCondominio.buscarIdCondominio(Convert.ToInt64(conserje.ID_CONDOMINIO));
         }
 
         public void cargarControl(string control)
@@ -204,6 +213,32 @@ namespace EasyLife.Vista
 
         protected void btnProgramarLuz_Click(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(5000);
+            DateTime dia = Convert.ToDateTime(txtDia.Text);
+            string horaI = txtHoraInicio.Text;
+            string horaT = txtHoraTermino.Text;
+            int operacion = rbOpcion.SelectedIndex;
+            Boolean opcion = new Boolean();
+            LUZ_EDIFICIO luz = Controller.ControllerLuzEdificio.buscarIdLuzEdificio(Convert.ToInt64(dplLuz.SelectedValue));
+            if (operacion == 0)
+            {
+                opcion = true;
+            }
+            else
+            {
+                opcion = false;
+            }
+            string horaInicio = dia.ToString("dd/MM/yyy") + " " + horaI;
+            string horaTermino = dia.ToString("dd/MM/yyy") + " " + horaT;
+            string result = Controller.ControllerControlIluminacionEdificio.crearControlEdificio(luz.ID_LUZ_E, horaInicio, horaTermino, opcion);
+            if (result.Equals("Control Creado"))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Control Creado');window.location.href='" + Request.RawUrl + "';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Error al Crear Control');window.location.href='" + Request.RawUrl + "';", true);
+            }
         }
 
         protected void btnModificarPrograma_Click(object sender, EventArgs e)

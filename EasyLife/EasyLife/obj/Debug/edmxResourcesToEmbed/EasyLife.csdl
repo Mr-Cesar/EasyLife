@@ -525,6 +525,89 @@
       <Parameter Name="departamento" Mode="In" Type="Int64" />
       <Parameter Name="dimension" Mode="In" Type="Double" />
     </FunctionImport>
+    <FunctionImport Name="AsignarBoletaEst1">
+      <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+      <Parameter Name="boleta" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstadoEst1">
+      <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstCDep1">
+      <Parameter Name="control" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstCEdi1">
+      <Parameter Name="control" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstLuzDep1">
+      <Parameter Name="luz" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstLuzEdi1">
+      <Parameter Name="luz" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambioEstHorario1">
+      <Parameter Name="horario" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambioEstPersona1">
+      <Parameter Name="persona" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="CambioRol1">
+      <Parameter Name="persona" Mode="In" Type="Int64" />
+      <Parameter Name="rol" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="deleteCondominio1">
+      <Parameter Name="condominio" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="deleteGasto1">
+      <Parameter Name="gasto" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="depOcupados1" ReturnType="Collection(EasyLifeModel.depOcupados1_Result)" />
+    <FunctionImport Name="turnosConserje1" ReturnType="Collection(EasyLifeModel.turnosConserje1_Result)" />
+    <FunctionImport Name="updateCondominioAdm1">
+      <Parameter Name="condominio" Mode="In" Type="Int64" />
+      <Parameter Name="persona" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="updateDepPropietario1">
+      <Parameter Name="dep" Mode="In" Type="Int64" />
+      <Parameter Name="persona" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="updateDepPropietarioNull1">
+      <Parameter Name="dep" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="updateEdificioGasto1">
+      <Parameter Name="edificio" Mode="In" Type="Int64" />
+      <Parameter Name="gasto" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="updateEstadoLuzDep1">
+      <Parameter Name="luz" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="updateEstadoLuzEdificio1">
+      <Parameter Name="luz" Mode="In" Type="Int64" />
+      <Parameter Name="estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UpdatePersonaAdm1">
+      <Parameter Name="rol" Mode="In" Type="Int64" />
+      <Parameter Name="persona" Mode="In" Type="Int64" />
+      <Parameter Name="nom" Mode="In" Type="String" />
+      <Parameter Name="ape" Mode="In" Type="String" />
+      <Parameter Name="rut" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="sexo" Mode="In" Type="String" />
+      <Parameter Name="condominio" Mode="In" Type="Int64" />
+      <Parameter Name="condominio2" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTotalEst1">
+      <Parameter Name="estacionamiento" Mode="In" Type="Int64" />
+      <Parameter Name="total" Mode="In" Type="Int32" />
+    </FunctionImport>
     <EntitySet Name="BODEGA" EntityType="EasyLifeModel.BODEGA" />
     <EntitySet Name="BOLETA" EntityType="EasyLifeModel.BOLETA" />
     <EntitySet Name="BOLETA_GASTO" EntityType="EasyLifeModel.BOLETA_GASTO" />
@@ -724,6 +807,14 @@
     <Property Type="String" Name="DESCRIPCION_TURNO" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="FECHA_INICIO" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="FECHA_TERMINO" Nullable="false" MaxLength="25" />
+  </ComplexType>
+  <ComplexType Name="depOcupados1_Result">
+    <Property Type="Int32" Name="Dep_Ocupados" Nullable="true" />
+    <Property Type="String" Name="NOMBRE_CONDOMINIO" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="turnosConserje1_Result">
+    <Property Type="Int64" Name="ID_TURNO" Nullable="false" />
+    <Property Type="Int64" Name="ID_CONSERJE" Nullable="false" />
   </ComplexType>
   <EntityType Name="BODEGA">
     <Key>

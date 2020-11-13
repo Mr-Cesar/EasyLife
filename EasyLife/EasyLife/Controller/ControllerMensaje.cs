@@ -60,5 +60,57 @@ namespace EasyLife.Controller
                 }
             }
         }
+
+        public static List<Adapter.AdapterMensaje> listaMensajeProp(string rut)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.MENSAJE
+                            from t in dbc.TIPO_MENSAJE
+                            where u.ID_TIPO_MENSAJE == t.ID_TIPO_MENSAJE && u.DESTINATARIO_MENSAJE == rut
+                            select new Adapter.AdapterMensaje()
+                            {
+                                _ID_MENSAJE = u.ID_MENSAJE,
+                                _DESCRIPCION_MENSAJE = u.DESCRIPCION_MENSAJE,
+                                _EMISOR_MENSAJE = u.EMISOR_MENSAJE,
+                                _DESTINATARIO_MENSAJE = u.DESTINATARIO_MENSAJE,
+                                _DESCRIPCION_TP = t.DESCRIPCION_TP
+                            };
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static List<Adapter.AdapterMensaje> listaMensajeAdm(string rut)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.MENSAJE
+                            from t in dbc.TIPO_MENSAJE
+                            where u.ID_TIPO_MENSAJE == t.ID_TIPO_MENSAJE && u.EMISOR_MENSAJE == rut
+                            select new Adapter.AdapterMensaje()
+                            {
+                                _ID_MENSAJE = u.ID_MENSAJE,
+                                _DESCRIPCION_MENSAJE = u.DESCRIPCION_MENSAJE,
+                                _EMISOR_MENSAJE = u.EMISOR_MENSAJE,
+                                _DESTINATARIO_MENSAJE = u.DESTINATARIO_MENSAJE,
+                                _DESCRIPCION_TP = t.DESCRIPCION_TP
+                            };
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

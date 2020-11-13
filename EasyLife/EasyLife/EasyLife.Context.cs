@@ -1848,5 +1848,282 @@ namespace EasyLife
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("asignarDimensionDep", departamentoParameter, dimensionParameter);
         }
+    
+        public virtual int AsignarBoletaEst1(Nullable<long> estacionamiento, Nullable<long> boleta)
+        {
+            var estacionamientoParameter = estacionamiento.HasValue ?
+                new ObjectParameter("estacionamiento", estacionamiento) :
+                new ObjectParameter("estacionamiento", typeof(long));
+    
+            var boletaParameter = boleta.HasValue ?
+                new ObjectParameter("boleta", boleta) :
+                new ObjectParameter("boleta", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AsignarBoletaEst1", estacionamientoParameter, boletaParameter);
+        }
+    
+        public virtual int CambiarEstadoEst1(Nullable<long> estacionamiento, Nullable<bool> estado)
+        {
+            var estacionamientoParameter = estacionamiento.HasValue ?
+                new ObjectParameter("estacionamiento", estacionamiento) :
+                new ObjectParameter("estacionamiento", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoEst1", estacionamientoParameter, estadoParameter);
+        }
+    
+        public virtual int CambiarEstCDep1(Nullable<long> control, Nullable<bool> estado)
+        {
+            var controlParameter = control.HasValue ?
+                new ObjectParameter("control", control) :
+                new ObjectParameter("control", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstCDep1", controlParameter, estadoParameter);
+        }
+    
+        public virtual int CambiarEstCEdi1(Nullable<long> control, Nullable<bool> estado)
+        {
+            var controlParameter = control.HasValue ?
+                new ObjectParameter("control", control) :
+                new ObjectParameter("control", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstCEdi1", controlParameter, estadoParameter);
+        }
+    
+        public virtual int CambiarEstLuzDep1(Nullable<long> luz, Nullable<bool> estado)
+        {
+            var luzParameter = luz.HasValue ?
+                new ObjectParameter("luz", luz) :
+                new ObjectParameter("luz", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstLuzDep1", luzParameter, estadoParameter);
+        }
+    
+        public virtual int CambiarEstLuzEdi1(Nullable<long> luz, Nullable<bool> estado)
+        {
+            var luzParameter = luz.HasValue ?
+                new ObjectParameter("luz", luz) :
+                new ObjectParameter("luz", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstLuzEdi1", luzParameter, estadoParameter);
+        }
+    
+        public virtual int CambioEstHorario1(Nullable<long> horario, Nullable<bool> estado)
+        {
+            var horarioParameter = horario.HasValue ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambioEstHorario1", horarioParameter, estadoParameter);
+        }
+    
+        public virtual int CambioEstPersona1(Nullable<long> persona, Nullable<bool> estado)
+        {
+            var personaParameter = persona.HasValue ?
+                new ObjectParameter("persona", persona) :
+                new ObjectParameter("persona", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambioEstPersona1", personaParameter, estadoParameter);
+        }
+    
+        public virtual int CambioRol1(Nullable<long> persona, Nullable<long> rol)
+        {
+            var personaParameter = persona.HasValue ?
+                new ObjectParameter("persona", persona) :
+                new ObjectParameter("persona", typeof(long));
+    
+            var rolParameter = rol.HasValue ?
+                new ObjectParameter("rol", rol) :
+                new ObjectParameter("rol", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambioRol1", personaParameter, rolParameter);
+        }
+    
+        public virtual int deleteCondominio1(Nullable<long> condominio)
+        {
+            var condominioParameter = condominio.HasValue ?
+                new ObjectParameter("condominio", condominio) :
+                new ObjectParameter("condominio", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCondominio1", condominioParameter);
+        }
+    
+        public virtual int deleteGasto1(Nullable<long> gasto)
+        {
+            var gastoParameter = gasto.HasValue ?
+                new ObjectParameter("gasto", gasto) :
+                new ObjectParameter("gasto", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteGasto1", gastoParameter);
+        }
+    
+        public virtual ObjectResult<depOcupados1_Result> depOcupados1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<depOcupados1_Result>("depOcupados1");
+        }
+    
+        public virtual ObjectResult<turnosConserje1_Result> turnosConserje1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<turnosConserje1_Result>("turnosConserje1");
+        }
+    
+        public virtual int updateCondominioAdm1(Nullable<long> condominio, Nullable<long> persona)
+        {
+            var condominioParameter = condominio.HasValue ?
+                new ObjectParameter("condominio", condominio) :
+                new ObjectParameter("condominio", typeof(long));
+    
+            var personaParameter = persona.HasValue ?
+                new ObjectParameter("persona", persona) :
+                new ObjectParameter("persona", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateCondominioAdm1", condominioParameter, personaParameter);
+        }
+    
+        public virtual int updateDepPropietario1(Nullable<long> dep, Nullable<long> persona)
+        {
+            var depParameter = dep.HasValue ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(long));
+    
+            var personaParameter = persona.HasValue ?
+                new ObjectParameter("persona", persona) :
+                new ObjectParameter("persona", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateDepPropietario1", depParameter, personaParameter);
+        }
+    
+        public virtual int updateDepPropietarioNull1(Nullable<long> dep)
+        {
+            var depParameter = dep.HasValue ?
+                new ObjectParameter("dep", dep) :
+                new ObjectParameter("dep", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateDepPropietarioNull1", depParameter);
+        }
+    
+        public virtual int updateEdificioGasto1(Nullable<long> edificio, Nullable<long> gasto)
+        {
+            var edificioParameter = edificio.HasValue ?
+                new ObjectParameter("edificio", edificio) :
+                new ObjectParameter("edificio", typeof(long));
+    
+            var gastoParameter = gasto.HasValue ?
+                new ObjectParameter("gasto", gasto) :
+                new ObjectParameter("gasto", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEdificioGasto1", edificioParameter, gastoParameter);
+        }
+    
+        public virtual int updateEstadoLuzDep1(Nullable<long> luz, Nullable<bool> estado)
+        {
+            var luzParameter = luz.HasValue ?
+                new ObjectParameter("luz", luz) :
+                new ObjectParameter("luz", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEstadoLuzDep1", luzParameter, estadoParameter);
+        }
+    
+        public virtual int updateEstadoLuzEdificio1(Nullable<long> luz, Nullable<bool> estado)
+        {
+            var luzParameter = luz.HasValue ?
+                new ObjectParameter("luz", luz) :
+                new ObjectParameter("luz", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateEstadoLuzEdificio1", luzParameter, estadoParameter);
+        }
+    
+        public virtual int UpdatePersonaAdm1(Nullable<long> rol, Nullable<long> persona, string nom, string ape, string rut, string telefono, string correo, string sexo, Nullable<long> condominio, Nullable<long> condominio2)
+        {
+            var rolParameter = rol.HasValue ?
+                new ObjectParameter("rol", rol) :
+                new ObjectParameter("rol", typeof(long));
+    
+            var personaParameter = persona.HasValue ?
+                new ObjectParameter("persona", persona) :
+                new ObjectParameter("persona", typeof(long));
+    
+            var nomParameter = nom != null ?
+                new ObjectParameter("nom", nom) :
+                new ObjectParameter("nom", typeof(string));
+    
+            var apeParameter = ape != null ?
+                new ObjectParameter("ape", ape) :
+                new ObjectParameter("ape", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("rut", rut) :
+                new ObjectParameter("rut", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("telefono", telefono) :
+                new ObjectParameter("telefono", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("correo", correo) :
+                new ObjectParameter("correo", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("sexo", sexo) :
+                new ObjectParameter("sexo", typeof(string));
+    
+            var condominioParameter = condominio.HasValue ?
+                new ObjectParameter("condominio", condominio) :
+                new ObjectParameter("condominio", typeof(long));
+    
+            var condominio2Parameter = condominio2.HasValue ?
+                new ObjectParameter("condominio2", condominio2) :
+                new ObjectParameter("condominio2", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdatePersonaAdm1", rolParameter, personaParameter, nomParameter, apeParameter, rutParameter, telefonoParameter, correoParameter, sexoParameter, condominioParameter, condominio2Parameter);
+        }
+    
+        public virtual int UpdateTotalEst1(Nullable<long> estacionamiento, Nullable<int> total)
+        {
+            var estacionamientoParameter = estacionamiento.HasValue ?
+                new ObjectParameter("estacionamiento", estacionamiento) :
+                new ObjectParameter("estacionamiento", typeof(long));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTotalEst1", estacionamientoParameter, totalParameter);
+        }
     }
 }

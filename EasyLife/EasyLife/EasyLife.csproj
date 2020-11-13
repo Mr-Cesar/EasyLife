@@ -163,6 +163,7 @@
     <Compile Include="Adapter\AdapterGastoComun.cs" />
     <Compile Include="Adapter\AdapterLuzDepartamento.cs" />
     <Compile Include="Adapter\AdapterLuzEdificio.cs" />
+    <Compile Include="Adapter\AdapterMensaje.cs" />
     <Compile Include="Adapter\AdapterMulta.cs" />
     <Compile Include="Adapter\AdapterPersonal.cs" />
     <Compile Include="Adapter\AdapterPropietario.cs" />
@@ -230,6 +231,9 @@
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
     <Compile Include="DEPARTAMENTO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="depOcupados1_Result.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
     <Compile Include="depOcupados_Result.cs">
@@ -341,6 +345,9 @@
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
     <Compile Include="TURNO.cs">
+      <DependentUpon>EasyLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="turnosConserje1_Result.cs">
       <DependentUpon>EasyLife.tt</DependentUpon>
     </Compile>
     <Compile Include="turnosConserje_Result.cs">
@@ -637,6 +644,7 @@
     </Content>
     <Content Include="MasterPage\MasterPage.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

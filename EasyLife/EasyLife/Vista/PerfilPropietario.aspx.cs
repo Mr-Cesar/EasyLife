@@ -13,29 +13,30 @@ namespace EasyLife.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             //Validación de Session Iniciada
-            /*LOGIN adm = (LOGIN)Session["adm"];
+            LOGIN adm = (LOGIN)Session["adm"];
             LOGIN conserje = (LOGIN)Session["conserje"];
             LOGIN vendedor = (LOGIN)Session["vendedor"];
             LOGIN propietario = (LOGIN)Session["login"];
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (adm != null || vendedor != null || conserje != null || admCondominio != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
 
             if (!IsPostBack)
             {
                 cargarDatos(propietario.ID_PERSONA);
+                cargarAvisos(propietario.FK_RUT);
                 cargarGastos(propietario.ID_PERSONA);
                 cargarControl(propietario.ID_PERSONA);
                 cargarMulta(propietario.ID_PERSONA);
                 cargarCentro(propietario.ID_PERSONA);
-            }*/
-
+            }
+            /*
             if (!IsPostBack)
             {
                 DateTime fecha = DateTime.Now;
@@ -46,7 +47,7 @@ namespace EasyLife.Vista
                 cargarControl(propietario);
                 cargarMulta(propietario);
                 cargarCentro(propietario);
-            }
+            }*/
         }
 
         private static PERSONA propietario = new PERSONA();
@@ -65,6 +66,9 @@ namespace EasyLife.Vista
         private static List<Adapter.AdapterReserva> listaReserva = new List<Adapter.AdapterReserva>();
         private static List<Adapter.AdapterReserva> listaSearchReserva = new List<Adapter.AdapterReserva>();
         private static Boolean searchReserva = false;
+        private static List<Adapter.AdapterMensaje> listaAviso = new List<Adapter.AdapterMensaje>();
+        private static List<Adapter.AdapterMensaje> listaAvisoSearch = new List<Adapter.AdapterMensaje>();
+        private static Boolean searchAviso = false;
 
         public void cargarDatos(long persona)
         {
@@ -163,6 +167,15 @@ namespace EasyLife.Vista
             grReserva.DataBind();
         }
 
+        public void cargarAvisos(string rut)
+        {
+            listaAviso = new List<Adapter.AdapterMensaje>();
+            listaAviso = Controller.ControllerMensaje.listaMensajeProp(rut);
+            System.Diagnostics.Debug.WriteLine("Aviso: " + listaAviso.Count);
+            grAvisos.DataSource = listaAviso;
+            grAvisos.DataBind();
+        }
+
         protected void btnDatosUsuario_Click(object sender, EventArgs e)
         {
             panelDatos.Visible = true;
@@ -170,7 +183,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = false;
             panelMulta.Visible = false;
             panelReserva.Visible = false;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = false;
 
             btnDatosUsuario.BackColor = Color.LightBlue;
@@ -178,7 +190,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.White;
             btnMultas.BackColor = Color.White;
             btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.White;
             btnAvisos.BackColor = Color.White;
         }
 
@@ -189,7 +200,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = false;
             panelMulta.Visible = false;
             panelReserva.Visible = false;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = false;
 
             btnDatosUsuario.BackColor = Color.White;
@@ -197,7 +207,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.White;
             btnMultas.BackColor = Color.White;
             btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.White;
             btnAvisos.BackColor = Color.White;
         }
 
@@ -208,7 +217,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = true;
             panelMulta.Visible = false;
             panelReserva.Visible = false;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = false;
 
             btnDatosUsuario.BackColor = Color.White;
@@ -216,7 +224,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.LightBlue;
             btnMultas.BackColor = Color.White;
             btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.White;
             btnAvisos.BackColor = Color.White;
         }
 
@@ -227,7 +234,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = false;
             panelMulta.Visible = true;
             panelReserva.Visible = false;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = false;
 
             btnDatosUsuario.BackColor = Color.White;
@@ -235,7 +241,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.White;
             btnMultas.BackColor = Color.LightBlue;
             btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.White;
             btnAvisos.BackColor = Color.White;
         }
 
@@ -246,7 +251,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = false;
             panelMulta.Visible = false;
             panelReserva.Visible = true;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = false;
 
             btnDatosUsuario.BackColor = Color.White;
@@ -254,26 +258,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.White;
             btnMultas.BackColor = Color.White;
             btnReserva.BackColor = Color.LightBlue;
-            btnMensajes.BackColor = Color.White;
-            btnAvisos.BackColor = Color.White;
-        }
-
-        protected void btnMensajes_Click(object sender, EventArgs e)
-        {
-            panelDatos.Visible = false;
-            panelGastos.Visible = false;
-            panelLuces.Visible = false;
-            panelMulta.Visible = false;
-            panelReserva.Visible = false;
-            panelMensajes.Visible = true;
-            panelAvisos.Visible = false;
-
-            btnDatosUsuario.BackColor = Color.White;
-            btnGastos.BackColor = Color.White;
-            btnLuces.BackColor = Color.White;
-            btnMultas.BackColor = Color.White;
-            btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.LightBlue;
             btnAvisos.BackColor = Color.White;
         }
 
@@ -284,7 +268,6 @@ namespace EasyLife.Vista
             panelLuces.Visible = false;
             panelMulta.Visible = false;
             panelReserva.Visible = false;
-            panelMensajes.Visible = false;
             panelAvisos.Visible = true;
 
             btnDatosUsuario.BackColor = Color.White;
@@ -292,7 +275,6 @@ namespace EasyLife.Vista
             btnLuces.BackColor = Color.White;
             btnMultas.BackColor = Color.White;
             btnReserva.BackColor = Color.White;
-            btnMensajes.BackColor = Color.White;
             btnAvisos.BackColor = Color.LightBlue;
         }
 
@@ -341,6 +323,14 @@ namespace EasyLife.Vista
             lbErrorReserva.Visible = false;
             lbErrorSearchReserva.Visible = false;
             dplCentro.SelectedIndex = 0;
+
+            //Variables Aviso
+            lbErrorSearchAviso.Visible = false;
+            searchAviso = false;
+            listaAviso = new List<Adapter.AdapterMensaje>();
+            listaAvisoSearch = new List<Adapter.AdapterMensaje>();
+            grAvisos.DataSource = listaAviso;
+            grAvisos.DataBind();
         }
 
         protected void dplDepartamento_SelectedIndexChanged(object sender, EventArgs e)
@@ -374,12 +364,12 @@ namespace EasyLife.Vista
 
         protected void lnkModificarDatos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ModificarDatos.aspx");
+            Response.Redirect("~/Vista/ModificarDatos.aspx");
         }
 
         protected void lnkModificarPassword_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CambiarPassword.aspx");
+            Response.Redirect("~/Vista/CambiarPassword.aspx");
         }
 
         protected void dplGastos_SelectedIndexChanged(object sender, EventArgs e)
@@ -457,7 +447,7 @@ namespace EasyLife.Vista
 
         protected void btnCrearControl_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProgramarLuzDepartamento.aspx");
+            Response.Redirect("~/Vista/ProgramarLuzDepartamento.aspx");
         }
 
         protected void btnApagar_Click(object sender, EventArgs e)
@@ -508,7 +498,7 @@ namespace EasyLife.Vista
             GridViewRow gvr = grLuces.SelectedRow;
             long control = (long)grLuces.DataKeys[gvr.RowIndex].Value;
             Session["ModificarControlIluminacionDep"] = control.ToString();
-            Response.Redirect("ProgramarLuzDepartamento.aspx");
+            Response.Redirect("~/Vista/ProgramarLuzDepartamento.aspx");
         }
 
         protected void grLuces_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -563,7 +553,7 @@ namespace EasyLife.Vista
 
         protected void btnPagarMulta_Click(object sender, EventArgs e)
         {
-            Response.Redirect(".aspx");
+            Response.Redirect("~/Vista/PagoGastoPropietario.aspx");
         }
 
         protected void grMulta_SelectedIndexChanged(object sender, EventArgs e)
@@ -612,7 +602,7 @@ namespace EasyLife.Vista
 
         protected void btnCrearReserva_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistroReservaPropietario.aspx");
+            Response.Redirect("~/Vista/RegistroReservaPropietario.aspx");
         }
 
         protected void dplCentro_SelectedIndexChanged(object sender, EventArgs e)
@@ -671,6 +661,53 @@ namespace EasyLife.Vista
                 grReserva.PageIndex = e.NewPageIndex;
                 grReserva.DataSource = listaReserva;
                 grReserva.DataBind();
+            }
+        }
+
+        protected void btnSearchAviso_Click(object sender, EventArgs e)
+        {
+            string parametro = txtSearchAviso.Text;
+            lbErrorSearchAviso.Visible = false;
+            listaAvisoSearch = new List<Adapter.AdapterMensaje>();
+            foreach (Adapter.AdapterMensaje item in listaAviso)
+            {
+                if (item._DESCRIPCION_MENSAJE.Contains(parametro) || item._DESCRIPCION_TP.Contains(parametro) ||
+                    item._DESTINATARIO_MENSAJE.Contains(parametro) || item._EMISOR_MENSAJE.Contains(parametro))
+                {
+                    listaAvisoSearch.Add(item);
+                }
+            }
+
+            if (listaAvisoSearch.Count > 0)
+            {
+                searchAviso = true;
+                lbErrorSearchAviso.Visible = false;
+                grAvisos.DataSource = listaAvisoSearch;
+                grAvisos.DataBind();
+            }
+            else
+            {
+                searchAviso = false;
+                lbErrorSearchAviso.Visible = true;
+                listaAvisoSearch = new List<Adapter.AdapterMensaje>();
+                grAvisos.DataSource = listaAvisoSearch;
+                grAvisos.DataBind();
+            }
+        }
+
+        protected void grAvisos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            if (searchAviso == true)
+            {
+                grAvisos.PageIndex = e.NewPageIndex;
+                grAvisos.DataSource = listaAvisoSearch;
+                grAvisos.DataBind();
+            }
+            else
+            {
+                grAvisos.PageIndex = e.NewPageIndex;
+                grAvisos.DataSource = listaAviso;
+                grAvisos.DataBind();
             }
         }
     }

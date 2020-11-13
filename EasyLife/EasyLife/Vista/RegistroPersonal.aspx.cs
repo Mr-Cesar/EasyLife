@@ -19,11 +19,11 @@ namespace EasyLife.Vista
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (conserje != null || vendedor != null || propietario != null || admCondominio != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
 
             if (!IsPostBack)

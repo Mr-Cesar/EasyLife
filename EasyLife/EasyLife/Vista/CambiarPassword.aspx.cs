@@ -19,7 +19,7 @@ namespace EasyLife.Vista
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
         }
 
@@ -70,7 +70,7 @@ namespace EasyLife.Vista
             {
                 Session["CambioPassword"] = null;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Password Cambiada');window.location.href='" + Request.RawUrl + "';", true);
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else
             {

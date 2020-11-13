@@ -80,6 +80,44 @@ namespace EasyLife.Controller
             }
         }
 
+        public static List<PERSONA> admCondominio(long condominio)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.PERSONA
+                            from c in dbc.CONDOMINIO
+                            where c.ID_PERSONA == u.ID_PERSONA && c.ID_CONDOMINIO == condominio
+                            select u;
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public static List<PERSONA> conserjeCondominio(long condominio)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                var query = from u in dbc.PERSONA
+                            from c in dbc.CONSERJE
+                            where c.ID_PERSONA == u.ID_PERSONA && c.ID_CONDOMINIO == condominio
+                            select u;
+                if (query != null)
+                {
+                    return query.ToList();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public static PERSONA buscarIdPersona(long persona)
         {
             using (EasyLifeEntities dbc = new EasyLifeEntities())

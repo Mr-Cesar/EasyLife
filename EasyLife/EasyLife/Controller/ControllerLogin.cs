@@ -82,5 +82,20 @@ namespace EasyLife.Controller
                 }
             }
         }
+
+        public static string recuperarPassword(string correo)
+        {
+            using (EasyLifeEntities dbc = new EasyLifeEntities())
+            {
+                PERSONA aux = (from u in dbc.PERSONA
+                               where u.CORREO_PERSONA == correo
+                               select u).FirstOrDefault();
+                string passEncripter = Controller.ControllerEncryption.stEncryptionMD5("EasyLife");
+                string key = ConfigurationManager.AppSettings["stKey"];
+                string pass3DES = Controller.ControllerEncryption.stEncryption3DES(passEncripter, key);
+                dbc.UpdatePassword(pass3DES, aux.ID_PERSONA);
+                return "Password Cambiada";
+            }
+        }
     }
 }

@@ -23,13 +23,13 @@ namespace EasyLife.Vista
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (adm != null || conserje != null || vendedor != null || propietario != null || admCondominio != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
         }
 
         protected void lnkRecuperar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RecuperarPassword.aspx");
+            Response.Redirect("~/Vista/RecuperarPassword.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -51,11 +51,11 @@ namespace EasyLife.Vista
                         if (passM.Equals(defaultPass))
                         {
                             Session["CambioPassword"] = cambio;
-                            Response.Redirect("CambiarPassword.aspx");
+                            Response.Redirect("~/Vista/CambiarPassword.aspx");
                         }
                         else
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect("~/Vista/Index.aspx");
                         }
                     }
                     else if (per.ID_ROL == 2)
@@ -65,11 +65,11 @@ namespace EasyLife.Vista
                         if (passM.Equals(defaultPass))
                         {
                             Session["CambioPassword"] = cambio;
-                            Response.Redirect("CambiarPassword.aspx");
+                            Response.Redirect("~/Vista/CambiarPassword.aspx");
                         }
                         else
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect("~/Vista/Index.aspx");
                         }
                     }
                     else if (per.ID_ROL == 3)
@@ -79,11 +79,11 @@ namespace EasyLife.Vista
                         if (passM.Equals(defaultPass))
                         {
                             Session["CambioPassword"] = cambio;
-                            Response.Redirect("CambiarPassword.aspx");
+                            Response.Redirect("~/Vista/CambiarPassword.aspx");
                         }
                         else
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect("~/Vista/Index.aspx");
                         }
                     }
                     else if (per.ID_ROL == 4)
@@ -93,11 +93,11 @@ namespace EasyLife.Vista
                         if (passM.Equals(defaultPass))
                         {
                             Session["CambioPassword"] = cambio;
-                            Response.Redirect("CambiarPassword.aspx");
+                            Response.Redirect("~/Vista/CambiarPassword.aspx");
                         }
                         else
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect("~/Vista/Index.aspx");
                         }
                     }
                     else if (per.ID_ROL == 5)
@@ -107,11 +107,11 @@ namespace EasyLife.Vista
                         if (passM.Equals(defaultPass))
                         {
                             Session["CambioPassword"] = cambio;
-                            Response.Redirect("CambiarPassword.aspx");
+                            Response.Redirect("~/Vista/CambiarPassword.aspx");
                         }
                         else
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect("~/Vista/Index.aspx");
                         }
                     }
                 }

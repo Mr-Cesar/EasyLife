@@ -1,0 +1,27 @@
+﻿/*para cargar el estilo de carga de la pagina en login y registro*/
+.fImg {
+    position: fixed;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    background-color: grey;
+    z-index: 10000;
+}
+
+.fLoad {
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    height: 40%;
+    width: 40%;
+    z-index: 10001;
+    background-color: dimgrey;
+    border: 1px solid red;
+    background-image: url('../Image/l1.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    margin: auto;
+    border-radius: 150px;
+    border: 10px solid #666;
+}

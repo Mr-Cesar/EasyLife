@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" style="">
-                            <a class="nav-link" href="Index.aspx">Home
+                            <a class="nav-link" href="~/Vista/Index.aspx">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -73,8 +73,6 @@
                                         OnClick="btnPagarGasto_Click">PagarGasto</asp:LinkButton>
                                     <asp:LinkButton ID="btnReserva" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="btnReserva_Click">Reserva Centro</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkMensaje" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
                                     <asp:LinkButton ID="lnkCerrar" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
                                 </div>
@@ -114,8 +112,8 @@
                                         OnClick="lnkAsignarLuzDep_Click">Asignar Luz Departamento</asp:LinkButton>
                                     <asp:LinkButton ID="btnAsignarPersonal" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="btnAsignarPersonal_Click">Asignar Personal</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkEnviarMensaje" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="lnkEnviarMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMensajeAdm" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensajeAdm_Click">Avisos</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton3" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
                                 </div>
@@ -135,8 +133,6 @@
                                         OnClick="lnkPerfilVendedor_Click">Perfil</asp:LinkButton>
                                     <asp:LinkButton ID="lnkRegistroPropV" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkRegistroPropV_Click">Registro Propietario</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkMensajeVendedor" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton6" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
                                 </div>
                             </li>
@@ -161,8 +157,8 @@
                                         OnClick="LnkControlLuces_Click">Control de Luces</asp:LinkButton>
                                     <asp:LinkButton ID="lnkReservaConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="lnkReservaConserje_Click">Reservar Centro</asp:LinkButton>
-                                    <asp:LinkButton ID="LinkButton16" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMensajeConserje" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensajeAdm_Click">Avisos</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton9" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
                                 </div>
                             </li>
@@ -193,8 +189,8 @@
                                         OnClick="lnkAsignarLuzDep_Click">Asignar Luz Departamento</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton8" runat="server" CssClass="dropdown-item" CausesValidation="false"
                                         OnClick="btnAsignarPersonal_Click">Asignar Personal</asp:LinkButton>
-                                    <asp:LinkButton ID="LinkButton13" runat="server" CssClass="dropdown-item" CausesValidation="false"
-                                        OnClick="lnkMensaje_Click">Enviar Mensaje</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkMensajeAdmCondominio" runat="server" CssClass="dropdown-item" CausesValidation="false"
+                                        OnClick="lnkMensajeAdm_Click">Avisos</asp:LinkButton>
                                     <asp:LinkButton ID="LinkButton12" runat="server" CssClass="dropdown-item" CausesValidation="false" OnClick="lnkCerrar_Click">Cerrar Sesion</asp:LinkButton>
                                 </div>
                             </li>

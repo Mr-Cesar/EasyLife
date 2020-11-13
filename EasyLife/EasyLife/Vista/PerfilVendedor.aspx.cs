@@ -20,11 +20,11 @@ namespace EasyLife.Vista
             LOGIN admCondominio = (LOGIN)Session["admCondominio"];
             if (adm != null || conserje != null || propietario != null || admCondominio != null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
             else if (adm == null && conserje == null && vendedor == null && propietario == null && admCondominio == null)
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("~/Vista/Index.aspx");
             }
 
             if (!IsPostBack)
@@ -183,12 +183,12 @@ namespace EasyLife.Vista
 
         protected void btnRegistroPropietario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistroPropietario.aspx");
+            Response.Redirect("~/Vista/RegistroPropietario.aspx");
         }
 
         protected void btnModificarPropietario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistroPropietario.aspx");
+            Response.Redirect("~/Vista/RegistroPropietario.aspx");
         }
 
         protected void dplCondominioVendedor_SelectedIndexChanged(object sender, EventArgs e)

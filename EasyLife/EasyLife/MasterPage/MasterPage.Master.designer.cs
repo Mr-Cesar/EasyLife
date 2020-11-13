@@ -139,15 +139,6 @@ namespace EasyLife.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton btnReserva;
         
         /// <summary>
-        /// Control lnkMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMensaje;
-        
-        /// <summary>
         /// Control lnkCerrar.
         /// </summary>
         /// <remarks>
@@ -283,13 +274,13 @@ namespace EasyLife.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton btnAsignarPersonal;
         
         /// <summary>
-        /// Control lnkEnviarMensaje.
+        /// Control lnkMensajeAdm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEnviarMensaje;
+        protected global::System.Web.UI.WebControls.LinkButton lnkMensajeAdm;
         
         /// <summary>
         /// Control LinkButton3.
@@ -335,15 +326,6 @@ namespace EasyLife.MasterPage {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkRegistroPropV;
-        
-        /// <summary>
-        /// Control lnkMensajeVendedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMensajeVendedor;
         
         /// <summary>
         /// Control LinkButton6.
@@ -418,13 +400,13 @@ namespace EasyLife.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton lnkReservaConserje;
         
         /// <summary>
-        /// Control LinkButton16.
+        /// Control lnkMensajeConserje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton16;
+        protected global::System.Web.UI.WebControls.LinkButton lnkMensajeConserje;
         
         /// <summary>
         /// Control LinkButton9.
@@ -526,13 +508,13 @@ namespace EasyLife.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton8;
         
         /// <summary>
-        /// Control LinkButton13.
+        /// Control lnkMensajeAdmCondominio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton13;
+        protected global::System.Web.UI.WebControls.LinkButton lnkMensajeAdmCondominio;
         
         /// <summary>
         /// Control LinkButton12.

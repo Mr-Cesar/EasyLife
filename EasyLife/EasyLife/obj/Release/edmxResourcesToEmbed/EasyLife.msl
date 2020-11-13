@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EasyLifeModelStoreContainer" CdmEntityContainer="EasyLifeEntities">
+    <FunctionImportMapping FunctionImportName="asignarAdministradorCondominio" FunctionName="EasyLifeModel.Store.asignarAdministradorCondominio" />
+    <FunctionImportMapping FunctionImportName="AsignarBoletaGasto" FunctionName="EasyLifeModel.Store.AsignarBoletaGasto" />
+    <FunctionImportMapping FunctionImportName="AsignarBoletaReserva" FunctionName="EasyLifeModel.Store.AsignarBoletaReserva" />
+    <FunctionImportMapping FunctionImportName="asignarConserjeCondominio" FunctionName="EasyLifeModel.Store.asignarConserjeCondominio" />
+    <FunctionImportMapping FunctionImportName="AsignarGasto" FunctionName="EasyLifeModel.Store.AsignarGasto" />
+    <FunctionImportMapping FunctionImportName="AsignarLuzDep" FunctionName="EasyLifeModel.Store.AsignarLuzDep" />
+    <FunctionImportMapping FunctionImportName="AsignarLuzEdi" FunctionName="EasyLifeModel.Store.AsignarLuzEdi" />
+    <FunctionImportMapping FunctionImportName="asignarMultaDep" FunctionName="EasyLifeModel.Store.asignarMultaDep" />
+    <FunctionImportMapping FunctionImportName="boletaGasto" FunctionName="EasyLifeModel.Store.boletaGasto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EasyLifeModel.boletaGasto_Result">
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+          <ScalarProperty Name="ID_GASTOS" ColumnName="ID_GASTOS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="cambioEstadoPersona" FunctionName="EasyLifeModel.Store.cambioEstadoPersona" />
+    <FunctionImportMapping FunctionImportName="CambioEstMensaje" FunctionName="EasyLifeModel.Store.CambioEstMensaje" />
+    <FunctionImportMapping FunctionImportName="deleteMulta" FunctionName="EasyLifeModel.Store.deleteMulta" />
+    <FunctionImportMapping FunctionImportName="deletePersona" FunctionName="EasyLifeModel.Store.deletePersona" />
+    <FunctionImportMapping FunctionImportName="deleteTurno" FunctionName="EasyLifeModel.Store.deleteTurno" />
+    <FunctionImportMapping FunctionImportName="denegarAdministradorCondominio" FunctionName="EasyLifeModel.Store.denegarAdministradorCondominio" />
+    <FunctionImportMapping FunctionImportName="denegarConserjeCondominio" FunctionName="EasyLifeModel.Store.denegarConserjeCondominio" />
+    <FunctionImportMapping FunctionImportName="insertBoletaEst" FunctionName="EasyLifeModel.Store.insertBoletaEst" />
+    <FunctionImportMapping FunctionImportName="insertBoletaGasto" FunctionName="EasyLifeModel.Store.insertBoletaGasto" />
+    <FunctionImportMapping FunctionImportName="insertBoletaReserva" FunctionName="EasyLifeModel.Store.insertBoletaReserva" />
+    <FunctionImportMapping FunctionImportName="insertCentro" FunctionName="EasyLifeModel.Store.insertCentro" />
+    <FunctionImportMapping FunctionImportName="insertCondominio" FunctionName="EasyLifeModel.Store.insertCondominio" />
+    <FunctionImportMapping FunctionImportName="insertConserje" FunctionName="EasyLifeModel.Store.insertConserje" />
+    <FunctionImportMapping FunctionImportName="insertControlDep" FunctionName="EasyLifeModel.Store.insertControlDep" />
+    <FunctionImportMapping FunctionImportName="insertControlEdificio" FunctionName="EasyLifeModel.Store.insertControlEdificio" />
+    <FunctionImportMapping FunctionImportName="insertDepartamento" FunctionName="EasyLifeModel.Store.insertDepartamento" />
+    <FunctionImportMapping FunctionImportName="insertDireccion" FunctionName="EasyLifeModel.Store.insertDireccion" />
+    <FunctionImportMapping FunctionImportName="insertEdificio" FunctionName="EasyLifeModel.Store.insertEdificio" />
+    <FunctionImportMapping FunctionImportName="insertEstacionamiento" FunctionName="EasyLifeModel.Store.insertEstacionamiento" />
+    <FunctionImportMapping FunctionImportName="insertGasto" FunctionName="EasyLifeModel.Store.insertGasto" />
+    <FunctionImportMapping FunctionImportName="insertHorario" FunctionName="EasyLifeModel.Store.insertHorario" />
+    <FunctionImportMapping FunctionImportName="insertLuzDep" FunctionName="EasyLifeModel.Store.insertLuzDep" />
+    <FunctionImportMapping FunctionImportName="insertLuzEdificio" FunctionName="EasyLifeModel.Store.insertLuzEdificio" />
+    <FunctionImportMapping FunctionImportName="insertPersona" FunctionName="EasyLifeModel.Store.insertPersona" />
+    <FunctionImportMapping FunctionImportName="insertReserva" FunctionName="EasyLifeModel.Store.insertReserva" />
+    <FunctionImportMapping FunctionImportName="insertReservaConserje" FunctionName="EasyLifeModel.Store.insertReservaConserje" />
+    <FunctionImportMapping FunctionImportName="insertTurno" FunctionName="EasyLifeModel.Store.insertTurno" />
+    <FunctionImportMapping FunctionImportName="insertTurno_Conserje" FunctionName="EasyLifeModel.Store.insertTurno_Conserje" />
+    <FunctionImportMapping FunctionImportName="updateBoletaReserva" FunctionName="EasyLifeModel.Store.updateBoletaReserva" />
+    <FunctionImportMapping FunctionImportName="UpdateCentro" FunctionName="EasyLifeModel.Store.UpdateCentro" />
+    <FunctionImportMapping FunctionImportName="updateCondominio" FunctionName="EasyLifeModel.Store.updateCondominio" />
+    <FunctionImportMapping FunctionImportName="updateConserje" FunctionName="EasyLifeModel.Store.updateConserje" />
+    <FunctionImportMapping FunctionImportName="updateControlDep" FunctionName="EasyLifeModel.Store.updateControlDep" />
+    <FunctionImportMapping FunctionImportName="updateControlEdificio" FunctionName="EasyLifeModel.Store.updateControlEdificio" />
+    <FunctionImportMapping FunctionImportName="updateDepartamento" FunctionName="EasyLifeModel.Store.updateDepartamento" />
+    <FunctionImportMapping FunctionImportName="UpdateDepartamentoPersona" FunctionName="EasyLifeModel.Store.UpdateDepartamentoPersona" />
+    <FunctionImportMapping FunctionImportName="updateDireccion" FunctionName="EasyLifeModel.Store.updateDireccion" />
+    <FunctionImportMapping FunctionImportName="updateEdificio" FunctionName="EasyLifeModel.Store.updateEdificio" />
+    <FunctionImportMapping FunctionImportName="updateEstadoMulta" FunctionName="EasyLifeModel.Store.updateEstadoMulta" />
+    <FunctionImportMapping FunctionImportName="updateEstSalida" FunctionName="EasyLifeModel.Store.updateEstSalida" />
+    <FunctionImportMapping FunctionImportName="updateGasto" FunctionName="EasyLifeModel.Store.updateGasto" />
+    <FunctionImportMapping FunctionImportName="updateHorario" FunctionName="EasyLifeModel.Store.updateHorario" />
+    <FunctionImportMapping FunctionImportName="updateLuzDep" FunctionName="EasyLifeModel.Store.updateLuzDep" />
+    <FunctionImportMapping FunctionImportName="updateLuzEdificio" FunctionName="EasyLifeModel.Store.updateLuzEdificio" />
+    <FunctionImportMapping FunctionImportName="updateMulta" FunctionName="EasyLifeModel.Store.updateMulta" />
+    <FunctionImportMapping FunctionImportName="UpdatePassword" FunctionName="EasyLifeModel.Store.UpdatePassword" />
+    <FunctionImportMapping FunctionImportName="UpdatePersona" FunctionName="EasyLifeModel.Store.UpdatePersona" />
+    <FunctionImportMapping FunctionImportName="UpdatePersonal" FunctionName="EasyLifeModel.Store.UpdatePersonal" />
+    <FunctionImportMapping FunctionImportName="updatePropietarioFull" FunctionName="EasyLifeModel.Store.updatePropietarioFull" />
+    <FunctionImportMapping FunctionImportName="updateReserva" FunctionName="EasyLifeModel.Store.updateReserva" />
+    <FunctionImportMapping FunctionImportName="deleteCentro" FunctionName="EasyLifeModel.Store.deleteCentro" />
+    <FunctionImportMapping FunctionImportName="deleteConserje" FunctionName="EasyLifeModel.Store.deleteConserje" />
+    <FunctionImportMapping FunctionImportName="updateEstacionamiento" FunctionName="EasyLifeModel.Store.updateEstacionamiento" />
+    <FunctionImportMapping FunctionImportName="deleteHorario" FunctionName="EasyLifeModel.Store.deleteHorario" />
+    <FunctionImportMapping FunctionImportName="updateEstadoHorario" FunctionName="EasyLifeModel.Store.updateEstadoHorario" />
+    <FunctionImportMapping FunctionImportName="deleteLuzDep" FunctionName="EasyLifeModel.Store.deleteLuzDep" />
+    <FunctionImportMapping FunctionImportName="deleteLuzEdificio" FunctionName="EasyLifeModel.Store.deleteLuzEdificio" />
+    <FunctionImportMapping FunctionImportName="deleteMensaje" FunctionName="EasyLifeModel.Store.deleteMensaje" />
+    <FunctionImportMapping FunctionImportName="insertMensaje" FunctionName="EasyLifeModel.Store.insertMensaje" />
+    <FunctionImportMapping FunctionImportName="updateMensaje" FunctionName="EasyLifeModel.Store.updateMensaje" />
+    <FunctionImportMapping FunctionImportName="updateTurno" FunctionName="EasyLifeModel.Store.updateTurno" />
+    <FunctionImportMapping FunctionImportName="listaTurno" FunctionName="EasyLifeModel.Store.listaTurno">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EasyLifeModel.listaTurno_Result">
+          <ScalarProperty Name="ID_TURNO" ColumnName="ID_TURNO" />
+          <ScalarProperty Name="DESCRIPCION_TURNO" ColumnName="DESCRIPCION_TURNO" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="FECHA_TERMINO" ColumnName="FECHA_TERMINO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertBoletaMulta" FunctionName="EasyLifeModel.Store.insertBoletaMulta" />
+    <FunctionImportMapping FunctionImportName="asignarBodega" FunctionName="EasyLifeModel.Store.asignarBodega" />
+    <FunctionImportMapping FunctionImportName="asignarBoletaMulta" FunctionName="EasyLifeModel.Store.asignarBoletaMulta" />
+    <FunctionImportMapping FunctionImportName="asignarEstacionamiento" FunctionName="EasyLifeModel.Store.asignarEstacionamiento" />
+    <FunctionImportMapping FunctionImportName="AsignarProrroteo" FunctionName="EasyLifeModel.Store.AsignarProrroteo" />
+    <FunctionImportMapping FunctionImportName="updateBodega" FunctionName="EasyLifeModel.Store.updateBodega" />
+    <FunctionImportMapping FunctionImportName="insertEstacionamientoVisita" FunctionName="EasyLifeModel.Store.insertEstacionamientoVisita" />
+    <FunctionImportMapping FunctionImportName="updateEstacionamientoVisita" FunctionName="EasyLifeModel.Store.updateEstacionamientoVisita" />
+    <FunctionImportMapping FunctionImportName="insertBodega" FunctionName="EasyLifeModel.Store.insertBodega" />
+    <FunctionImportMapping FunctionImportName="asignarDimensionDep" FunctionName="EasyLifeModel.Store.asignarDimensionDep" />
+    <EntitySetMapping Name="BODEGA">
+      <EntityTypeMapping TypeName="EasyLifeModel.BODEGA">
+        <MappingFragment StoreEntitySet="BODEGA">
+          <ScalarProperty Name="DEP_BODEGA" ColumnName="DEP_BODEGA" />
+          <ScalarProperty Name="NUMERO_BODEGA" ColumnName="NUMERO_BODEGA" />
+          <ScalarProperty Name="DIMENSION_BODEGA" ColumnName="DIMENSION_BODEGA" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOLETA">
+      <EntityTypeMapping TypeName="EasyLifeModel.BOLETA">
+        <MappingFragment StoreEntitySet="BOLETA">
+          <ScalarProperty Name="FECHA_REGISTRO_BOLETA" ColumnName="FECHA_REGISTRO_BOLETA" />
+          <ScalarProperty Name="CODIGO_TRANSACCION" ColumnName="CODIGO_TRANSACCION" />
+          <ScalarProperty Name="COSTO_BOLETA" ColumnName="COSTO_BOLETA" />
+          <ScalarProperty Name="DEP" ColumnName="DEP" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_ESTACIONAMIENTO" ColumnName="ID_ESTACIONAMIENTO" />
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOLETA_GASTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.BOLETA_GASTO">
+        <MappingFragment StoreEntitySet="BOLETA_GASTO">
+          <ScalarProperty Name="ANO" ColumnName="ANO" />
+          <ScalarProperty Name="MES" ColumnName="MES" />
+          <ScalarProperty Name="ID_GASTOS" ColumnName="ID_GASTOS" />
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CENTRO">
+      <EntityTypeMapping TypeName="EasyLifeModel.CENTRO">
+        <MappingFragment StoreEntitySet="CENTRO">
+          <ScalarProperty Name="FECHA_REGISTRO_CENTRO" ColumnName="FECHA_REGISTRO_CENTRO" />
+          <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+          <ScalarProperty Name="NOMBRE_CENTRO" ColumnName="NOMBRE_CENTRO" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_TIPO_CENTRO" ColumnName="ID_TIPO_CENTRO" />
+          <ScalarProperty Name="ID_CENTRO" ColumnName="ID_CENTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIUDAD">
+      <EntityTypeMapping TypeName="EasyLifeModel.CIUDAD">
+        <MappingFragment StoreEntitySet="CIUDAD">
+          <ScalarProperty Name="NOMBRE_CIUDAD" ColumnName="NOMBRE_CIUDAD" />
+          <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
+          <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMUNA">
+      <EntityTypeMapping TypeName="EasyLifeModel.COMUNA">
+        <MappingFragment StoreEntitySet="COMUNA">
+          <ScalarProperty Name="NOMBRE_COMUNA" ColumnName="NOMBRE_COMUNA" />
+          <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
+          <ScalarProperty Name="ID_COMUNA" ColumnName="ID_COMUNA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONDOMINIO">
+      <EntityTypeMapping TypeName="EasyLifeModel.CONDOMINIO">
+        <MappingFragment StoreEntitySet="CONDOMINIO">
+          <ScalarProperty Name="FECHA_REGISTRO_CONDOMINIO" ColumnName="FECHA_REGISTRO_CONDOMINIO" />
+          <ScalarProperty Name="PRECIO_EST" ColumnName="PRECIO_EST" />
+          <ScalarProperty Name="NOMBRE_CONDOMINIO" ColumnName="NOMBRE_CONDOMINIO" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_DIRECCION" ColumnName="ID_DIRECCION" />
+          <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONSERJE">
+      <EntityTypeMapping TypeName="EasyLifeModel.CONSERJE">
+        <MappingFragment StoreEntitySet="CONSERJE">
+          <ScalarProperty Name="FECHA_REGISTRO_CONSERJE" ColumnName="FECHA_REGISTRO_CONSERJE" />
+          <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTROL_ILUMINACION_DEPARTAMENTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.CONTROL_ILUMINACION_DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="CONTROL_ILUMINACION_DEPARTAMENTO">
+          <ScalarProperty Name="ESTADO_CONTROL_D" ColumnName="ESTADO_CONTROL_D" />
+          <ScalarProperty Name="ESTADO_LUZ_CD" ColumnName="ESTADO_LUZ_CD" />
+          <ScalarProperty Name="HORA_TERMINO_D" ColumnName="HORA_TERMINO_D" />
+          <ScalarProperty Name="HORA_INICIO_D" ColumnName="HORA_INICIO_D" />
+          <ScalarProperty Name="ID_LUZ_D" ColumnName="ID_LUZ_D" />
+          <ScalarProperty Name="ID_CILUMINACION_D" ColumnName="ID_CILUMINACION_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTROL_ILUMINACION_EDIFICIO">
+      <EntityTypeMapping TypeName="EasyLifeModel.CONTROL_ILUMINACION_EDIFICIO">
+        <MappingFragment StoreEntitySet="CONTROL_ILUMINACION_EDIFICIO">
+          <ScalarProperty Name="ESTADO_CONTROL_E" ColumnName="ESTADO_CONTROL_E" />
+          <ScalarProperty Name="ESTADO_LUZ_CE" ColumnName="ESTADO_LUZ_CE" />
+          <ScalarProperty Name="HORA_TERMINO_E" ColumnName="HORA_TERMINO_E" />
+          <ScalarProperty Name="HORA_INICIO_E" ColumnName="HORA_INICIO_E" />
+          <ScalarProperty Name="ID_LUZ_E" ColumnName="ID_LUZ_E" />
+          <ScalarProperty Name="ID_CILUMINACION_E" ColumnName="ID_CILUMINACION_E" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="FECHA_REGISTRO_DEP" ColumnName="FECHA_REGISTRO_DEP" />
+          <ScalarProperty Name="PRORROTEO" ColumnName="PRORROTEO" />
+          <ScalarProperty Name="DIMENSION_DEP" ColumnName="DIMENSION_DEP" />
+          <ScalarProperty Name="NUMERO_DEP" ColumnName="NUMERO_DEP" />
+          <ScalarProperty Name="ID_LUZ_D" ColumnName="ID_LUZ_D" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIRECCION">
+      <EntityTypeMapping TypeName="EasyLifeModel.DIRECCION">
+        <MappingFragment StoreEntitySet="DIRECCION">
+          <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+          <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+          <ScalarProperty Name="ID_COMUNA" ColumnName="ID_COMUNA" />
+          <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
+          <ScalarProperty Name="ID_DIRECCION" ColumnName="ID_DIRECCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EDIFICIO">
+      <EntityTypeMapping TypeName="EasyLifeModel.EDIFICIO">
+        <MappingFragment StoreEntitySet="EDIFICIO">
+          <ScalarProperty Name="FECHA_REGISTRO_EDIFICIO" ColumnName="FECHA_REGISTRO_EDIFICIO" />
+          <ScalarProperty Name="DIMENSION_EDIFICIO" ColumnName="DIMENSION_EDIFICIO" />
+          <ScalarProperty Name="CANTIDAD_DEPARTAMENTO" ColumnName="CANTIDAD_DEPARTAMENTO" />
+          <ScalarProperty Name="CANTIDAD_PISO" ColumnName="CANTIDAD_PISO" />
+          <ScalarProperty Name="NOMBRE_EDIFICIO" ColumnName="NOMBRE_EDIFICIO" />
+          <ScalarProperty Name="ID_CONDOMINIO" ColumnName="ID_CONDOMINIO" />
+          <ScalarProperty Name="ID_GASTOS" ColumnName="ID_GASTOS" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTACIONAMIENTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.ESTACIONAMIENTO">
+        <MappingFragment StoreEntitySet="ESTACIONAMIENTO">
+          <ScalarProperty Name="DEP_EST" ColumnName="DEP_EST" />
+          <ScalarProperty Name="PRECIO_EST" ColumnName="PRECIO_EST" />
+          <ScalarProperty Name="NUMERO_EST" ColumnName="NUMERO_EST" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_EST" ColumnName="ID_EST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTACIONAMIENTO_VISITA">
+      <EntityTypeMapping TypeName="EasyLifeModel.ESTACIONAMIENTO_VISITA">
+        <MappingFragment StoreEntitySet="ESTACIONAMIENTO_VISITA">
+          <ScalarProperty Name="FECHA_ESTACIONAMIENTO" ColumnName="FECHA_ESTACIONAMIENTO" />
+          <ScalarProperty Name="TOTAL_EST" ColumnName="TOTAL_EST" />
+          <ScalarProperty Name="ESTADO_EST" ColumnName="ESTADO_EST" />
+          <ScalarProperty Name="HORA_SALIDA" ColumnName="HORA_SALIDA" />
+          <ScalarProperty Name="HORA_ENTRADA" ColumnName="HORA_ENTRADA" />
+          <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
+          <ScalarProperty Name="EDIFICIO" ColumnName="EDIFICIO" />
+          <ScalarProperty Name="NUM_DEP" ColumnName="NUM_DEP" />
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+          <ScalarProperty Name="ID_ESTACIONAMIENTO" ColumnName="ID_ESTACIONAMIENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GASTOS_COMUNES">
+      <EntityTypeMapping TypeName="EasyLifeModel.GASTOS_COMUNES">
+        <MappingFragment StoreEntitySet="GASTOS_COMUNES">
+          <ScalarProperty Name="FECHA_REGISTRO_GASTO" ColumnName="FECHA_REGISTRO_GASTO" />
+          <ScalarProperty Name="TOTAL_GASTO" ColumnName="TOTAL_GASTO" />
+          <ScalarProperty Name="GASTO_OTRO" ColumnName="GASTO_OTRO" />
+          <ScalarProperty Name="GASTO_AGUA_CALIENTE" ColumnName="GASTO_AGUA_CALIENTE" />
+          <ScalarProperty Name="GASTO_ASCENSOR" ColumnName="GASTO_ASCENSOR" />
+          <ScalarProperty Name="GASTOS_ASEO" ColumnName="GASTOS_ASEO" />
+          <ScalarProperty Name="GASTO_ARTICULOS_ASEO" ColumnName="GASTO_ARTICULOS_ASEO" />
+          <ScalarProperty Name="GASTO_CAMARAS" ColumnName="GASTO_CAMARAS" />
+          <ScalarProperty Name="GASTO_MANTENCION_AREAS" ColumnName="GASTO_MANTENCION_AREAS" />
+          <ScalarProperty Name="GASTO_GUARDIA" ColumnName="GASTO_GUARDIA" />
+          <ScalarProperty Name="GASTO_CONSERJE" ColumnName="GASTO_CONSERJE" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_GASTOS" ColumnName="ID_GASTOS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HORARIO_CENTRO">
+      <EntityTypeMapping TypeName="EasyLifeModel.HORARIO_CENTRO">
+        <MappingFragment StoreEntitySet="HORARIO_CENTRO">
+          <ScalarProperty Name="FECHA_REGISTRO_HORARIO" ColumnName="FECHA_REGISTRO_HORARIO" />
+          <ScalarProperty Name="ESTADO_HORARIO" ColumnName="ESTADO_HORARIO" />
+          <ScalarProperty Name="HORARIO_COMPLETO" ColumnName="HORARIO_COMPLETO" />
+          <ScalarProperty Name="HORA_TERMINO_D" ColumnName="HORA_TERMINO_D" />
+          <ScalarProperty Name="HORA_INICIO_D" ColumnName="HORA_INICIO_D" />
+          <ScalarProperty Name="DIA_HORARIO" ColumnName="DIA_HORARIO" />
+          <ScalarProperty Name="ID_CENTRO" ColumnName="ID_CENTRO" />
+          <ScalarProperty Name="ID_HORARIO_CENTRO" ColumnName="ID_HORARIO_CENTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGIN">
+      <EntityTypeMapping TypeName="EasyLifeModel.LOGIN">
+        <MappingFragment StoreEntitySet="LOGIN">
+          <ScalarProperty Name="PASSWORD_LOGIN" ColumnName="PASSWORD_LOGIN" />
+          <ScalarProperty Name="FK_RUT" ColumnName="FK_RUT" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LUZ_DEPARTAMENTO">
+      <EntityTypeMapping TypeName="EasyLifeModel.LUZ_DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="LUZ_DEPARTAMENTO">
+          <ScalarProperty Name="ESTADO_LUZ_D" ColumnName="ESTADO_LUZ_D" />
+          <ScalarProperty Name="CODIGO_LUZ_D" ColumnName="CODIGO_LUZ_D" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="ID_LUZ_D" ColumnName="ID_LUZ_D" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LUZ_EDIFICIO">
+      <EntityTypeMapping TypeName="EasyLifeModel.LUZ_EDIFICIO">
+        <MappingFragment StoreEntitySet="LUZ_EDIFICIO">
+          <ScalarProperty Name="ESTADO_LUZ_E" ColumnName="ESTADO_LUZ_E" />
+          <ScalarProperty Name="CODIGO_LUZ_E" ColumnName="CODIGO_LUZ_E" />
+          <ScalarProperty Name="ID_EDIFICIO" ColumnName="ID_EDIFICIO" />
+          <ScalarProperty Name="ID_LUZ_E" ColumnName="ID_LUZ_E" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENSAJE">
+      <EntityTypeMapping TypeName="EasyLifeModel.MENSAJE">
+        <MappingFragment StoreEntitySet="MENSAJE">
+          <ScalarProperty Name="FECHA_REGISTRO_M" ColumnName="FECHA_REGISTRO_M" />
+          <ScalarProperty Name="ESTADO_MENSAJE" ColumnName="ESTADO_MENSAJE" />
+          <ScalarProperty Name="DESTINATARIO_MENSAJE" ColumnName="DESTINATARIO_MENSAJE" />
+          <ScalarProperty Name="EMISOR_MENSAJE" ColumnName="EMISOR_MENSAJE" />
+          <ScalarProperty Name="DESCRIPCION_MENSAJE" ColumnName="DESCRIPCION_MENSAJE" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+          <ScalarProperty Name="ID_TIPO_MENSAJE" ColumnName="ID_TIPO_MENSAJE" />
+          <ScalarProperty Name="ID_MENSAJE" ColumnName="ID_MENSAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MULTA">
+      <EntityTypeMapping TypeName="EasyLifeModel.MULTA">
+        <MappingFragment StoreEntitySet="MULTA">
+          <ScalarProperty Name="FECHA_REGISTRO_MULTA" ColumnName="FECHA_REGISTRO_MULTA" />
+          <ScalarProperty Name="ESTADO_MULTA" ColumnName="ESTADO_MULTA" />
+          <ScalarProperty Name="COSTO_MULTA" ColumnName="COSTO_MULTA" />
+          <ScalarProperty Name="MOTIVO" ColumnName="MOTIVO" />
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="ID_MULTA" ColumnName="ID_MULTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONA">
+      <EntityTypeMapping TypeName="EasyLifeModel.PERSONA">
+        <MappingFragment StoreEntitySet="PERSONA">
+          <ScalarProperty Name="FECHA_REGISTRO_PERSONA" ColumnName="FECHA_REGISTRO_PERSONA" />
+          <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+          <ScalarProperty Name="LUZ" ColumnName="LUZ" />
+          <ScalarProperty Name="ESTADO_PERSONA" ColumnName="ESTADO_PERSONA" />
+          <ScalarProperty Name="CORREO_PERSONA" ColumnName="CORREO_PERSONA" />
+          <ScalarProperty Name="TELEFONO_PERSONA" ColumnName="TELEFONO_PERSONA" />
+          <ScalarProperty Name="FK_RUT" ColumnName="FK_RUT" />
+          <ScalarProperty Name="APELLIDO_PERSONA" ColumnName="APELLIDO_PERSONA" />
+          <ScalarProperty Name="NOMBRE_PERSONA" ColumnName="NOMBRE_PERSONA" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+          <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION">
+      <EntityTypeMapping TypeName="EasyLifeModel.REGION">
+        <MappingFragment StoreEntitySet="REGION">
+          <ScalarProperty Name="NOMBRE_REGION" ColumnName="NOMBRE_REGION" />
+          <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESERVA_CENTRO">
+      <EntityTypeMapping TypeName="EasyLifeModel.RESERVA_CENTRO">
+        <MappingFragment StoreEntitySet="RESERVA_CENTRO">
+          <ScalarProperty Name="FECHA_RESERVA_C" ColumnName="FECHA_RESERVA_C" />
+          <ScalarProperty Name="COD_HORARIO" ColumnName="COD_HORARIO" />
+          <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+          <ScalarProperty Name="ID_CENTRO" ColumnName="ID_CENTRO" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="ID_RESERVA_CENTRO" ColumnName="ID_RESERVA_CENTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="EasyLifeModel.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="DESCRIPCION_ROL" ColumnName="DESCRIPCION_ROL" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_CENTRO">
+      <EntityTypeMapping TypeName="EasyLifeModel.TIPO_CENTRO">
+        <MappingFragment StoreEntitySet="TIPO_CENTRO">
+          <ScalarProperty Name="FECHA_REGISTRO_TIPO_C" ColumnName="FECHA_REGISTRO_TIPO_C" />
+          <ScalarProperty Name="NOMBRE_TIPO_CENTRO" ColumnName="NOMBRE_TIPO_CENTRO" />
+          <ScalarProperty Name="ID_TIPO_CENTRO" ColumnName="ID_TIPO_CENTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_MENSAJE">
+      <EntityTypeMapping TypeName="EasyLifeModel.TIPO_MENSAJE">
+        <MappingFragment StoreEntitySet="TIPO_MENSAJE">
+          <ScalarProperty Name="DESCRIPCION_TP" ColumnName="DESCRIPCION_TP" />
+          <ScalarProperty Name="ID_TIPO_MENSAJE" ColumnName="ID_TIPO_MENSAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TURNO">
+      <EntityTypeMapping TypeName="EasyLifeModel.TURNO">
+        <MappingFragment StoreEntitySet="TURNO">
+          <ScalarProperty Name="FECHA_TERMINO" ColumnName="FECHA_TERMINO" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="DESCRIPCION_TURNO" ColumnName="DESCRIPCION_TURNO" />
+          <ScalarProperty Name="ID_TURNO" ColumnName="ID_TURNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CONSERJE_TURNO" TypeName="EasyLifeModel.CONSERJE_TURNO" StoreEntitySet="CONSERJE_TURNO">
+      <EndProperty Name="TURNO">
+        <ScalarProperty Name="ID_TURNO" ColumnName="ID_TURNO" />
+      </EndProperty>
+      <EndProperty Name="CONSERJE">
+        <ScalarProperty Name="ID_CONSERJE" ColumnName="ID_CONSERJE" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
